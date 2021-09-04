@@ -4,6 +4,7 @@ from discord import Intents
 import os
 from logging import config, getLogger, log
 from database import Database
+from models.user_model import UserModel
 
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
@@ -18,6 +19,9 @@ db = Database()
 @Bot.event
 async def on_ready():
     logger.info("bot is started")
+    db.insert_user(guild_id=222222222222222222, user_id=222222222222222222)
+    user = db.fetch_user(guild_id=222222222222222222, user_id=222222222222222222)
+    print(user)
 
 @Bot.event
 async def on_guild_join(guild):
