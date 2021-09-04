@@ -50,3 +50,111 @@ database : insert_user : 78 : 04/09/2021 10:31:37 PM : DEBUG : inserted new user
 database : fetch_user : 85 : 04/09/2021 10:31:37 PM : CRITICAL : 222222222222222222, 222222222222222222, (<class 'int'>, <class 'int'>)
 database : fetch_user : 87 : 04/09/2021 10:31:37 PM : DEBUG : searching user
 database : fetch_user : 89 : 04/09/2021 10:31:38 PM : DEBUG : finded user
+discord.gateway : run : 148 : 04/09/2021 10:32:16 PM : DEBUG : Keeping shard ID None websocket alive with sequence 2.
+discord.client : dispatch : 358 : 04/09/2021 10:32:16 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:32:16 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:32:16 PM : DEBUG : Dispatching event socket_response
+discord.client : dispatch : 358 : 04/09/2021 10:32:49 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:32:49 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 3, 'op': 0, 'd': {'user': {'id': '346140550069747713'}, 'status': 'online', 'roles': [], 'nick': 'CoinMaster (cm!help)', 'guild_id': '750791175606239397', 'game': {'type': 0, 'name': 'hrnggg spoderman', 'id': 'ec0b28a579ecb4bd', 'created_at': 1630783967622}, 'client_status': {}, 'activities': [{'type': 0, 'name': 'hrnggg spoderman', 'id': 'ec0b28a579ecb4bd', 'created_at': 1630783967622}]}}
+discord.client : dispatch : 358 : 04/09/2021 10:32:49 PM : DEBUG : Dispatching event socket_response
+discord.client : dispatch : 358 : 04/09/2021 10:32:49 PM : DEBUG : Dispatching event member_update
+discord.gateway : run : 148 : 04/09/2021 10:32:58 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:32:58 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:32:58 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:32:58 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:33:39 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:33:39 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:33:39 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:33:39 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:34:20 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:34:20 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:34:20 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:34:20 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:35:01 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:35:02 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:35:02 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:35:02 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:35:43 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:35:43 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:35:43 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:35:43 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:36:24 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:36:24 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:36:24 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:36:24 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:37:05 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:37:05 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:37:05 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:37:05 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:37:46 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:37:47 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:37:47 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:37:47 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:38:28 PM : DEBUG : Keeping shard ID None websocket alive with sequence 3.
+discord.client : dispatch : 358 : 04/09/2021 10:38:28 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:38:28 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:38:28 PM : DEBUG : Dispatching event socket_response
+discord.client : dispatch : 358 : 04/09/2021 10:38:49 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:38:49 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 4, 'op': 0, 'd': {'user': {'id': '346140550069747713'}, 'status': 'online', 'roles': [], 'nick': 'CoinMaster (cm!help)', 'guild_id': '750791175606239397', 'game': {'type': 0, 'name': 'Shut up and dance!', 'id': 'ec0b28a579ecb4bd', 'created_at': 1630784327635}, 'client_status': {}, 'activities': [{'type': 0, 'name': 'Shut up and dance!', 'id': 'ec0b28a579ecb4bd', 'created_at': 1630784327635}]}}
+discord.client : dispatch : 358 : 04/09/2021 10:38:49 PM : DEBUG : Dispatching event socket_response
+discord.client : dispatch : 358 : 04/09/2021 10:38:49 PM : DEBUG : Dispatching event member_update
+discord.gateway : run : 148 : 04/09/2021 10:39:09 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:39:09 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:39:09 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:39:09 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:39:50 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:39:50 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:39:50 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:39:50 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:40:31 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:40:32 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:40:32 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:40:32 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:41:13 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:41:13 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:41:13 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:41:13 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:41:54 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:41:54 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:41:54 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:41:54 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:42:35 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:42:35 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:42:35 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:42:35 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:43:16 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:43:17 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:43:17 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:43:17 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:43:58 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:43:58 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:43:58 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:43:58 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:44:39 PM : DEBUG : Keeping shard ID None websocket alive with sequence 4.
+discord.client : dispatch : 358 : 04/09/2021 10:44:39 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:44:39 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:44:39 PM : DEBUG : Dispatching event socket_response
+discord.client : dispatch : 358 : 04/09/2021 10:44:49 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:44:49 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 5, 'op': 0, 'd': {'user': {'id': '346140550069747713'}, 'status': 'online', 'roles': [], 'nick': 'CoinMaster (cm!help)', 'guild_id': '750791175606239397', 'game': {'type': 0, 'name': 'Does not contain peanuts!', 'id': 'ec0b28a579ecb4bd', 'created_at': 1630784687605}, 'client_status': {}, 'activities': [{'type': 0, 'name': 'Does not contain peanuts!', 'id': 'ec0b28a579ecb4bd', 'created_at': 1630784687605}]}}
+discord.client : dispatch : 358 : 04/09/2021 10:44:49 PM : DEBUG : Dispatching event socket_response
+discord.client : dispatch : 358 : 04/09/2021 10:44:49 PM : DEBUG : Dispatching event member_update
+discord.gateway : run : 148 : 04/09/2021 10:45:20 PM : DEBUG : Keeping shard ID None websocket alive with sequence 5.
+discord.client : dispatch : 358 : 04/09/2021 10:45:20 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:45:20 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:45:20 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:46:02 PM : DEBUG : Keeping shard ID None websocket alive with sequence 5.
+discord.client : dispatch : 358 : 04/09/2021 10:46:02 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:46:02 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:46:02 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:46:43 PM : DEBUG : Keeping shard ID None websocket alive with sequence 5.
+discord.client : dispatch : 358 : 04/09/2021 10:46:43 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:46:43 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:46:43 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:47:24 PM : DEBUG : Keeping shard ID None websocket alive with sequence 5.
+discord.client : dispatch : 358 : 04/09/2021 10:47:24 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:47:24 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:47:24 PM : DEBUG : Dispatching event socket_response
+discord.gateway : run : 148 : 04/09/2021 10:48:05 PM : DEBUG : Keeping shard ID None websocket alive with sequence 5.
+discord.client : dispatch : 358 : 04/09/2021 10:48:05 PM : DEBUG : Dispatching event socket_raw_receive
+discord.gateway : received_message : 432 : 04/09/2021 10:48:05 PM : DEBUG : For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+discord.client : dispatch : 358 : 04/09/2021 10:48:05 PM : DEBUG : Dispatching event socket_response
