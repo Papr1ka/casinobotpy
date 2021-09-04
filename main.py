@@ -1,0 +1,37 @@
+import discord
+from discord.ext import commands
+from discord import Intents
+import os
+from logging import config, getLogger, log
+from database import Database
+
+
+config.fileConfig('./logging.ini', disable_existing_loggers=False)
+logger = getLogger(__name__)
+
+
+Token = os.environ.get("TOKEN")
+Bot = commands.Bot(command_prefix = "=", intents = Intents.all())
+db = Database()
+
+
+@Bot.event
+async def on_ready():
+    logger.info("bot is started")
+
+@Bot.event
+async def on_guild_join(guild):
+    logger.info(f"bot joined guild: region - {guild.region} | name - {guild.name} | members - {guild.member_count}")
+    db.create_document(str(guild.id))
+
+@Bot.event
+async def on_guild_remove(guild):
+    logger.info(f"bot removed from guild: {guild.region} | {guild.name} | {guild.member_count}")
+    db.delete_document(str(guild.id))
+
+
+logger.debug("loading extensions...")
+Bot.load_extension("cogs.casino")
+logger.debug("loading complete")
+
+Bot.run(Token)
