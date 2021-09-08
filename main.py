@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import Intents
 import os
 from logging import config, getLogger, log
-from database import Database
+from database import db
 from models.user_model import UserModel
 
 
@@ -13,15 +13,14 @@ logger = getLogger(__name__)
 
 Token = os.environ.get("TOKEN")
 Bot = commands.Bot(command_prefix = "=", intents = Intents.all())
-db = Database()
+
 
 
 @Bot.event
 async def on_ready():
     logger.info("bot is started")
-    db.insert_user(guild_id=222222222222222222, user_id=222222222222222222)
-    user = db.fetch_user(guild_id=222222222222222222, user_id=222222222222222222)
-    print(user)
+    db.update_user(guild_id=222222222222222222, user_id=456456456456456456, money=98000)
+
 
 @Bot.event
 async def on_guild_join(guild):

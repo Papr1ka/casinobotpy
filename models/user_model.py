@@ -11,8 +11,9 @@ class UserModel():
     __VOICE = 0
     __MESSAGES = 0
     __LEVEL_COST_FORMULA = lambda level: level * (50 + level * 3)
+    __slots__ = ['__user_id', '__money', '__exp', '__voice', '__messages', '__level']
 
-    def __init__(self, user_id):
+    def __init__(self, user_id = None):
         self.__user_id = user_id
         self.__money = self.__MONEY
         self.__exp = self.__EXP
@@ -21,6 +22,10 @@ class UserModel():
         self.__level = self.__LEVEL
         self.__exp, self.__level = self.exp_to_level(self.__exp, self.__level)
         logger.debug('created UserModel')
+    
+    @property
+    def slots(self):
+        return list([i[2:] for i in self.__slots__])
     
     @classmethod
     def set_cls_field(cls, **params):
