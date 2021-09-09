@@ -5,12 +5,19 @@ import os
 from logging import config, getLogger
 from database import db
 from handlers import MailHandler
+import logging
 
 password = 'L2veoA6Chx4P'
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
 logger.addHandler(MailHandler())
+logger.info('starting...')
+logging.getLogger('discord').setLevel('WARNING')
+logging.getLogger('requests').setLevel('WARNING')
+logging.getLogger('urllib3').setLevel('WARNING')
+logging.getLogger('aiohttp').setLevel('WARNING')
+logging.getLogger('asyncio').setLevel('WARNING')
 
 
 
