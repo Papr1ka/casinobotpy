@@ -10,6 +10,15 @@ config.fileConfig('logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
 logger.addHandler(MailHandler())
 
+logging.getLogger('discord').setLevel('WARNING')
+logging.getLogger('requests').setLevel('WARNING')
+logging.getLogger('urllib3').setLevel('WARNING')
+logging.getLogger('aiohttp').setLevel('WARNING')
+logging.getLogger('asyncio').setLevel('WARNING')
+
+for i in logging.Logger.manager.loggerDict:
+    print(i)
+
 class Casino(commands.Cog):
     
     def __init__(self, Bot): 
