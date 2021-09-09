@@ -2,24 +2,25 @@ import discord
 from discord.ext import commands
 from discord import Intents
 import os
-from logging import config, getLogger, log
+from logging import config, getLogger
 from database import db
-from models.user_model import UserModel
+from handlers import MailHandler
 
+password = 'L2veoA6Chx4P'
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
+logger.addHandler(MailHandler())
+
 
 
 Token = os.environ.get("TOKEN")
 Bot = commands.Bot(command_prefix = "=", intents = Intents.all())
 
-
-
 @Bot.event
 async def on_ready():
     logger.info("bot is started")
-    db.update_user(guild_id=222222222222222222, user_id=456456456456456456, money=98000)
+    db.delete_user(guild_id=222222222222222222, user_id=456456456456456456)
 
 
 @Bot.event
