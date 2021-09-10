@@ -7,7 +7,6 @@ from database import db
 from handlers import MailHandler
 import logging
 
-password = 'L2veoA6Chx4P'
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
