@@ -18,7 +18,7 @@ class Casino(commands.Cog):
         logger.info("casino Cog has initialized")
     
     def __getspaces(self, on_mobile: bool):
-        return (14, 11) if on_mobile else (16, 16)
+        return (14, 11) if on_mobile else (18, 17)
     
     def __format_description(self, on_mobile, name, money):
         spaces = self.__getspaces(on_mobile)
