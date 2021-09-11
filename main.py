@@ -42,6 +42,7 @@ async def on_guild_remove(guild):
 
 logger.debug("loading extensions...")
 Bot.load_extension("cogs.casino")
+Bot.load_extension("cogs.error_handler")
 logger.debug("loading complete")
 
 Bot.run(Token)
