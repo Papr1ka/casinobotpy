@@ -110,9 +110,10 @@ class Database(MongoClient):
             user = self.db[guild_id.__str__()].find_one({'user_id': user_id})
         except Exception as E:
             logger.debug(f'cant fetch user: {E}')
-            user = self.insert_user(guild_id=guild_id, user_id=user_id)
-            return user.get_json()
         else:
+            if user is None:
+                user = self.insert_user(guild_id=guild_id, user_id=user_id)
+                return user.get_json()
             logger.debug("finded user")
             return user
     

@@ -17,14 +17,14 @@ class ErrorHandler(commands.Cog):
         self.Bot = Bot
         logger.info(f"{__name__} Cog has initialized")
     
-    @commands.Cog.listener()
+    """@commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-        logger.debug('on_command_error()')
+        logger.debug(f'on_command_error(), {error}')
         embed = self.__error_embed
         if isinstance(error, errors.NotEnoughMoney):
             logger.debug('errors.NotEnoughMoney')
             embed.title = error.message
-            await ctx.send(embed=embed, delete_after=self.__delete_after)
+            await ctx.send(embed=embed, delete_after=self.__delete_after)"""
     
     @staticmethod
     async def on_error(ctx, error):

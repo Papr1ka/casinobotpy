@@ -148,6 +148,7 @@ class Casino(commands.Cog):
         if msg['author_id'] != payload.user_id:
             return
         message = msg['message']
+        msg['author_money'] = db.fetch_user(guild_id=payload.guild_id, user_id=payload.user_id)['money']
         embed = embed = discord.Embed(
             title = "Рулетка",
             colour = discord.Colour.random()
@@ -270,8 +271,8 @@ class Casino(commands.Cog):
         win = step // 2
         win = game.check(final[win])
         print(win)
-        
-        
+
+
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
