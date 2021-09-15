@@ -43,7 +43,7 @@ class UserModel():
     
     def get_json(self):
         return {
-            'user_id': self.__user_id,
+            '_id': self.__user_id,
             'money': self.__money,
             'exp': self.__exp,
             'level': self.__level,

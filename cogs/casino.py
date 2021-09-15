@@ -1,16 +1,14 @@
-from os import error, name
-from re import X
-from typing_extensions import final
-
 from handlers import MailHandler
-import discord
-from discord.ext import commands
-from logging import config, getLogger, log
 from main import db
 from models.rulet import Rulet
-from asyncio import sleep
 import models.errors as errors
 from cogs.error_handler import ErrorHandler
+
+import discord
+from discord.ext import commands
+from logging import config, getLogger
+from asyncio import sleep
+import time
 
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
@@ -86,8 +84,10 @@ class Casino(commands.Cog):
         'на число': ["на " + i.__str__() for i in range(0, 37)]
     }
 
-    __messages = {} #{'message': discord.Message, 'author': str, 'bet_type': int, 'bet': int, 'bet_type_type': int}
-
+    __messages = {} #{message_id: {'message': discord.Message, 'author': str, 'bet_type': int, 'bet': int, 'bet_type_type': int, 'author_id': int, 'choice': bool, 'mobile': bool, 'author_money': int, 'guild_id': int, 'last_use': time.time}}
+    __games = {
+        #{'channel_id': []}
+    }
     __bet_kf = {
         '⏬': -1000,
         '🔽': -100,
@@ -98,6 +98,8 @@ class Casino(commands.Cog):
     }
     __min_bet = 100
     __max_bet = 5000
+    __max_games = 2
+    __sleep = 300
 
     __vnumbers = {
         '1': '1️⃣',
@@ -143,48 +145,79 @@ class Casino(commands.Cog):
             return sm
     
     async def __emoji_handler(self, payload):
+        game_over = False
         e = payload.emoji.__str__()
-        msg = self.__messages[payload.message_id]
-        if msg['author_id'] != payload.user_id:
-            return
-        message = msg['message']
-        msg['author_money'] = db.fetch_user(guild_id=payload.guild_id, user_id=payload.user_id)['money']
-        embed = embed = discord.Embed(
-            title = "Рулетка",
-            colour = discord.Colour.random()
-        )
-        embed._fields = self.__rulet_fields
-        embed.set_image(url='https://game-wiki.guru/content/Games/ruletka-11-pole.jpg')
-        if e == "⬅️":
-            logger.debug('editing bet_type: -1')
-            msg['bet_type'] = (msg['bet_type'] - 1) % self.__bets_type_len
-            msg['choice'] = False
-        elif e == "➡️":
-            logger.debug('editing bet_type: +1')
-            msg['bet_type'] = (msg['bet_type'] + 1) % self.__bets_type_len
-            msg['choice'] = False
-        elif e == "🔳":
-            logger.debug('editing bet_type_type')
-            msg['bet_type_type'] = (msg['bet_type_type'] + (1 if msg['choice'] else 0)) % self.__bets[self.__bets_type[msg['bet_type']]].__len__()
-            msg['choice'] = True
-        elif e in ('⏬', '🔽', '➖', '➕', '🔼', '⏫'):
-            logger.debug('editing money')
-            msg['bet'] = self.__set_bet(msg['bet'], self.__bet_kf[e], msg['author_money'])
+        try:
+            msg = self.__messages[payload.message_id]
+        except:
+            channel = self.Bot.get_channel(payload.channel_id)
+            await ErrorHandler.on_error(channel=channel, error=errors.BadGamesession("Сессия устарела"))
+            msg = await channel.fetch_message(payload.message_id)
+            await msg.delete(delay=1)
         else:
-            if not msg['choice']:
-                logger.debug(f'{msg["author"]}, did not choose bet type')
-                await ErrorHandler.on_error(ctx=message.channel, error = errors.NotSelectedBetType(f'{msg["author"]}, не выбран тип ставки'))
+            if msg['author_id'] != payload.user_id:
+                return
+            message = msg['message']
+            embed = embed = discord.Embed(
+                title = "Рулетка",
+                colour = discord.Colour.random()
+            )
+            embed._fields = self.__rulet_fields
+            embed.set_image(url='https://game-wiki.guru/content/Games/ruletka-11-pole.jpg')
+            if e == "⬅️":
+                logger.debug('editing bet_type: -1')
+                msg['bet_type'] = (msg['bet_type'] - 1) % self.__bets_type_len
+                msg['choice'] = False
+            elif e == "➡️":
+                logger.debug('editing bet_type: +1')
+                msg['bet_type'] = (msg['bet_type'] + 1) % self.__bets_type_len
+                msg['choice'] = False
+            elif e == "🔳":
+                logger.debug('editing bet_type_type')
+                msg['bet_type_type'] = (msg['bet_type_type'] + (1 if msg['choice'] else 0)) % self.__bets[self.__bets_type[msg['bet_type']]].__len__()
+                msg['choice'] = True
+            elif e in ('⏬', '🔽', '➖', '➕', '🔼', '⏫'):
+                logger.debug('editing money')
+                msg['bet'] = self.__set_bet(msg['bet'], self.__bet_kf[e], msg['author_money'])
             else:
-                await self.__roll(msg)
+                if not msg['choice']:
+                    await ErrorHandler.on_error(channel=message.channel, error=errors.NotSelectedBetType(f'{msg["author"]}, не выбран тип ставки'))
+                else:
+                    if msg['author_money'] >= msg['bet']:
+                        await self.__roll(msg)
+                    else:
+                        game_over = True
+                        await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{msg["author"]}, недостаточно средств'))
 
+            if game_over:
+                bet_type = 'Game Over!'
+                msg['bet'] = msg['author_money']
+            else:
+                bet_type = self.__bets_type[msg['bet_type']] if not msg['choice'] else self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']]
+            msg['last_use'] = time.time()
+            self.__messages[message.id] = msg
+            description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type)
+            embed.description = description
+            await message.edit(embed=embed)
+            if game_over:
+                await self.__end_games([message.id])
+                await sleep(ErrorHandler.getDelay())
+                await message.delete()
 
-
-        bet_type = self.__bets_type[msg['bet_type']] if not msg['choice'] else self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']]
-        self.__messages[message.id] = msg
-        description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type)
-        embed.description = description
-        await message.edit(embed=embed)
-
+    async def __end_games(self, games):
+        for game in games:
+            self.__messages.pop(game)
+        logger.debug('removed bad games')
+    
+    async def __is_bad_game(self):
+        while not self.Bot.is_closed():
+            que = []
+            t = time.time()
+            for id in self.__messages:
+                if t - self.__messages[id]['last_use'] >= self.__sleep:
+                    que.append(id)
+            await self.__end_games(que)
+            await sleep(self.__sleep)
 
     def __getspaces(self, on_mobile: bool, bet_type_len: int, spin: bool):
         if on_mobile:
@@ -215,7 +248,7 @@ class Casino(commands.Cog):
     @commands.command()
     async def rulet(self, ctx):
         logger.debug('called command rulet')
-        user = db.fetch_user(guild_id=ctx.guild.id, user_id=ctx.author.id)
+        user = db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
         money = user['money']
         if money < self.__min_bet:
             raise errors.NotEnoughMoney(f'{ctx.author.name}, недостаточно средств')
@@ -237,7 +270,9 @@ class Casino(commands.Cog):
             'author_id' : ctx.author.id,
             'choice': False,
             'mobile': ctx.author.is_on_mobile(),
-            'author_money': money
+            'author_money': money,
+            'guild_id': ctx.guild.id,
+            'last_use': time.time()
         }
         for emoji in self.__rulet_emojis:
             await message.add_reaction(emoji)
@@ -248,30 +283,84 @@ class Casino(commands.Cog):
             out += self.__vnumbers[i]
         return out
     
+    def __get_win(self, bet_type_type, win, number):
+        if bet_type_type in self.__bets['на цвет']:
+            if bet_type_type == "на красное":
+                return {'win': win[0] == "red", 'kf': 2}
+            return {'win': win[0] == "black", 'kf': 2}
+        elif bet_type_type in self.__bets['на чётность']:
+            if bet_type_type == "на чётное":
+                return {'win': win[1] == "even", 'kf': 2}
+            return {'win': win[1] == "odd", 'kf': 2}
+        elif bet_type_type in self.__bets['на половину']:
+            if bet_type_type == "на 1-18":
+                return {'win': 1 <= number <= 18, 'kf': 2}
+            return {'win': 19 <= number <= 36, 'kf': 2}
+        elif bet_type_type in self.__bets['на линию']:
+            return {'win': int(bet_type_type[6]) == win[2], 'kf': 3}
+        elif bet_type_type in self.__bets['на дюжину']:
+            return {'win': (int(bet_type_type[7]) - 1) * 12 < number <= int(bet_type_type[7]) * 12, 'kf': 3}
+        elif bet_type_type in self.__bets['на число']:
+            return {'win': int(bet_type_type[3:]) == number, 'kf': 36}
+        return {'win': False, 'kf': 0}
+    
+    def __format_footer(self, bet, win):
+        if win['win']:
+            return f"вы выиграли {bet * win['kf']}$"
+        return f"вы проиграли {bet}$"
+        
+    def __can_roll(self, channel_id):
+        try:
+            games = self.__games[channel_id]
+        except KeyError:
+            self.__games[channel_id] = []
+            return True
+        else:
+            if len(games) >= self.__max_games:
+                return False
+            return True
+    
+    def __remove_games(self, channel_id, game_id):
+        self.__games[channel_id].remove(game_id)
+        if self.__games[channel_id].__len__() == 0:
+            self.__games.pop(channel_id)
+
+
     async def __roll(self, msg):
         message = msg['message']
         channel = message.channel
-        padding = self.__paddings[4] if not msg['mobile'] else self.__paddings[5]
-        step = 9 if not msg['mobile'] else 7
-        bet_type = self.__bets_type[msg['bet_type']] if not msg['choice'] else self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']]
-        description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type)
-        embed = discord.Embed()
-        game = Rulet(step=step)
-        rolls = game.spin()
-        embed.add_field(name=f"```{'♥️':-^{padding}}```", value='```elixir\n' + '  '.join([self.__visualize_number(i) for i in next(rolls)]) + '\n' + '  '.join([self.__vcolors[game.check(i)[0]] * 2 for i in next(rolls)]) + '```')
-        description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type, spin=True)
-        embed.description = description
-        message = await channel.send(embed=embed)
-        for i in game.spin():
-            final = i
-            embed.clear_fields()
-            embed.add_field(name=f"```{'♥️':-^{padding}}```", value='```elixir\n' + '  '.join([self.__visualize_number(i) for i in i]) + '\n' + '  '.join([self.__vcolors[game.check(i)[0]] * 2 for i in i]) + '```')
-            await sleep(1)
-            await message.edit(embed=embed)
-        win = step // 2
-        win = game.check(final[win])
-        print(win)
+        if not self.__can_roll(channel.id):
+            await ErrorHandler.on_error(channel, errors.TooManyGames('Ставки сделаны, приходите позже, или испольуйте другой канал'))
+        else:
+            padding = self.__paddings[4] if not msg['mobile'] else self.__paddings[5]
+            step = 9 if not msg['mobile'] else 7
+            bet_type = self.__bets_type[msg['bet_type']] if not msg['choice'] else self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']]
+            description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type)
+            embed = discord.Embed()
+            game = Rulet(step=step)
+            rolls = game.spin()
+            embed.add_field(name=f"```{'♥️':-^{padding}}```", value='```elixir\n' + '  '.join([self.__visualize_number(i) for i in next(rolls)]) + '\n' + '  '.join([self.__vcolors[game.check(i)[0]] * 2 for i in next(rolls)]) + '```')
+            description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type, spin=True)
+            embed.description = description
+            message = await channel.send(embed=embed)
+            self.__games[channel.id].append(message.id)
+            for i in game.spin():
+                final = i
+                embed.clear_fields()
+                embed.add_field(name=f"```{'♥️':-^{padding}}```", value='```elixir\n' + '  '.join([self.__visualize_number(i) for i in i]) + '\n' + '  '.join([self.__vcolors[game.check(i)[0]] * 2 for i in i]) + '```')
+                await sleep(1)
+                await message.edit(embed=embed)
 
+            win_ind = step // 2
+            win = game.check(final[win_ind])
+            win = self.__get_win(self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']], win, final[win_ind])
+            increase = msg['bet'] * (win['kf'] - 1 if win['win'] else -1)
+            db.update_user(msg['guild_id'], msg['author_id'], money=increase)
+            msg['author_money'] += increase
+            self.__messages[msg['message'].id] = msg
+            embed.set_footer(text=self.__format_footer(msg['bet'], win))
+            await message.edit(embed=embed)
+            self.__remove_games(channel.id, message.id)
 
 
     @commands.Cog.listener()
@@ -285,6 +374,11 @@ class Casino(commands.Cog):
         logger.debug('reaction removed')
         if payload.emoji.__str__() in self.__rulet_emojis:
             await self.__emoji_handler(payload)
+    
+    @commands.Cog.listener()
+    async def on_ready(self):
+        self.Bot.loop.create_task(self.__is_bad_game())
+    
 
 
 def setup(Bot):
