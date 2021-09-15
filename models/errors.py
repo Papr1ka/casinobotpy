@@ -12,7 +12,25 @@ class NotEnoughMoney(errors.CommandError):
 
 class NotSelectedBetType(errors.CommandError):
     """
-    pass
+    The exception was thrown
+    when the user does not select
+    the type of bet.
+    """
+    def __init__(self, message, *args):
+        self.message = message
+        super().__init__(message=message, *args)
+
+class BadGamesession(errors.CommandError):
+    """
+    called when the game session has expired
+    """
+    def __init__(self, message, *args):
+        self.message = message
+        super().__init__(message=message, *args)
+
+class TooManyGames(errors.CommandError):
+    """
+    called when the game limit has been reached
     """
     def __init__(self, message, *args):
         self.message = message

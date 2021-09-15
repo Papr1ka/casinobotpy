@@ -26,7 +26,6 @@ Bot = commands.Bot(command_prefix = "=", intents = Intents.all())
 @Bot.event
 async def on_ready():
     logger.info("bot is started")
-    db.delete_user(guild_id=222222222222222222, user_id=456456456456456456)
 
 
 @Bot.event
