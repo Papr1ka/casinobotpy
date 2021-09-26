@@ -1,3 +1,4 @@
+import asyncio
 from handlers import MailHandler
 from discord.errors import InvalidArgument
 from pymongo import MongoClient
@@ -5,6 +6,8 @@ from logging import config, getLogger, log
 from models.user_model import UserModel
 import os
 from time import time
+from motor.motor_asyncio import AsyncIOMotorClient
+from math import ceil
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
@@ -12,18 +15,19 @@ logger.addHandler(MailHandler())
 
 
 
-class Database(MongoClient):
+class Database(AsyncIOMotorClient):
 
     __database_name = "casino"
     __mongo_password = os.environ.get("MONGO_PASSWORD")
+    __thread_size = 30
 
     def __init__(self):
         pass
 
     def timeit(func):
-        def wrapper(self, *args, **kwargs):
+        async def wrapper(self, *args, **kwargs):
             t0 = time()
-            result = func(self, *args, **kwargs)
+            result = await func(self, *args, **kwargs)
             t1 = time()
             logger.debug(f'{func.__name__} done, time: {t1-t0}s')
             return result
@@ -33,21 +37,21 @@ class Database(MongoClient):
         logger.debug('connecting to cluster...')
         try:
             super().__init__(f"mongodb+srv://user:{self.__mongo_password}@cluster0.qbwbb.mongodb.net/{self.__database_name}?retryWrites=true&w=majority")
-            logger.info(f"connected to cluster, aviable databases: {', '.join(self.database_names())}")
             logger.debug(self.server_info())
             self.db = self[self.__database_name]
+            self.get_io_loop = asyncio.get_event_loop
         except Exception as E:
             logger.critical(f"can't connect to database: {E}")
         else:
             logger.info(f"connected to database: {self.__database_name}")
 
     def Correct_ids(function):
-        def wrapper(self, *args, **kwargs):
+        async def wrapper(self, *args, **kwargs):
             guild_id = args[0]
-            if Database.__check_id(guild_id):
+            if await Database.__check_id(guild_id):
                 user_id = args[1]
-                if Database.__check_id(user_id):
-                    return function(self, *args, **kwargs)
+                if await Database.__check_id(user_id):
+                    return await function(self, *args, **kwargs)
                 logger.error(f"invalid user_id: {user_id}, {type(user_id)}, int required")
                 raise ValueError(f"invalid user_id: {user_id}, {type(user_id)}, int required")
             logger.error(f"invalid guild_id: {guild_id}, {type(guild_id)}, int required")
@@ -55,14 +59,14 @@ class Database(MongoClient):
         return wrapper
 
     @staticmethod
-    def __check_id(user_id):
+    async def __check_id(user_id):
         if isinstance(user_id, int) and user_id.__str__().__len__() == 18:
             return True
         else:
             return False
-    
+
     @timeit
-    def create_document(self, doc_name: str):
+    async def create_document(self, doc_name: str):
         """
         creating a  new document in __database_name database,
         doc_name: discord.Guild.id: string - document name
@@ -70,14 +74,14 @@ class Database(MongoClient):
         """
         logger.debug(f"creating new document - {doc_name} in database {self.db.name}...")
         try:
-            self.db.create_collection(doc_name)
+            await self.db.create_collection(doc_name)
         except Exception as E:
             logger.error(f"can't create new document: {E}")
         else:
             logger.debug(f"{doc_name} created")
     
     @timeit
-    def delete_document(self, doc_name: str):
+    async def delete_document(self, doc_name: str):
         """
         deleting a document in __database_name database,
         doc_name: discord.Guild.id: string - document name
@@ -85,7 +89,7 @@ class Database(MongoClient):
         """
         logger.debug(f"deleting document - {doc_name} in database {self.db.name}...")
         try:
-            self.db.drop_collection(doc_name)
+            await self.db.drop_collection(doc_name)
         except Exception as E:
             logger.error(f"can't delete document: {E}")
         else:
@@ -93,7 +97,7 @@ class Database(MongoClient):
     
     @Correct_ids
     @timeit
-    def insert_user(self, guild_id, user_id):
+    async def insert_user(self, guild_id, user_id):
         """
         inserting Usermodel: dict to database
         guild_id: int
@@ -103,7 +107,7 @@ class Database(MongoClient):
         logger.debug("inserting new user...")
         user = UserModel(user_id)
         try:
-            self.db[guild_id.__str__()].insert_one(user.get_json())
+            await self.db[guild_id.__str__()].insert_one(user.get_json())
         except Exception as E:
             logger.error(f'cant insert user: {E}')
         else:
@@ -112,7 +116,7 @@ class Database(MongoClient):
     
     @Correct_ids
     @timeit
-    def fetch_user(self, guild_id, user_id, **projection):
+    async def fetch_user(self, guild_id, user_id, **projection):
         """
         getting Usermodel.json() : dict
         guild_id: int
@@ -122,19 +126,19 @@ class Database(MongoClient):
         """
         logger.debug("searching user")
         try:
-            user = self.db[guild_id.__str__()].find_one({'_id': user_id}, projection)
+            user = await self.db[guild_id.__str__()].find_one({'_id': user_id}, projection)
         except Exception as E:
             logger.debug(f'cant fetch user: {E}')
         else:
             if user is None:
-                user = self.insert_user(guild_id=guild_id, user_id=user_id)
+                user = await self.insert_user(guild_id=guild_id, user_id=user_id)
                 return user.get_json()
             logger.debug("finded user")
             return user
     
     @Correct_ids
     @timeit
-    def update_user(self, guild_id, user_id, **params):
+    async def update_user(self, guild_id, user_id, **params):
         """
         updating Usermodel.json(): dict
         guild_id: int
@@ -148,18 +152,59 @@ class Database(MongoClient):
             for p in params.keys():
                 if p not in UserModel.slots:
                     raise InvalidArgument(params)
-            r = self.db[guild_id.__str__()].update_one({'_id': user_id}, {'$inc': params})
+            r = await self.db[guild_id.__str__()].update_one({'_id': user_id}, {'$inc': params})
         except Exception as E:
             logger.error(f'updating user error: {E}')
         else:
             logger.debug("updating user complete")
+
+
+    async def update_thread(self, query):
+        logger.debug(query)
+        try:
+            async with await self.start_session() as s:
+                async with s.start_transaction():
+                    for i in query:
+                        coll = self.db[str(i[0])]
+                        await coll.update_one({'_id': i[1]}, i[2])
+        except Exception as E:
+            logger.error(E)
     
+
+    @timeit
+    async def update_many(self, query):
+        """
+        query = [
+            [guild_id, user_id, {$inc: {params}}]
+        ]
+        """
+        threads_len = ceil(len(query) / self.__thread_size)
+        threads = []
+        for i in range(threads_len):
+            threads.append(
+                asyncio.create_task(self.update_thread(
+                    query[i * self.__thread_size : (i + 1) * self.__thread_size]
+                ))
+            )
+        
+        await asyncio.gather(*threads)
+    
+
+    @timeit
+    async def insert_many(self, guild_id, users_id: list):
+        upd_users = []
+        for i in users_id:
+            upd_users.append(UserModel(i).get_json())
+
+        await self.db[str(guild_id)].insert_many(upd_users)
+
+
     @Correct_ids
     @timeit
-    def delete_user(self, guild_id, user_id):
+    async def delete_user(self, guild_id, user_id):
         logger.debug("deleting user...")
         try:
-            self.db[guild_id.__str__()].delete_one({'_id': user_id})
+            await self.db[guild_id.__str__()].delete_one({'_id': user_id})
         except Exception as E:
             logger.error(f"can't delete user: {E}")
         else:
