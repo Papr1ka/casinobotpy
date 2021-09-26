@@ -21,7 +21,7 @@ class ErrorHandler(commands.Cog):
     def getDelay(self):
         return self.__delete_after
     
-    """@commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         logger.debug(f'on_command_error(), {error}')
         embed = self.__error_embed
@@ -40,7 +40,7 @@ class ErrorHandler(commands.Cog):
         if isinstance(error, errors.NotEnoughMoney):
             logger.debug('errors.NotEnoughMoney')
         embed.title = error.message
-        await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)"""
+        await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)
             
             
 

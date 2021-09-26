@@ -138,7 +138,7 @@ class Database(AsyncIOMotorClient):
     
     @Correct_ids
     @timeit
-    async def update_user(self, guild_id, user_id, **params):
+    async def update_user(self, guild_id, user_id, query):
         """
         updating Usermodel.json(): dict
         guild_id: int
@@ -147,12 +147,9 @@ class Database(AsyncIOMotorClient):
         return None
         """
         logger.debug("updating user...")
-        logger.debug(f"updating: {params}")
+        logger.debug(f"updating: {query}")
         try:
-            for p in params.keys():
-                if p not in UserModel.slots:
-                    raise InvalidArgument(params)
-            r = await self.db[guild_id.__str__()].update_one({'_id': user_id}, {'$inc': params})
+            r = await self.db[guild_id.__str__()].update_one({'_id': user_id}, query)
         except Exception as E:
             logger.error(f'updating user error: {E}')
         else:

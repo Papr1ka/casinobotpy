@@ -34,7 +34,7 @@ class Leveling(Cog):
             await asyncio.sleep(self.timing)
             q = self.queue.get()
             await db.update_many([
-                [i[0], i[1], {'$inc': {'exp': self.leveling_table['message'] * q[i], 'messages': 1}}] for i in q
+                [i[0], i[1], {'$inc': {'exp': self.leveling_table['message'] * q[i], 'messages': q[i]}}] for i in q
             ])
 
 

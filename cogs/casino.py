@@ -355,7 +355,7 @@ class Casino(commands.Cog):
             win = game.check(final[win_ind])
             win = self.__get_win(self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']], win, final[win_ind])
             increase = msg['bet'] * (win['kf'] - 1 if win['win'] else -1)
-            await db.update_user(msg['guild_id'], msg['author_id'], money=increase)
+            await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': increase, 'games': 1}})
             msg['author_money'] += increase
             self.__messages[msg['message'].id] = msg
             embed.set_footer(text=self.__format_footer(msg['bet'], win))

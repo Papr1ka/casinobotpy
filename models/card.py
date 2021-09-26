@@ -71,8 +71,6 @@ class Card():
         level_line = f'{exp} / {exp_to_level}{postfix}'
         self.draw.text((930, 219), level_line, font=self.__second_font, fill=(18, 188, 199, 256), anchor='rd')
         self.draw.text((930, self.__padding[1]), 'LVL ' + str(level), font=self.__third_font, fill=(18, 188, 199, 192), anchor='ra')
-        print(self.data['top_role'])
-        print(self.data['role_color'])
         self.draw.text((320, self.__padding[1]), '@' + self.data['top_role'], font=self.__main_font, fill=self.data['role_color'])
         self.draw.text((320, self.__padding[1] + 40), '#' + self.data['custom'], font=self.__main_font, fill=(120, 120, 120))
     
