@@ -17,7 +17,6 @@ class ErrorHandler(commands.Cog):
         self.Bot = Bot
         logger.info(f"{__name__} Cog has initialized")
     
-    @property
     def getDelay(self):
         return self.__delete_after
     

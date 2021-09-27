@@ -30,3 +30,1132 @@ cogs.user_stats : __init__ : 24 : 26/09/2021 10:11:47 PM : INFO : cogs.user_stat
 main : <module> : 49 : 26/09/2021 10:11:47 PM : DEBUG : loading complete
 main : on_ready : 29 : 26/09/2021 10:11:49 PM : INFO : bot is started
 cogs.casino : __end_games : 210 : 26/09/2021 10:11:49 PM : DEBUG : removed bad games
+database : update_thread : 160 : 26/09/2021 10:12:47 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 40, 'messages': 4}}]]
+database : wrapper : 32 : 26/09/2021 10:12:47 PM : DEBUG : update_many done, time: 0.14223408699035645s
+database : fetch_user : 127 : 26/09/2021 10:13:09 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:13:09 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:13:09 PM : DEBUG : fetch_user done, time: 0.1319880485534668s
+database : fetch_user : 127 : 26/09/2021 10:13:11 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:13:11 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:13:11 PM : DEBUG : fetch_user done, time: 0.1313927173614502s
+cogs.casino : rulet : 250 : 26/09/2021 10:13:17 PM : DEBUG : called command rulet
+database : fetch_user : 127 : 26/09/2021 10:13:17 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:13:17 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:13:17 PM : DEBUG : fetch_user done, time: 0.13038158416748047s
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:18 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:18 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:18 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:19 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:19 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:20 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:20 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:20 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:13:20 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:21 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:21 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:22 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:22 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:13:22 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:23 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:13:23 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:25 PM : DEBUG : reaction added
+models.rulet : __init__ : 67 : 26/09/2021 10:13:25 PM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:13:26 PM : DEBUG : reaction removed
+models.rulet : __init__ : 67 : 26/09/2021 10:13:26 PM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:13:27 PM : DEBUG : reaction added
+database : update_user : 149 : 26/09/2021 10:13:36 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:13:36 PM : DEBUG : updating: {'$inc': {'money': 1200, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:13:37 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:13:37 PM : DEBUG : update_user done, time: 0.13242483139038086s
+database : update_user : 149 : 26/09/2021 10:13:37 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:13:37 PM : DEBUG : updating: {'$inc': {'money': 1200, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:13:37 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:13:37 PM : DEBUG : update_user done, time: 0.13416147232055664s
+database : update_thread : 160 : 26/09/2021 10:13:47 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 32 : 26/09/2021 10:13:47 PM : DEBUG : update_many done, time: 0.13499975204467773s
+database : fetch_user : 127 : 26/09/2021 10:14:38 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:14:38 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:14:38 PM : DEBUG : fetch_user done, time: 0.13109827041625977s
+database : update_thread : 160 : 26/09/2021 10:14:47 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:14:47 PM : DEBUG : update_many done, time: 0.1340939998626709s
+database : fetch_user : 127 : 26/09/2021 10:14:51 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:14:51 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:14:51 PM : DEBUG : fetch_user done, time: 0.13077783584594727s
+database : update_thread : 160 : 26/09/2021 10:15:47 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:15:47 PM : DEBUG : update_many done, time: 0.1345381736755371s
+database : wrapper : 32 : 26/09/2021 10:16:47 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:16:49 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 10:17:47 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:18:47 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:19:47 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:20:47 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:21:47 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:21:49 PM : DEBUG : removed bad games
+main : on_guild_join : 34 : 26/09/2021 10:22:23 PM : INFO : bot joined guild: region - russia | name - Texno_Hub | members - 76
+database : create_document : 75 : 26/09/2021 10:22:23 PM : DEBUG : creating new document - 453565320708489226 in database casino...
+database : create_document : 81 : 26/09/2021 10:22:23 PM : DEBUG : 453565320708489226 created
+database : wrapper : 32 : 26/09/2021 10:22:23 PM : DEBUG : create_document done, time: 0.2859978675842285s
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:22:23 PM : DEBUG : created UserModel
+database : wrapper : 32 : 26/09/2021 10:22:23 PM : DEBUG : insert_many done, time: 0.14299941062927246s
+database : wrapper : 32 : 26/09/2021 10:22:47 PM : DEBUG : update_many done, time: 0.0s
+database : fetch_user : 127 : 26/09/2021 10:22:57 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:22:57 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:22:57 PM : DEBUG : fetch_user done, time: 0.13116693496704102s
+cogs.error_handler : on_command_error : 26 : 26/09/2021 10:22:57 PM : DEBUG : on_command_error(), Command raised an exception: KeyError: 'role_color'
+database : update_thread : 160 : 26/09/2021 10:23:47 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:23:47 PM : DEBUG : update_many done, time: 0.13700437545776367s
+database : connect : 37 : 26/09/2021 10:24:52 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 26/09/2021 10:24:52 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 26/09/2021 10:24:52 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 26/09/2021 10:24:52 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 26/09/2021 10:24:52 PM : INFO : starting...
+__main__ : <module> : 44 : 26/09/2021 10:24:52 PM : DEBUG : loading extensions...
+main : <module> : 14 : 26/09/2021 10:24:53 PM : INFO : starting...
+main : <module> : 44 : 26/09/2021 10:24:53 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 134 : 26/09/2021 10:24:53 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 26/09/2021 10:24:53 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 26/09/2021 10:24:53 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 26/09/2021 10:24:53 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 26/09/2021 10:24:53 PM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 26/09/2021 10:24:53 PM : DEBUG : loading complete
+main : on_ready : 29 : 26/09/2021 10:24:55 PM : INFO : bot is started
+cogs.casino : __end_games : 210 : 26/09/2021 10:24:55 PM : DEBUG : removed bad games
+main : on_guild_remove : 40 : 26/09/2021 10:25:01 PM : INFO : bot removed from guild: russia | Texno_Hub | 75
+database : delete_document : 90 : 26/09/2021 10:25:01 PM : DEBUG : deleting document - 453565320708489226 in database casino...
+database : delete_document : 96 : 26/09/2021 10:25:01 PM : DEBUG : 453565320708489226 deleted
+database : wrapper : 32 : 26/09/2021 10:25:01 PM : DEBUG : delete_document done, time: 0.12899446487426758s
+main : on_guild_join : 34 : 26/09/2021 10:25:12 PM : INFO : bot joined guild: region - russia | name - Texno_Hub | members - 76
+database : create_document : 75 : 26/09/2021 10:25:12 PM : DEBUG : creating new document - 453565320708489226 in database casino...
+database : create_document : 81 : 26/09/2021 10:25:12 PM : DEBUG : 453565320708489226 created
+database : wrapper : 32 : 26/09/2021 10:25:12 PM : DEBUG : create_document done, time: 0.2781052589416504s
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 10:25:12 PM : DEBUG : created UserModel
+database : wrapper : 32 : 26/09/2021 10:25:12 PM : DEBUG : insert_many done, time: 0.13733601570129395s
+database : fetch_user : 127 : 26/09/2021 10:25:13 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:25:13 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:25:13 PM : DEBUG : fetch_user done, time: 0.12485766410827637s
+database : fetch_user : 127 : 26/09/2021 10:25:27 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:25:27 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:25:27 PM : DEBUG : fetch_user done, time: 0.12477993965148926s
+database : fetch_user : 127 : 26/09/2021 10:25:50 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:25:50 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:25:50 PM : DEBUG : fetch_user done, time: 0.1260356903076172s
+database : update_thread : 160 : 26/09/2021 10:25:53 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}], [453565320708489226, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 26/09/2021 10:25:53 PM : DEBUG : update_many done, time: 0.25806307792663574s
+database : wrapper : 32 : 26/09/2021 10:26:53 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 37 : 26/09/2021 10:27:15 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 26/09/2021 10:27:15 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 26/09/2021 10:27:15 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 26/09/2021 10:27:15 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 26/09/2021 10:27:15 PM : INFO : starting...
+__main__ : <module> : 44 : 26/09/2021 10:27:15 PM : DEBUG : loading extensions...
+main : <module> : 14 : 26/09/2021 10:27:15 PM : INFO : starting...
+main : <module> : 44 : 26/09/2021 10:27:15 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 134 : 26/09/2021 10:27:15 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 26/09/2021 10:27:15 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 26/09/2021 10:27:15 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 26/09/2021 10:27:15 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 26/09/2021 10:27:15 PM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 26/09/2021 10:27:15 PM : DEBUG : loading complete
+main : on_ready : 29 : 26/09/2021 10:27:18 PM : INFO : bot is started
+cogs.casino : __end_games : 210 : 26/09/2021 10:27:18 PM : DEBUG : removed bad games
+database : fetch_user : 127 : 26/09/2021 10:27:26 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:27:26 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:27:26 PM : DEBUG : fetch_user done, time: 0.12999916076660156s
+database : update_thread : 160 : 26/09/2021 10:28:15 PM : DEBUG : [[453565320708489226, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:28:16 PM : DEBUG : update_many done, time: 0.13699817657470703s
+database : fetch_user : 127 : 26/09/2021 10:29:15 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:29:15 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:29:15 PM : DEBUG : fetch_user done, time: 0.12900042533874512s
+database : update_thread : 160 : 26/09/2021 10:29:16 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:29:16 PM : DEBUG : update_many done, time: 0.13400959968566895s
+database : fetch_user : 127 : 26/09/2021 10:30:01 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:30:01 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:30:01 PM : DEBUG : fetch_user done, time: 0.12899541854858398s
+database : update_thread : 160 : 26/09/2021 10:30:16 PM : DEBUG : [[453565320708489226, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}], [453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:30:16 PM : DEBUG : update_many done, time: 0.2649049758911133s
+cogs.error_handler : on_command_error : 26 : 26/09/2021 10:30:57 PM : DEBUG : on_command_error(), Command "roll" is not found
+cogs.error_handler : on_command_error : 26 : 26/09/2021 10:31:08 PM : DEBUG : on_command_error(), Command "roulette" is not found
+database : update_thread : 160 : 26/09/2021 10:31:16 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 20, 'messages': 2}}], [453565320708489226, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 10:31:16 PM : DEBUG : update_many done, time: 0.26600122451782227s
+cogs.casino : rulet : 250 : 26/09/2021 10:31:19 PM : DEBUG : called command rulet
+database : fetch_user : 127 : 26/09/2021 10:31:19 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:31:19 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:31:19 PM : DEBUG : fetch_user done, time: 0.12999987602233887s
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:20 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:20 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:21 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:21 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:22 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:22 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:23 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:23 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:24 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:24 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:32 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 172 : 26/09/2021 10:31:32 PM : DEBUG : editing bet_type: +1
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:35 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:31:35 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:31:45 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 172 : 26/09/2021 10:31:45 PM : DEBUG : editing bet_type: +1
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:31:48 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:31:48 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:49 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:31:49 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:51 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:31:51 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:55 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:31:55 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:56 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:31:56 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:57 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 172 : 26/09/2021 10:31:57 PM : DEBUG : editing bet_type: +1
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:31:58 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:31:58 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:01 PM : DEBUG : reaction added
+models.rulet : __init__ : 67 : 26/09/2021 10:32:01 PM : DEBUG : Rulet initialized
+database : update_user : 149 : 26/09/2021 10:32:08 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:32:08 PM : DEBUG : updating: {'$inc': {'money': -100, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:32:08 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:32:08 PM : DEBUG : update_user done, time: 0.13303828239440918s
+cogs.casino : rulet : 250 : 26/09/2021 10:32:15 PM : DEBUG : called command rulet
+database : fetch_user : 127 : 26/09/2021 10:32:15 PM : DEBUG : searching user
+database : fetch_user : 136 : 26/09/2021 10:32:16 PM : DEBUG : finded user
+database : wrapper : 32 : 26/09/2021 10:32:16 PM : DEBUG : fetch_user done, time: 0.12900090217590332s
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:16 PM : DEBUG : reaction added
+database : update_thread : 160 : 26/09/2021 10:32:16 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 26/09/2021 10:32:16 PM : DEBUG : update_many done, time: 0.13299894332885742s
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:16 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:17 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:17 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:18 PM : DEBUG : reaction added
+cogs.casino : __end_games : 210 : 26/09/2021 10:32:18 PM : DEBUG : removed bad games
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:18 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:19 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:19 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:20 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:20 PM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:22 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:32:22 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:24 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:32:24 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:25 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:32:25 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:27 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:32:27 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:30 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 172 : 26/09/2021 10:32:30 PM : DEBUG : editing bet_type: +1
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:31 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 172 : 26/09/2021 10:32:31 PM : DEBUG : editing bet_type: +1
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:38 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:38 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:40 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:40 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:42 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:42 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:44 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:44 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:46 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:46 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:46 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:46 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:47 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:47 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:49 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:49 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:50 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:50 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:51 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:51 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:52 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:52 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:53 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:53 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:32:54 PM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 180 : 26/09/2021 10:32:54 PM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:32:55 PM : DEBUG : reaction added
+cogs.error_handler : on_error : 37 : 26/09/2021 10:32:55 PM : DEBUG : errors.NotSelectedBetType
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:33:00 PM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 176 : 26/09/2021 10:33:00 PM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:33:04 PM : DEBUG : reaction removed
+models.rulet : __init__ : 67 : 26/09/2021 10:33:04 PM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:33:05 PM : DEBUG : reaction added
+models.rulet : __init__ : 67 : 26/09/2021 10:33:05 PM : DEBUG : Rulet initialized
+database : update_user : 149 : 26/09/2021 10:33:12 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:33:12 PM : DEBUG : updating: {'$inc': {'money': -900, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:33:12 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:33:12 PM : DEBUG : update_user done, time: 0.14105606079101562s
+database : update_user : 149 : 26/09/2021 10:33:16 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:33:16 PM : DEBUG : updating: {'$inc': {'money': 900, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:33:16 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:33:16 PM : DEBUG : update_user done, time: 0.13262391090393066s
+database : wrapper : 32 : 26/09/2021 10:33:16 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : on_raw_reaction_remove : 374 : 26/09/2021 10:33:40 PM : DEBUG : reaction removed
+models.rulet : __init__ : 67 : 26/09/2021 10:33:40 PM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 368 : 26/09/2021 10:33:40 PM : DEBUG : reaction added
+models.rulet : __init__ : 67 : 26/09/2021 10:33:40 PM : DEBUG : Rulet initialized
+database : update_user : 149 : 26/09/2021 10:33:48 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:33:48 PM : DEBUG : updating: {'$inc': {'money': -900, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:33:48 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:33:48 PM : DEBUG : update_user done, time: 0.1349043846130371s
+database : update_user : 149 : 26/09/2021 10:33:52 PM : DEBUG : updating user...
+database : update_user : 150 : 26/09/2021 10:33:52 PM : DEBUG : updating: {'$inc': {'money': -900, 'games': 1}}
+database : update_user : 156 : 26/09/2021 10:33:52 PM : DEBUG : updating user complete
+database : wrapper : 32 : 26/09/2021 10:33:52 PM : DEBUG : update_user done, time: 0.13299989700317383s
+database : wrapper : 32 : 26/09/2021 10:34:16 PM : DEBUG : update_many done, time: 0.0s
+main : on_guild_remove : 40 : 26/09/2021 10:34:59 PM : INFO : bot removed from guild: russia | Texno_Hub | 75
+database : delete_document : 90 : 26/09/2021 10:34:59 PM : DEBUG : deleting document - 453565320708489226 in database casino...
+database : delete_document : 96 : 26/09/2021 10:34:59 PM : DEBUG : 453565320708489226 deleted
+database : wrapper : 32 : 26/09/2021 10:34:59 PM : DEBUG : delete_document done, time: 0.13100051879882812s
+database : wrapper : 32 : 26/09/2021 10:35:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:36:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:37:16 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:37:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 10:38:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:39:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:40:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:41:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:42:16 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:42:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 10:43:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:44:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:45:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:46:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:47:16 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:47:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 10:48:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:49:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:50:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:51:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:52:16 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:52:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 10:53:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:54:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:55:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:56:16 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:57:16 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 10:57:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 10:58:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 10:59:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:00:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:01:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:02:17 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 11:02:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 11:03:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:04:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:05:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:06:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:07:17 PM : DEBUG : update_many done, time: 0.0s
+cogs.casino : __end_games : 210 : 26/09/2021 11:07:18 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 11:08:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:09:17 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 37 : 26/09/2021 11:09:53 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 26/09/2021 11:09:53 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 26/09/2021 11:09:53 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 26/09/2021 11:09:53 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 26/09/2021 11:09:53 PM : INFO : starting...
+__main__ : <module> : 44 : 26/09/2021 11:09:53 PM : DEBUG : loading extensions...
+main : <module> : 14 : 26/09/2021 11:09:53 PM : INFO : starting...
+main : <module> : 44 : 26/09/2021 11:09:53 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 134 : 26/09/2021 11:09:53 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 26/09/2021 11:09:53 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 26/09/2021 11:09:53 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 26/09/2021 11:09:53 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 26/09/2021 11:09:53 PM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 26/09/2021 11:09:53 PM : DEBUG : loading complete
+main : on_ready : 29 : 26/09/2021 11:09:56 PM : INFO : bot is started
+cogs.casino : __end_games : 210 : 26/09/2021 11:09:56 PM : DEBUG : removed bad games
+database : wrapper : 32 : 26/09/2021 11:10:17 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 26/09/2021 11:10:53 PM : DEBUG : update_many done, time: 0.0s
+main : on_guild_join : 34 : 26/09/2021 11:11:03 PM : INFO : bot joined guild: region - russia | name - Texno_Hub | members - 76
+database : create_document : 75 : 26/09/2021 11:11:03 PM : DEBUG : creating new document - 453565320708489226 in database casino...
+main : on_guild_join : 34 : 26/09/2021 11:11:03 PM : INFO : bot joined guild: region - russia | name - Texno_Hub | members - 76
+database : create_document : 75 : 26/09/2021 11:11:03 PM : DEBUG : creating new document - 453565320708489226 in database casino...
+database : create_document : 81 : 26/09/2021 11:11:03 PM : DEBUG : 453565320708489226 created
+database : wrapper : 32 : 26/09/2021 11:11:03 PM : DEBUG : create_document done, time: 0.29052209854125977s
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:03 PM : DEBUG : created UserModel
+database : wrapper : 32 : 26/09/2021 11:11:03 PM : DEBUG : insert_many done, time: 0.1459965705871582s
+database : create_document : 79 : 26/09/2021 11:11:03 PM : ERROR : can't create new document: Collection already exists. NS: casino.453565320708489226, full error: {'operationTime': Timestamp(1632687062, 1), 'ok': 0.0, 'errmsg': 'Collection already exists. NS: casino.453565320708489226', 'code': 48, 'codeName': 'NamespaceExists', '$clusterTime': {'clusterTime': Timestamp(1632687062, 2), 'signature': {'hash': b'JV5Q\x06\x15G\xb7\xa5\x03x\xbe\xca\x00;kuiB ', 'keyId': 6957767489610579969}}}
+database : wrapper : 32 : 26/09/2021 11:11:06 PM : DEBUG : create_document done, time: 2.851311206817627s
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+models.user_model : __init__ : 28 : 26/09/2021 11:11:06 PM : DEBUG : created UserModel
+database : wrapper : 32 : 26/09/2021 11:11:17 PM : DEBUG : update_many done, time: 0.0s
+database : update_thread : 160 : 26/09/2021 11:12:17 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}], [453565320708489226, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 26/09/2021 11:12:17 PM : DEBUG : update_many done, time: 0.26200056076049805s
+cogs.casino : __end_games : 210 : 26/09/2021 11:12:18 PM : DEBUG : removed bad games
+database : update_thread : 160 : 26/09/2021 11:13:17 PM : DEBUG : [[453565320708489226, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 11:13:17 PM : DEBUG : update_many done, time: 0.13100504875183105s
+database : update_thread : 160 : 26/09/2021 11:14:17 PM : DEBUG : [[453565320708489226, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 26/09/2021 11:14:17 PM : DEBUG : update_many done, time: 0.12999820709228516s
+database : update_thread : 160 : 26/09/2021 11:15:17 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 11:15:17 PM : DEBUG : update_many done, time: 0.1300187110900879s
+database : update_thread : 160 : 26/09/2021 11:16:17 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 32 : 26/09/2021 11:16:17 PM : DEBUG : update_many done, time: 0.13099932670593262s
+database : update_thread : 160 : 26/09/2021 11:17:17 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}], [453565320708489226, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 11:17:18 PM : DEBUG : update_many done, time: 0.25800156593322754s
+cogs.casino : __end_games : 210 : 26/09/2021 11:17:18 PM : DEBUG : removed bad games
+database : update_thread : 160 : 26/09/2021 11:18:18 PM : DEBUG : [[453565320708489226, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}], [453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 11:18:18 PM : DEBUG : update_many done, time: 0.2669994831085205s
+database : update_thread : 160 : 26/09/2021 11:19:18 PM : DEBUG : [[453565320708489226, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 26/09/2021 11:19:18 PM : DEBUG : update_many done, time: 0.13502120971679688s
+database : update_thread : 160 : 26/09/2021 11:20:18 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 11:20:18 PM : DEBUG : update_many done, time: 0.13348388671875s
+database : update_thread : 160 : 26/09/2021 11:21:18 PM : DEBUG : [[453565320708489226, 404280849433886732, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 26/09/2021 11:21:18 PM : DEBUG : update_many done, time: 0.13499999046325684s
+database : connect : 37 : 27/09/2021 09:02:16 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:02:16 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:02:16 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:02:16 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:02:16 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:02:16 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:02:16 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:02:16 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:02:16 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:02:16 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:02:16 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:02:16 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:02:16 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:02:16 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:02:19 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:02:19 AM : DEBUG : removed bad games
+database : wrapper : 32 : 27/09/2021 09:03:16 AM : DEBUG : update_many done, time: 0.0s
+cogs.casino : rulet : 251 : 27/09/2021 09:03:57 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:03:57 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:03:57 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:03:57 AM : DEBUG : fetch_user done, time: 0.1262648105621338s
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:03:58 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:03:58 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:03:59 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:03:59 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:00 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:00 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:01 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:01 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:01 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:02 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:04 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:04:04 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:10 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:04:10 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:04:12 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:04:12 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:13 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:04:13 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:04:16 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:04:16 AM : DEBUG : editing bet_type_type
+database : update_thread : 160 : 27/09/2021 09:04:16 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 27/09/2021 09:04:16 AM : DEBUG : update_many done, time: 0.13200163841247559s
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:17 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:04:17 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:04:19 AM : DEBUG : reaction added
+database : connect : 37 : 27/09/2021 09:05:00 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:05:00 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:05:01 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:05:01 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:05:01 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:05:01 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:05:01 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:05:01 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:05:01 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:05:01 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:05:01 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:05:01 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:05:01 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:05:01 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:05:04 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:05:04 AM : DEBUG : removed bad games
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:05:08 AM : DEBUG : reaction removed
+cogs.error_handler : on_error : 39 : 27/09/2021 09:05:08 AM : DEBUG : errors.BadGamesession
+cogs.casino : rulet : 251 : 27/09/2021 09:05:13 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:05:13 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:05:13 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:05:13 AM : DEBUG : fetch_user done, time: 0.1319596767425537s
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:13 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:14 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:14 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:15 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:15 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:16 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:16 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:17 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:17 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:17 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:05:17 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:18 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:20 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:05:20 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:05:20 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:05:20 AM : DEBUG : fetch_user done, time: 0.13285303115844727s
+models.rulet : __init__ : 67 : 27/09/2021 09:05:20 AM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:05:21 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:05:21 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:05:23 AM : DEBUG : reaction removed
+database : fetch_user : 127 : 27/09/2021 09:05:23 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:05:24 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:05:24 AM : DEBUG : fetch_user done, time: 0.132004976272583s
+models.rulet : __init__ : 67 : 27/09/2021 09:05:24 AM : DEBUG : Rulet initialized
+database : update_user : 149 : 27/09/2021 09:05:27 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:05:27 AM : DEBUG : updating: {'$inc': {'money': 1000, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:05:27 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:05:27 AM : DEBUG : update_user done, time: 0.13838863372802734s
+database : update_user : 149 : 27/09/2021 09:05:32 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:05:32 AM : DEBUG : updating: {'$inc': {'money': -1000, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:05:32 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:05:32 AM : DEBUG : update_user done, time: 0.13595843315124512s
+database : update_thread : 160 : 27/09/2021 09:06:01 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 27/09/2021 09:06:01 AM : DEBUG : update_many done, time: 0.1363978385925293s
+database : connect : 37 : 27/09/2021 09:06:27 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:06:27 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:06:27 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:06:27 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:06:27 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:06:27 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:06:27 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:06:28 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:06:28 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:06:28 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:06:28 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:06:28 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:06:28 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:06:28 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:06:31 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:06:31 AM : DEBUG : removed bad games
+database : wrapper : 32 : 27/09/2021 09:07:28 AM : DEBUG : update_many done, time: 0.0s
+database : connect : 37 : 27/09/2021 09:07:37 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:07:37 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:07:44 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:07:44 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:07:44 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:07:44 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:07:44 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:07:44 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:07:44 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:07:44 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:07:44 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:07:44 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:07:44 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:07:44 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:07:47 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:07:47 AM : DEBUG : removed bad games
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:50 AM : DEBUG : reaction added
+cogs.error_handler : on_error : 39 : 27/09/2021 09:07:50 AM : DEBUG : errors.BadGamesession
+cogs.casino : rulet : 251 : 27/09/2021 09:07:54 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:07:54 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:07:54 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:07:54 AM : DEBUG : fetch_user done, time: 0.12440252304077148s
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:55 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:55 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:55 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:56 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:56 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:57 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:58 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:58 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:59 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:07:59 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:08:00 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:08:00 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:08:03 AM : DEBUG : reaction added
+cogs.error_handler : on_error : 37 : 27/09/2021 09:08:03 AM : DEBUG : errors.NotSelectedBetType
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:08:05 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:08:05 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_remove : 385 : 27/09/2021 09:08:07 AM : DEBUG : reaction removed
+database : fetch_user : 127 : 27/09/2021 09:08:07 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:08:07 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:08:07 AM : DEBUG : fetch_user done, time: 0.12504029273986816s
+database : update_user : 149 : 27/09/2021 09:08:07 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:08:07 AM : DEBUG : updating: {'$inc': {'money': -1000}}
+database : update_user : 156 : 27/09/2021 09:08:08 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:08:08 AM : DEBUG : update_user done, time: 0.13073372840881348s
+models.rulet : __init__ : 67 : 27/09/2021 09:08:08 AM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 379 : 27/09/2021 09:08:09 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:08:09 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:08:09 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:08:09 AM : DEBUG : fetch_user done, time: 0.12505602836608887s
+cogs.casino : __end_games : 211 : 27/09/2021 09:08:09 AM : DEBUG : removed bad games
+database : update_user : 149 : 27/09/2021 09:08:14 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:08:14 AM : DEBUG : updating: {'$inc': {'money': -1000, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:08:14 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:08:14 AM : DEBUG : update_user done, time: 0.1291189193725586s
+database : fetch_user : 127 : 27/09/2021 09:08:36 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:08:36 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:08:36 AM : DEBUG : fetch_user done, time: 0.12495779991149902s
+database : update_thread : 160 : 27/09/2021 09:08:44 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 27/09/2021 09:08:44 AM : DEBUG : update_many done, time: 0.13482999801635742s
+cogs.casino : on_raw_reaction_remove : 385 : 27/09/2021 09:09:25 AM : DEBUG : reaction removed
+cogs.error_handler : on_error : 41 : 27/09/2021 09:09:25 AM : DEBUG : errors.NotEnoughMoney
+cogs.casino : __end_games : 211 : 27/09/2021 09:09:25 AM : DEBUG : removed bad games
+cogs.casino : on_raw_reaction_remove : 385 : 27/09/2021 09:09:30 AM : DEBUG : reaction removed
+cogs.error_handler : on_error : 39 : 27/09/2021 09:09:30 AM : DEBUG : errors.BadGamesession
+database : wrapper : 32 : 27/09/2021 09:09:44 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 27/09/2021 09:10:44 AM : DEBUG : update_many done, time: 0.0s
+database : connect : 37 : 27/09/2021 09:11:25 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:11:25 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:11:25 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:11:25 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:11:25 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:11:25 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:11:25 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:11:25 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:11:25 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:11:25 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:11:25 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:11:25 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:11:25 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:11:25 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:11:28 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:11:28 AM : DEBUG : removed bad games
+database : fetch_user : 127 : 27/09/2021 09:11:40 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:11:40 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:11:40 AM : DEBUG : fetch_user done, time: 0.12938284873962402s
+cogs.casino : rulet : 251 : 27/09/2021 09:11:44 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:11:44 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:11:45 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:11:45 AM : DEBUG : fetch_user done, time: 0.12904858589172363s
+cogs.error_handler : on_command_error : 25 : 27/09/2021 09:11:45 AM : DEBUG : on_command_error(), Papr1ka, недостаточно средств
+cogs.error_handler : on_command_error : 28 : 27/09/2021 09:11:45 AM : DEBUG : errors.NotEnoughMoney
+database : update_thread : 160 : 27/09/2021 09:12:25 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 27/09/2021 09:12:26 AM : DEBUG : update_many done, time: 0.13604450225830078s
+database : connect : 37 : 27/09/2021 09:12:54 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:12:54 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:12:54 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:12:54 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:12:54 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:12:54 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:12:54 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:12:54 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:12:54 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:12:54 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:12:54 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:12:54 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:12:54 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:12:54 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:12:57 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:12:57 AM : DEBUG : removed bad games
+cogs.casino : rulet : 251 : 27/09/2021 09:13:03 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:13:03 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:13:03 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:13:03 AM : DEBUG : fetch_user done, time: 0.12815451622009277s
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:03 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:04 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:04 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:05 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:05 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:06 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:06 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:13:06 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:06 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:07 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:07 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:08 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:09 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:13:09 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:13:09 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:13:09 AM : DEBUG : fetch_user done, time: 0.12961149215698242s
+database : update_user : 149 : 27/09/2021 09:13:09 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:13:09 AM : DEBUG : updating: {'$inc': {'money': -100}}
+database : update_user : 156 : 27/09/2021 09:13:09 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:13:09 AM : DEBUG : update_user done, time: 0.13597440719604492s
+models.rulet : __init__ : 67 : 27/09/2021 09:13:09 AM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:13 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:13:13 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:13:14 AM : DEBUG : reaction removed
+database : fetch_user : 127 : 27/09/2021 09:13:14 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:13:14 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:13:14 AM : DEBUG : fetch_user done, time: 0.1284923553466797s
+database : update_user : 149 : 27/09/2021 09:13:16 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:13:16 AM : DEBUG : updating: {'$inc': {'money': 2000, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:13:16 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:13:16 AM : DEBUG : update_user done, time: 0.13199925422668457s
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:13:16 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:13:16 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:13:16 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:13:16 AM : DEBUG : fetch_user done, time: 0.1280674934387207s
+database : update_user : 149 : 27/09/2021 09:13:16 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:13:16 AM : DEBUG : updating: {'$inc': {'money': -1000}}
+database : update_user : 156 : 27/09/2021 09:13:16 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:13:16 AM : DEBUG : update_user done, time: 0.13086652755737305s
+models.rulet : __init__ : 67 : 27/09/2021 09:13:16 AM : DEBUG : Rulet initialized
+database : update_user : 149 : 27/09/2021 09:13:24 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:13:24 AM : DEBUG : updating: {'$inc': {'money': 2000, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:13:24 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:13:24 AM : DEBUG : update_user done, time: 0.13217377662658691s
+database : update_thread : 160 : 27/09/2021 09:13:54 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 27/09/2021 09:13:54 AM : DEBUG : update_many done, time: 0.13353896141052246s
+database : connect : 37 : 27/09/2021 09:14:53 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:14:53 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:14:53 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:14:53 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:14:53 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:14:53 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:14:53 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:14:53 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:14:53 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:14:53 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:14:53 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:14:53 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:14:53 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:14:53 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:14:56 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:14:56 AM : DEBUG : removed bad games
+cogs.casino : rulet : 251 : 27/09/2021 09:15:02 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:15:02 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:15:02 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:15:02 AM : DEBUG : fetch_user done, time: 0.12526965141296387s
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:03 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:03 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:04 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:04 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:15:04 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:04 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:04 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:05 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:05 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:06 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:06 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:07 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:07 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:07 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:08 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:08 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:09 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:09 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:10 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:10 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:11 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:11 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:13 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:15:13 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:15:13 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:15:13 AM : DEBUG : fetch_user done, time: 0.12501835823059082s
+database : update_user : 149 : 27/09/2021 09:15:13 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:15:13 AM : DEBUG : updating: {'$inc': {'money': -3900}}
+database : update_user : 156 : 27/09/2021 09:15:13 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:15:13 AM : DEBUG : update_user done, time: 0.13228869438171387s
+models.rulet : __init__ : 67 : 27/09/2021 09:15:13 AM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:14 AM : DEBUG : reaction removed
+database : fetch_user : 127 : 27/09/2021 09:15:14 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:15:14 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:15:14 AM : DEBUG : fetch_user done, time: 0.125016450881958s
+cogs.error_handler : on_error : 40 : 27/09/2021 09:15:14 AM : DEBUG : errors.NotEnoughMoney
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:20 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:20 AM : DEBUG : editing money
+database : update_user : 149 : 27/09/2021 09:15:21 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:15:21 AM : DEBUG : updating: {'$inc': {'money': 7800, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:15:21 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:15:21 AM : DEBUG : update_user done, time: 0.128187894821167s
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:21 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:21 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:23 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:23 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:24 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:24 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:25 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:25 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 375 : 27/09/2021 09:15:25 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:25 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 381 : 27/09/2021 09:15:26 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:15:26 AM : DEBUG : editing money
+database : update_thread : 160 : 27/09/2021 09:15:53 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 27/09/2021 09:15:53 AM : DEBUG : update_many done, time: 0.15802884101867676s
+database : wrapper : 32 : 27/09/2021 09:16:53 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 27/09/2021 09:17:53 AM : DEBUG : update_many done, time: 0.0s
+database : connect : 37 : 27/09/2021 09:18:03 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/09/2021 09:18:03 AM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 27/09/2021 09:18:03 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 27/09/2021 09:18:03 AM : INFO : connected to database: casino
+__main__ : <module> : 14 : 27/09/2021 09:18:03 AM : INFO : starting...
+__main__ : <module> : 44 : 27/09/2021 09:18:03 AM : DEBUG : loading extensions...
+main : <module> : 14 : 27/09/2021 09:18:03 AM : INFO : starting...
+main : <module> : 44 : 27/09/2021 09:18:03 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 27/09/2021 09:18:03 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 27/09/2021 09:18:03 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/09/2021 09:18:03 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/09/2021 09:18:03 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 27/09/2021 09:18:03 AM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 49 : 27/09/2021 09:18:03 AM : DEBUG : loading complete
+main : on_ready : 29 : 27/09/2021 09:18:07 AM : INFO : bot is started
+cogs.casino : __end_games : 211 : 27/09/2021 09:18:07 AM : DEBUG : removed bad games
+cogs.casino : rulet : 251 : 27/09/2021 09:18:09 AM : DEBUG : called command rulet
+database : fetch_user : 127 : 27/09/2021 09:18:09 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:18:09 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:18:09 AM : DEBUG : fetch_user done, time: 0.13105225563049316s
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:10 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:10 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:10 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:11 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 177 : 27/09/2021 09:18:11 AM : DEBUG : editing bet_type_type
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:11 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:11 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:12 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:12 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:13 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:13 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:14 AM : DEBUG : reaction added
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:23 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:18:23 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:18:23 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:18:23 AM : DEBUG : fetch_user done, time: 0.1304769515991211s
+database : update_user : 149 : 27/09/2021 09:18:23 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:18:23 AM : DEBUG : updating: {'$inc': {'money': -100}}
+database : update_user : 156 : 27/09/2021 09:18:23 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:18:23 AM : DEBUG : update_user done, time: 0.1391749382019043s
+models.rulet : __init__ : 67 : 27/09/2021 09:18:23 AM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:18:24 AM : DEBUG : reaction removed
+database : fetch_user : 127 : 27/09/2021 09:18:24 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:18:25 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:18:25 AM : DEBUG : fetch_user done, time: 0.13152861595153809s
+database : update_user : 149 : 27/09/2021 09:18:25 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:18:25 AM : DEBUG : updating: {'$inc': {'money': -100}}
+database : update_user : 156 : 27/09/2021 09:18:25 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:18:25 AM : DEBUG : update_user done, time: 0.13401532173156738s
+models.rulet : __init__ : 67 : 27/09/2021 09:18:25 AM : DEBUG : Rulet initialized
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:26 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:18:26 AM : DEBUG : editing money
+database : update_user : 149 : 27/09/2021 09:18:36 AM : DEBUG : updating user...
+database : update_user : 150 : 27/09/2021 09:18:36 AM : DEBUG : updating: {'$inc': {'money': 2200, 'games': 1}}
+database : update_user : 156 : 27/09/2021 09:18:37 AM : DEBUG : updating user complete
+database : wrapper : 32 : 27/09/2021 09:18:37 AM : DEBUG : update_user done, time: 0.13480186462402344s
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:18:55 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:18:55 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:57 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:18:57 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:18:58 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:18:58 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:18:59 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:18:59 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:00 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:00 AM : DEBUG : editing money
+database : update_thread : 160 : 27/09/2021 09:19:03 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 32 : 27/09/2021 09:19:04 AM : DEBUG : update_many done, time: 0.13465404510498047s
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:19:05 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:05 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:06 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:06 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:19:32 AM : DEBUG : reaction added
+database : fetch_user : 127 : 27/09/2021 09:19:32 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:19:32 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:19:32 AM : DEBUG : fetch_user done, time: 0.13096070289611816s
+cogs.error_handler : on_error : 40 : 27/09/2021 09:19:32 AM : DEBUG : errors.NotEnoughMoney
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:19:37 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:37 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:38 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:38 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:19:39 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:39 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:40 AM : DEBUG : reaction removed
+database : fetch_user : 127 : 27/09/2021 09:19:40 AM : DEBUG : searching user
+database : fetch_user : 136 : 27/09/2021 09:19:40 AM : DEBUG : finded user
+database : wrapper : 32 : 27/09/2021 09:19:40 AM : DEBUG : fetch_user done, time: 0.1310575008392334s
+cogs.error_handler : on_error : 40 : 27/09/2021 09:19:40 AM : DEBUG : errors.NotEnoughMoney
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:41 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:41 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:19:41 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:41 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:43 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:43 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_add : 377 : 27/09/2021 09:19:44 AM : DEBUG : reaction added
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:44 AM : DEBUG : editing money
+cogs.casino : on_raw_reaction_remove : 383 : 27/09/2021 09:19:46 AM : DEBUG : reaction removed
+cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:46 AM : DEBUG : editing money
+database : wrapper : 32 : 27/09/2021 09:20:04 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 27/09/2021 09:21:04 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 32 : 27/09/2021 09:22:04 AM : DEBUG : update_many done, time: 0.0s

@@ -9,6 +9,7 @@ from discord.ext import commands
 from logging import config, getLogger
 from asyncio import sleep
 import time
+from discord import Embed, Colour
 
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
@@ -117,7 +118,7 @@ class Casino(commands.Cog):
     __vcolors = {
         'red': '🟥',
         'black': '⬛️',
-        'null': '⬜️'
+        'null': '🟩'
     }
     
     __paddings = {

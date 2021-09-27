@@ -38,7 +38,9 @@ class UserStats(Cog):
                 user['role_color'] = (255, 255, 255)
             else:
                 user['role_color'] = role.colour.to_rgb()
-        user['avatar'] = member.avatar_url.__str__()
+        else:
+            user['role_color'] = role.colour.to_rgb()
+        user['avatar'] = member.avatar_url_as(format='webp', size=256).__str__()
         user['username'] = member.name
         user['discriminator'] = member.discriminator
         card = await Card(user).render_get()
