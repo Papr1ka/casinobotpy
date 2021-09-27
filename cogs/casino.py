@@ -9,6 +9,7 @@ from discord.ext import commands
 from logging import config, getLogger
 from asyncio import sleep
 import time
+from discord import Embed, Colour
 
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
@@ -117,7 +118,7 @@ class Casino(commands.Cog):
     __vcolors = {
         'red': '🟥',
         'black': '⬛️',
-        'null': '⬜️'
+        'null': '🟩'
     }
     
     __paddings = {
@@ -183,7 +184,7 @@ class Casino(commands.Cog):
                 if not msg['choice']:
                     await ErrorHandler.on_error(channel=message.channel, error=errors.NotSelectedBetType(f'{msg["author"]}, не выбран тип ставки'))
                 else:
-                    if msg['author_money'] >= msg['bet']:
+                    if msg['author_money'] >= msg['bet'] and msg['author_money'] >= self.__min_bet:
                         await self.__roll(msg)
                     else:
                         game_over = True
@@ -332,6 +333,8 @@ class Casino(commands.Cog):
         if not self.__can_roll(channel.id):
             await ErrorHandler.on_error(channel, errors.TooManyGames('Ставки сделаны, приходите позже, или испольуйте другой канал'))
         else:
+            msg['author_money'] -= msg['bet']
+            increase = -msg['bet']
             padding = self.__paddings[4] if not msg['mobile'] else self.__paddings[5]
             step = 9 if not msg['mobile'] else 7
             bet_type = self.__bets_type[msg['bet_type']] if not msg['choice'] else self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']]
@@ -354,11 +357,11 @@ class Casino(commands.Cog):
             win_ind = step // 2
             win = game.check(final[win_ind])
             win = self.__get_win(self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']], win, final[win_ind])
-            increase = msg['bet'] * (win['kf'] - 1 if win['win'] else -1)
+            increase = msg['bet'] * (win['kf'] if win['win'] else 0) + increase
             await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': increase, 'games': 1}})
             msg['author_money'] += increase
             self.__messages[msg['message'].id] = msg
-            embed.set_footer(text=self.__format_footer(msg['bet'], win))
+            embed.set_footer(text=self.__format_footer(abs(increase), win))
             await message.edit(embed=embed)
             self.__remove_games(channel.id, message.id)
 

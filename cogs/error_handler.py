@@ -17,9 +17,9 @@ class ErrorHandler(commands.Cog):
         self.Bot = Bot
         logger.info(f"{__name__} Cog has initialized")
     
-    @property
-    def getDelay(self):
-        return self.__delete_after
+    @staticmethod
+    def getDelay():
+        return ErrorHandler.__delete_after
     
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
