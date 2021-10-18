@@ -39,6 +39,8 @@ class ErrorHandler(commands.Cog):
             logger.debug('errors.BadGamesession')
         if isinstance(error, errors.NotEnoughMoney):
             logger.debug('errors.NotEnoughMoney')
+        if isinstance(error, errors.TooManyGames):
+            logger.debug('errors.TooManyGames')
         embed.title = error.message
         await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)
             

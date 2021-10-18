@@ -37,7 +37,7 @@ class Card():
         alpha.paste(circle.crop((0, rad, rad, rad * 2)), (0, h - rad))
         alpha.paste(circle.crop((rad, 0, rad * 2, rad)), (w - rad, 0))
         alpha.paste(circle.crop((rad, rad, rad * 2, rad * 2)), (w - rad, h - rad))
-        alpha = ImageChops.darker(alpha, im.split()[-1])
+        #alpha = ImageChops.darker(alpha, im.split()[-1])
         im.putalpha(alpha)
         return im
     

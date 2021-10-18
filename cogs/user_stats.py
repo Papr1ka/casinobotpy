@@ -66,6 +66,16 @@ class UserStats(Cog):
         embed.set_author(name='Статистика')
         embed.set_thumbnail(url=member.avatar_url)
         await ctx.send(embed=embed)
+    
+    @command()
+    async def theme(self, ctx):
+        theme = await db.fetch_user(ctx.guild.id, ctx.author.id, color=1)
+        theme = theme['color']
+        if theme == 'dark':
+            theme = 'light'
+        else:
+            theme = 'dark'
+        await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'color': theme}})
 
 
 

@@ -40,6 +40,15 @@ async def on_guild_remove(guild):
     logger.info(f"bot removed from guild: {guild.region} | {guild.name} | {guild.member_count}")
     await db.delete_document(str(guild.id))
 
+@Bot.event
+async def on_member_join(member: discord.Member):
+    await db.insert_user(member.guild.id, member.id)
+
+
+@Bot.event
+async def on_member_remove(member: discord.Member):
+    await db.delete_user(member.guild.id, member.id)
+
 
 logger.debug("loading extensions...")
 Bot.load_extension("cogs.casino")
