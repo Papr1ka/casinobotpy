@@ -1159,6 +1159,7 @@ cogs.casino : __emoji_handler : 181 : 27/09/2021 09:19:46 AM : DEBUG : editing m
 database : wrapper : 32 : 27/09/2021 09:20:04 AM : DEBUG : update_many done, time: 0.0s
 database : wrapper : 32 : 27/09/2021 09:21:04 AM : DEBUG : update_many done, time: 0.0s
 database : wrapper : 32 : 27/09/2021 09:22:04 AM : DEBUG : update_many done, time: 0.0s
+<<<<<<< HEAD
 database : connect : 37 : 27/09/2021 09:27:00 AM : DEBUG : connecting to cluster...
 asyncio : __init__ : 58 : 27/09/2021 09:27:00 AM : DEBUG : Using selector: SelectSelector
 database : connect : 40 : 27/09/2021 09:27:00 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
@@ -3816,3 +3817,91 @@ database : fetch_user : 136 : 18/10/2021 10:07:15 PM : DEBUG : finded user
 database : wrapper : 32 : 18/10/2021 10:07:15 PM : DEBUG : fetch_user done, time: 0.12999820709228516s
 database : update_thread : 160 : 18/10/2021 10:07:40 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 70, 'messages': 7}}]]
 database : wrapper : 32 : 18/10/2021 10:07:40 PM : DEBUG : update_many done, time: 0.1399991512298584s
+=======
+>>>>>>> master
+database : connect : 37 : 18/10/2021 10:10:11 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 18/10/2021 10:10:11 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 18/10/2021 10:10:11 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 18/10/2021 10:10:11 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 18/10/2021 10:10:11 PM : INFO : starting...
+__main__ : <module> : 53 : 18/10/2021 10:10:11 PM : DEBUG : loading extensions...
+main : <module> : 14 : 18/10/2021 10:10:11 PM : INFO : starting...
+main : <module> : 53 : 18/10/2021 10:10:11 PM : DEBUG : loading extensions...
+database : connect : 37 : 18/10/2021 10:10:43 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 18/10/2021 10:10:43 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 18/10/2021 10:10:44 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 18/10/2021 10:10:44 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 18/10/2021 10:10:44 PM : INFO : starting...
+__main__ : <module> : 53 : 18/10/2021 10:10:44 PM : DEBUG : loading extensions...
+main : <module> : 14 : 18/10/2021 10:10:44 PM : INFO : starting...
+main : <module> : 53 : 18/10/2021 10:10:44 PM : DEBUG : loading extensions...
+database : connect : 37 : 18/10/2021 10:10:54 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 18/10/2021 10:10:54 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 18/10/2021 10:10:54 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 18/10/2021 10:10:54 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 18/10/2021 10:10:54 PM : INFO : starting...
+__main__ : <module> : 53 : 18/10/2021 10:10:54 PM : DEBUG : loading extensions...
+main : <module> : 14 : 18/10/2021 10:10:54 PM : INFO : starting...
+main : <module> : 53 : 18/10/2021 10:10:54 PM : DEBUG : loading extensions...
+database : connect : 37 : 18/10/2021 10:11:17 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 18/10/2021 10:11:17 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 18/10/2021 10:11:17 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 18/10/2021 10:11:17 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 18/10/2021 10:11:17 PM : INFO : starting...
+__main__ : <module> : 53 : 18/10/2021 10:11:17 PM : DEBUG : loading extensions...
+main : <module> : 14 : 18/10/2021 10:11:17 PM : INFO : starting...
+main : <module> : 53 : 18/10/2021 10:11:17 PM : DEBUG : loading extensions...
+database : connect : 37 : 18/10/2021 10:12:15 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 18/10/2021 10:12:15 PM : DEBUG : Using selector: SelectSelector
+database : connect : 40 : 18/10/2021 10:12:15 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at C:\Users\Papr1ka\AppData\Local\Programs\Python\Python37\lib\asyncio\futures.py:351]>
+database : connect : 46 : 18/10/2021 10:12:15 PM : INFO : connected to database: casino
+__main__ : <module> : 14 : 18/10/2021 10:12:15 PM : INFO : starting...
+__main__ : <module> : 53 : 18/10/2021 10:12:15 PM : DEBUG : loading extensions...
+main : <module> : 14 : 18/10/2021 10:12:15 PM : INFO : starting...
+main : <module> : 53 : 18/10/2021 10:12:15 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 135 : 18/10/2021 10:12:15 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 18 : 18/10/2021 10:12:15 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 18/10/2021 10:12:15 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 18/10/2021 10:12:15 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 24 : 18/10/2021 10:12:15 PM : INFO : cogs.user_stats Cog has initialized
+main : <module> : 58 : 18/10/2021 10:12:15 PM : DEBUG : loading complete
+main : on_ready : 29 : 18/10/2021 10:12:18 PM : INFO : bot is started
+cogs.casino : __end_games : 210 : 18/10/2021 10:12:18 PM : DEBUG : removed bad games
+database : fetch_user : 127 : 18/10/2021 10:12:21 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:12:21 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:12:21 PM : DEBUG : fetch_user done, time: 0.12800216674804688s
+database : update_user : 149 : 18/10/2021 10:12:21 PM : DEBUG : updating user...
+database : update_user : 150 : 18/10/2021 10:12:21 PM : DEBUG : updating: {'$inc': {'money': 408}, '$set': {'exp': 47, 'level': 7}}
+database : update_user : 156 : 18/10/2021 10:12:22 PM : DEBUG : updating user complete
+database : wrapper : 32 : 18/10/2021 10:12:22 PM : DEBUG : update_user done, time: 0.13307571411132812s
+database : fetch_user : 127 : 18/10/2021 10:12:31 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:12:31 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:12:31 PM : DEBUG : fetch_user done, time: 0.128004789352417s
+database : update_user : 149 : 18/10/2021 10:12:31 PM : DEBUG : updating user...
+database : update_user : 150 : 18/10/2021 10:12:31 PM : DEBUG : updating: {'$set': {'color': 'dark'}}
+database : update_user : 156 : 18/10/2021 10:12:31 PM : DEBUG : updating user complete
+database : wrapper : 32 : 18/10/2021 10:12:31 PM : DEBUG : update_user done, time: 0.13199806213378906s
+database : fetch_user : 127 : 18/10/2021 10:12:35 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:12:35 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:12:35 PM : DEBUG : fetch_user done, time: 0.12700128555297852s
+database : fetch_user : 127 : 18/10/2021 10:12:45 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:12:45 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:12:45 PM : DEBUG : fetch_user done, time: 0.12800025939941406s
+database : fetch_user : 127 : 18/10/2021 10:12:55 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:12:56 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:12:56 PM : DEBUG : fetch_user done, time: 0.1270008087158203s
+database : update_user : 149 : 18/10/2021 10:12:56 PM : DEBUG : updating user...
+database : update_user : 150 : 18/10/2021 10:12:56 PM : DEBUG : updating: {'$set': {'color': 'light'}}
+database : update_user : 156 : 18/10/2021 10:12:56 PM : DEBUG : updating user complete
+database : wrapper : 32 : 18/10/2021 10:12:56 PM : DEBUG : update_user done, time: 0.12999987602233887s
+database : fetch_user : 127 : 18/10/2021 10:12:59 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:12:59 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:12:59 PM : DEBUG : fetch_user done, time: 0.1269993782043457s
+database : update_thread : 160 : 18/10/2021 10:13:15 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}], [750791175606239397, 404280849433886732, {'$inc': {'exp': 50, 'messages': 5}}]]
+database : wrapper : 32 : 18/10/2021 10:13:15 PM : DEBUG : update_many done, time: 0.26199865341186523s
+cogs.error_handler : on_command_error : 25 : 18/10/2021 10:13:16 PM : DEBUG : on_command_error(), Command "bogus" is not found
+database : fetch_user : 127 : 18/10/2021 10:13:27 PM : DEBUG : searching user
+database : fetch_user : 136 : 18/10/2021 10:13:27 PM : DEBUG : finded user
+database : wrapper : 32 : 18/10/2021 10:13:27 PM : DEBUG : fetch_user done, time: 0.12700295448303223s
+database : update_thread : 160 : 18/10/2021 10:14:15 PM : DEBUG : [[750791175606239397, 404280849433886732, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 32 : 18/10/2021 10:14:15 PM : DEBUG : update_many done, time: 0.13100075721740723s
