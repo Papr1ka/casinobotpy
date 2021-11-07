@@ -50,11 +50,16 @@ async def on_member_remove(member: discord.Member):
     await db.delete_user(member.guild.id, member.id)
 
 
-logger.debug("loading extensions...")
-Bot.load_extension("cogs.casino")
-Bot.load_extension("cogs.error_handler")
-Bot.load_extension("cogs.leveling")
-Bot.load_extension("cogs.user_stats")
-logger.debug("loading complete")
+def start():
+    logger.debug("loading extensions...")
+    Bot.load_extension("cogs.casino")
+    Bot.load_extension("cogs.error_handler")
+    Bot.load_extension("cogs.leveling")
+    Bot.load_extension("cogs.user_stats")
+    Bot.load_extension("cogs.jobs")
+    Bot.load_extension("cogs.shop")
+    logger.debug("loading complete")
+    Bot.run(Token)
 
-Bot.run(Token)
+if __name__ == '__main__':
+    start()

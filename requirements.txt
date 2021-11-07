@@ -1,0 +1,6 @@
+PyNaCl
+pillow
+pymongo
+motor
+discord
+dnspython

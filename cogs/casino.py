@@ -1,5 +1,6 @@
+from typing import Iterable
 from handlers import MailHandler
-from main import db
+from database import db
 from models.rulet import Rulet
 import models.errors as errors
 from cogs.error_handler import ErrorHandler
@@ -100,7 +101,7 @@ class Casino(commands.Cog):
     __min_bet = 100
     __max_bet = 5000
     __max_games = 2
-    __sleep = 300
+    __sleep = 300 #300
 
     __vnumbers = {
         '1': '1️⃣',
@@ -203,21 +204,19 @@ class Casino(commands.Cog):
             description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type)
             embed.description = description
             await message.edit(embed=embed)
-
-    async def __end_games(self, games):
-        for game in games:
-            self.__messages.pop(game)
-        logger.debug('removed bad games')
     
-    async def __is_bad_game(self):
+    async def __deleter_old_games(self):
         while not self.Bot.is_closed():
-            que = []
-            t = time.time()
-            for id in self.__messages:
-                if t - self.__messages[id]['last_use'] >= self.__sleep:
-                    que.append(id)
-            await self.__end_games(que)
+            games = self.__messages.keys()
+            to_remove = []
+            for i in games:
+                if time.time() - self.__messages[i]['last_use'] > self.__sleep:
+                    to_remove.append(i)
+            for i in to_remove:
+                self.__messages.pop(i)
+                logger.debug(f"removed old game {i}")
             await sleep(self.__sleep)
+
 
     def __getspaces(self, on_mobile: bool, bet_type_len: int, spin: bool):
         if on_mobile:
@@ -357,12 +356,11 @@ class Casino(commands.Cog):
         win = self.__get_win(self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']], win, final[win_ind])
         won = bet * (win['kf'] if win['win'] else 0)
         increase += won
-        self.__messages[msg['message'].id]['author_money'] += won
         await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': increase, 'games': 1}})
         embed.set_footer(text=self.__format_footer(won, bet))
         await message.edit(embed=embed)
         self.__games[channel.id].remove(msg['message'].id)
-
+        self.__messages[msg['message'].id]['author_money'] += won
 
 
     @commands.Cog.listener()
@@ -379,8 +377,8 @@ class Casino(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        self.Bot.loop.create_task(self.__is_bad_game())
-    
+        self.Bot.loop.create_task(self.__deleter_old_games())
+
 
 
 def setup(Bot):

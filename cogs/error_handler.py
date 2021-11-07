@@ -20,7 +20,7 @@ class ErrorHandler(commands.Cog):
     def getDelay(self):
         return self.__delete_after
     
-    @commands.Cog.listener()
+    """@commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         logger.debug(f'on_command_error(), {error}')
         embed = self.__error_embed
@@ -28,6 +28,11 @@ class ErrorHandler(commands.Cog):
             logger.debug('errors.NotEnoughMoney')
             embed.title = error.message
             await ctx.send(embed=embed, delete_after=self.__delete_after)
+        elif isinstance(error, errors.InvalidUser):
+            logger.debug('errors.InvalidUser')
+            embed.title = error.message
+            await ctx.send(embed=embed, delete_after=self.__delete_after)
+            
     
     @staticmethod
     async def on_error(channel, error):
@@ -41,7 +46,7 @@ class ErrorHandler(commands.Cog):
         if isinstance(error, errors.TooManyGames):
             logger.debug('errors.TooManyGames')
         embed.title = error.message
-        await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)
+        await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)"""
             
             
 

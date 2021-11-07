@@ -1,7 +1,9 @@
 from math import exp
+import discord
+from discord.colour import Color
 from discord.ext.commands import Cog, command
 from logging import config, getLogger
-from discord import Member, Embed, embeds, user, File
+from discord import Member, Embed, embeds, user, File, Colour
 from PIL import Image, ImageFont, ImageDraw, ImageChops
 from io import BytesIO
 from aiohttp import ClientSession as aioSession
@@ -10,6 +12,7 @@ from database import db
 from handlers import MailHandler
 from models.card import Card
 from os import remove
+from models.errors import NotEnoughMoney, InvalidUser
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
@@ -76,6 +79,53 @@ class UserStats(Cog):
         else:
             theme = 'dark'
         await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'color': theme}})
+        embed = Embed(
+            title=f'Тема установлена на {theme.upper()}',
+            color=Colour.dark_theme()
+        )
+        await ctx.reply(embed=embed)
+    
+    @command()
+    async def custom(self, ctx, *args):
+        custom = ' '.join(args)
+        if len(custom) > 0:
+            custom = custom[:19]
+        else:
+            custom = UserModel.get_custom()
+        await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'custom': custom}})
+        title = f'Описание установлена на {custom}'
+        embed = Embed(
+            title=title,
+            color=Colour.dark_theme()
+        )
+        await ctx.reply(embed=embed)
+    
+    async def transaction(self, fromaddr, toaddr, amount: int):
+        """
+        fromaddr: (guild.id, member.id),
+        toaddr: (guild.id, member.id),
+        amount: int
+        """
+        query = [
+            [fromaddr[0], fromaddr[1], {'$inc': {'money': -amount}}],
+            [toaddr[0], toaddr[1], {'$inc': {'money': amount}}]
+        ]
+        await db.update_many(query)
+
+    @command()
+    async def pay(self, ctx, member: discord.Member, amount: int):
+        if not member is None:
+            from_wallet = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+            from_wallet = from_wallet['money']
+            if amount <= from_wallet:
+                await self.transaction((ctx.guild.id, ctx.author.id), (member.guild.id, member.id), amount)
+                embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick}")
+                await ctx.send(embed=embed)
+            else:
+                raise NotEnoughMoney(f'{(ctx.author.nick if not ctx.author.nick is None else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
+        else:
+            raise InvalidUser('Некорректный адресат')
+
 
 
 

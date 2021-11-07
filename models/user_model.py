@@ -27,6 +27,9 @@ class UserModel():
         self.__exp, self.__level, _ = self.exp_to_level(self.__EXP, self.__LEVEL)
         logger.debug('created UserModel')
     
+    def get_custom():
+        return UserModel.__CUSTOM
+    
     @classmethod
     def set_cls_field(cls, **params):
         """

@@ -50,7 +50,6 @@ class Card():
                     r = Image.open(BytesIO(r))
                     r.convert('RGBA')
                     r.resize(self.__avatar_size)
-        
         im = await self.__add_corners(r)
         im = await self.__remove_transparency(im)
         self.img.paste(im, self.__padding)

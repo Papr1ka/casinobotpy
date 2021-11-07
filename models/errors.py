@@ -35,3 +35,12 @@ class TooManyGames(errors.CommandError):
     def __init__(self, message, *args):
         self.message = message
         super().__init__(message=message, *args)
+
+class InvalidUser(errors.CommandError):
+    """
+    The exception was thrown
+    when the user does not selected
+    """
+    def __init__(self, message, *args):
+        self.message = message
+        super().__init__(message=message, *args)
