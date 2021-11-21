@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord.ext.commands.errors import MissingRequiredArgument, MissingPermissions
 import models.errors as errors
 from logging import config, getLogger
 from handlers import MailHandler
@@ -10,7 +11,7 @@ logger.addHandler(MailHandler())
 
 class ErrorHandler(commands.Cog):
 
-    __error_embed = discord.Embed(color=discord.Colour.dark_teal())
+    __error_embed = discord.Embed(color=discord.Colour.dark_red())
     __delete_after = 3
     
     def __init__(self, Bot):
@@ -20,7 +21,7 @@ class ErrorHandler(commands.Cog):
     def getDelay(self):
         return self.__delete_after
     
-    """@commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         logger.debug(f'on_command_error(), {error}')
         embed = self.__error_embed
@@ -32,21 +33,34 @@ class ErrorHandler(commands.Cog):
             logger.debug('errors.InvalidUser')
             embed.title = error.message
             await ctx.send(embed=embed, delete_after=self.__delete_after)
-            
-    
+        elif isinstance(error, errors.CommandCanceled):
+            logger.debug('errors.CommandCanceled')
+            embed.title = error.message
+            await ctx.send(embed=embed, delete_after=self.__delete_after)
+        elif isinstance(error, MissingRequiredArgument):
+            logger.debug('errors.MissingRequiredArgument')
+            embed.title = 'Пропущен параметр'
+            await ctx.send(embed=embed, delete_after=self.__delete_after)
+        elif isinstance(error, MissingPermissions):
+            logger.debug('errors.MissingPermissions')
+            embed.title = 'Недостаточно прав'
+            await ctx.send(embed=embed, delete_after=self.__delete_after)
+
+
+
     @staticmethod
     async def on_error(channel, error):
         embed = discord.Embed(color=discord.Colour.dark_teal())
         if isinstance(error, errors.NotSelectedBetType):
             logger.debug('errors.NotSelectedBetType')
-        if isinstance(error, errors.BadGamesession):
+        elif isinstance(error, errors.BadGamesession):
             logger.debug('errors.BadGamesession')
-        if isinstance(error, errors.NotEnoughMoney):
+        elif isinstance(error, errors.NotEnoughMoney):
             logger.debug('errors.NotEnoughMoney')
-        if isinstance(error, errors.TooManyGames):
+        elif isinstance(error, errors.TooManyGames):
             logger.debug('errors.TooManyGames')
         embed.title = error.message
-        await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)"""
+        await channel.send(embed=embed, delete_after=ErrorHandler.__delete_after)
             
             
 

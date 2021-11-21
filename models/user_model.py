@@ -15,7 +15,8 @@ class UserModel():
     __CUSTOM = 'игрок'
     __GAMES = 0
     __COLOR = 'dark' #dark or light
-    __slots__ = ['__user_id', '__money', '__exp', '__messages', '__level', '__custom', '__color', '__games']
+    __INVENTORY = []
+    __slots__ = ['__user_id', '__money', '__exp', '__messages', '__level', '__custom', '__color', '__games', '__inventory']
     slots = [i[2:] for i in __slots__]
     def __init__(self, user_id = None):
         self.__user_id = user_id
@@ -24,6 +25,7 @@ class UserModel():
         self.__custom = self.__CUSTOM
         self.__color = self.__COLOR
         self.__games = self.__GAMES
+        self.__inventory = self.__INVENTORY
         self.__exp, self.__level, _ = self.exp_to_level(self.__EXP, self.__LEVEL)
         logger.debug('created UserModel')
     
@@ -48,6 +50,7 @@ class UserModel():
         cls.__CUSTOM = params.pop('CUSTOM', 'игрок')
         cls.__COLOR = params.pop('COLOR', 'dark')
         cls.__GAMES = params.pop('GAMES', 0)
+        cls.__INVENTORY = params.pop('INVENTORY', 0)
         cls.__LEVEL_COST_FORMULA = params.pop('LEVEL_COST_FORMULA', lambda level: level * (50 + level * 3))
     
     def get_json(self):
@@ -59,6 +62,7 @@ class UserModel():
             'games': self.__games,
             'messages': self.__messages,
             'custom': self.__custom,
+            'inventory': self.__inventory,
             'color': self.__color
         }
     

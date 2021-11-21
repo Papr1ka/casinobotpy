@@ -1,4 +1,5 @@
 import discord
+from discord.embeds import Embed
 from discord.ext import commands
 from discord import Intents
 import os
@@ -6,6 +7,10 @@ from logging import config, getLogger
 from database import db
 from handlers import MailHandler
 import logging
+
+from models.paginator import Paginator
+from discord import Client
+from discord_components import DiscordComponents
 
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
@@ -23,6 +28,7 @@ logging.getLogger('PIL').setLevel('WARNING')
 
 Token = os.environ.get("TOKEN")
 Bot = commands.Bot(command_prefix = "=", intents = Intents.all())
+DBot = DiscordComponents(Bot)
 
 @Bot.event
 async def on_ready():
@@ -37,7 +43,7 @@ async def on_guild_join(guild):
 
 @Bot.event
 async def on_guild_remove(guild):
-    logger.info(f"bot removed from guild: {guild.region} | {guild.name} | {guild.member_count}")
+    logger.info(f"bot removed from guild: region - {guild.region} | name - {guild.name} | members - {guild.member_count}")
     await db.delete_document(str(guild.id))
 
 @Bot.event
@@ -48,6 +54,17 @@ async def on_member_join(member: discord.Member):
 @Bot.event
 async def on_member_remove(member: discord.Member):
     await db.delete_user(member.guild.id, member.id)
+
+Bot.remove_command('help')
+
+@Bot.command()
+async def help(ctx):
+    e = Embed(title='test')
+    for i in range(20):
+        e.add_field(name='asd', value='12312')
+    p = Paginator(DBot, ctx.channel, [e, e])
+    await p.start()
+    
 
 
 def start():

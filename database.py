@@ -135,7 +135,7 @@ class Database(AsyncIOMotorClient):
             logger.debug(f'cant fetch user: {E}')
         else:
             if user is None:
-                user = await self.insert_user(guild_id=guild_id, user_id=user_id)
+                user = await self.insert_user(guild_id, user_id)
                 return user.get_json()
             logger.debug("finded user")
             return user
@@ -211,6 +211,13 @@ class Database(AsyncIOMotorClient):
                         await coll.update_one({'_id': i[1]}, i[2])
         except Exception as E:
             logger.error(E)
+
+    @timeit
+    async def update_guild(self, guild_id, filter, query):
+        try:
+            await self.db[str(guild_id)].update_many(filter, query)
+        except Exception as E:
+            logger.error(E)
     
 
     @timeit
@@ -230,6 +237,7 @@ class Database(AsyncIOMotorClient):
             )
         
         await asyncio.gather(*threads)
+
     
 
     @timeit
