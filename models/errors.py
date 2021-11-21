@@ -44,3 +44,12 @@ class InvalidUser(errors.CommandError):
     def __init__(self, message, *args):
         self.message = message
         super().__init__(message=message, *args)
+
+class CommandCanceled(errors.CommandError):
+    """
+    The exception was thrown
+    when the command gets timeout error or cancelled
+    """
+    def __init__(self, message, *args):
+        self.message = message
+        super().__init__(message=message, *args)
