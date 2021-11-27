@@ -1,15 +1,12 @@
-import asyncio
+from asyncio import get_event_loop, create_task, gather
 from handlers import MailHandler
-from discord.errors import InvalidArgument
-from pymongo import MongoClient
-from logging import config, getLogger, log
+from logging import config, getLogger
 from models.shop import get_shop
 from models.user_model import UserModel
-from models.coin import createCoin
-import os
-from time import time
 from motor.motor_asyncio import AsyncIOMotorClient
 from math import ceil
+from os import environ
+from time import time
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
@@ -20,7 +17,7 @@ logger.addHandler(MailHandler())
 class Database(AsyncIOMotorClient):
 
     __database_name = "casino"
-    __mongo_password = os.environ.get("MONGO_PASSWORD")
+    __mongo_password = environ.get("MONGO_PASSWORD")
     __thread_size = 30
 
     def __init__(self):
@@ -41,7 +38,7 @@ class Database(AsyncIOMotorClient):
             super().__init__(f"mongodb+srv://user:{self.__mongo_password}@cluster0.qbwbb.mongodb.net/{self.__database_name}?retryWrites=true&w=majority")
             logger.debug(self.server_info())
             self.db = self[self.__database_name]
-            self.get_io_loop = asyncio.get_event_loop
+            self.get_io_loop = get_event_loop
         except Exception as E:
             logger.critical(f"can't connect to database: {E}")
         else:
@@ -139,47 +136,6 @@ class Database(AsyncIOMotorClient):
                 return user.get_json()
             logger.debug("finded user")
             return user
-    
-    @timeit
-    async def get_coin(self, coin, **projection):
-        """
-        """
-        logger.debug("searching coin")
-        try:
-            data = await self.db['burse'].find_one({'_id': coin}, projection)
-        except Exception as E:
-            logger.debug(f'cant fetch coin: {E}')
-        else:
-            logger.debug("finded coin")
-            return data
-    
-    @timeit
-    async def update_coin(self, coin, query):
-        """
-        """
-        logger.debug("updating coin")
-        try:
-            data = await self.db['burse'].update_one({'_id': coin}, query)
-        except Exception as E:
-            logger.debug(f'cant update coin: {E}')
-        else:
-            logger.debug("updated coin")
-            return data
-    
-    @timeit
-    async def create_coin(self, name, cost, size, init_seller):
-        """
-        """
-        logger.debug("inserting new coin")
-        coin = createCoin(name, cost, size, init_seller)
-        try:
-            await self.db['burse'].insert_one(coin)
-            await self.db['burse'].update_one({'_id': 'coins'}, {'$push': {'coins': {'name': coin['_id'], 'cost': coin['cost']}}})
-        except Exception as E:
-            logger.debug(f'cant create coin: {E}')
-        else:
-            logger.debug("created coin")
-            return
 
     @Correct_ids
     @timeit
@@ -231,12 +187,12 @@ class Database(AsyncIOMotorClient):
         threads = []
         for i in range(threads_len):
             threads.append(
-                asyncio.create_task(self.update_thread(
+                create_task(self.update_thread(
                     query[i * self.__thread_size : (i + 1) * self.__thread_size]
                 ))
             )
         
-        await asyncio.gather(*threads)
+        await gather(*threads)
 
     
 

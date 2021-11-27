@@ -1,17 +1,11 @@
-from os import name
-from discord.ext.commands import Cog, command, has_permissions
-from discord.ext.commands.core import check
-from discord.ext.commands.errors import CommandError
-from database import db
-from discord import Embed, message
+from discord.ext.commands import Cog, command, has_permissions, guild_only
+from discord import Embed
 from discord.colour import Colour
-from models.shop import item
-
-from models.shop import Item
-from models.paginator import Paginator
-from math import ceil, cos
-
+from math import ceil
 from discord_components import DiscordComponents
+
+from database import db
+from models.paginator import Paginator
 from models.errors import CommandCanceled
 
 
@@ -19,14 +13,18 @@ class Shop(Cog):
     def __init__(self, Bot):
         self.Bot = Bot
 
-    @command()
+    @command(
+        usage="`=shop`",
+        help="Магазин вашей гильдии, за добавление товаров отвечает администрация"
+    )
+    @guild_only()
     async def shop(self, ctx):
         shop = await db.fetch_user(ctx.guild.id, ctx.guild.id, items=1)
         shop = shop['items']
         embed = Embed(title='Магазин', color=Colour.dark_theme())
         
         if not shop:
-            embed.description = "В магазине вашего сервера нет товаров, обратитесь к администратору!"
+            embed.description = "В магазине вашей гильдии нет товаров, обратитесь к администратору!"
             await ctx.send(embed=embed)
         else:
             l = len(shop)
@@ -48,7 +46,12 @@ class Shop(Cog):
             return None
 
     
-    @command()
+    @command(
+        usage="`=add_item`",
+        help='Добавление товара в магазин гильдии. Активируйте команду и следуйте инструкциям в генераторе товара',
+        brief='administrator'
+    )
+    @guild_only()
     @has_permissions(administrator=True)
     async def add_item(self, ctx):
         item_opts = {}
@@ -135,7 +138,12 @@ class Shop(Cog):
         await db.update_user(ctx.guild.id, ctx.guild.id, {'$push': {'items': item_opts}})
 
 
-    @command()
+    @command(
+        usage="`=remove_item [название предмета]`",
+        help="Удаление предмета из магазина гильдии",
+        brief='administrator'
+    )
+    @guild_only()
     @has_permissions(administrator=True)
     async def remove_item(self, ctx, *, name):
         if not name:
@@ -157,7 +165,11 @@ class Shop(Cog):
         
     
 
-    @command()
+    @command(
+        usage="`=info [название предмета]`",
+        help="Информация по предмету магазина гильдии"
+    )
+    @guild_only()
     async def info(self, ctx, *, name):
         if not name:
             embed = Embed(title='Товар не найден', color=Colour.dark_theme())
@@ -183,7 +195,12 @@ class Shop(Cog):
         await ctx.send(embed=embed)
     
 
-    @command()
+    @command(
+        usage="`=reset [exp | money | messages | games | user | shop]`",
+        help="Сброс отдельных данных гильдии (exp | money | messages | games), магазина (shop), или всех данных пользователей (user)",
+        brief='administrator'
+    )
+    @guild_only()
     @has_permissions(administrator=True)
     async def reset(self, ctx, *, object):
         embed = Embed(color=Colour.dark_theme())
@@ -212,7 +229,11 @@ class Shop(Cog):
         await ctx.send(embed=embed)
     
     
-    @command()
+    @command(
+        usage="`=inventory (use | sell) [название предмета]`",
+        help="Посмотреть инвентарь, Использовать предмет из инвентаря (use) (если возможно), продать предмет из инвентаря (sell)"
+    )
+    @guild_only()
     async def inventory(self, ctx, subcommand=None, *, param=None):
         items = await db.fetch_user(ctx.guild.id, ctx.author.id, inventory=1)
         items = items['inventory']
@@ -274,7 +295,11 @@ class Shop(Cog):
             
 
     
-    @command()
+    @command(
+        usage="`=buy [название предмета]`",
+        help="Купить предмет из магазина вашей гильдии"
+    )
+    @guild_only()
     async def buy(self, ctx, *, name):
         if not name:
             embed = Embed(title='Товар не найден', color=Colour.dark_theme())

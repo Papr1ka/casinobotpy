@@ -1,7 +1,7 @@
-from PIL import Image, ImageFont, ImageDraw, ImageChops
-from io import BytesIO
 from aiohttp import ClientSession as aioSession
+from io import BytesIO
 from models.user_model import UserModel
+from PIL import Image, ImageFont, ImageDraw
 
 
 class Card():
@@ -37,7 +37,6 @@ class Card():
         alpha.paste(circle.crop((0, rad, rad, rad * 2)), (0, h - rad))
         alpha.paste(circle.crop((rad, 0, rad * 2, rad)), (w - rad, 0))
         alpha.paste(circle.crop((rad, rad, rad * 2, rad * 2)), (w - rad, h - rad))
-        #alpha = ImageChops.darker(alpha, im.split()[-1])
         im.putalpha(alpha)
         return im
     
@@ -101,19 +100,3 @@ class Card():
         await self.__render_avatar()
         await self.__render_info()
         return await self.save()
-
-
-async def main():
-    c = Card({
-        '_id': 1234,
-        'role_color': (256, 256, 256),
-        'avatar': 'https://cdn.discordapp.com/avatars/397352286487052288/503e1f8c57ea6cdb3fefb8ed6d695059.webp?size=1024',
-        'username': 'Papr1kaPapr1kaPapr1ka',
-        'discriminator': '8145',
-        'exp': 1000000,
-        'level': 3,
-        'custom': 'игрок',
-        'top_role': 'Матрос',
-        'role_color': (0, 255, 0)
-        })
-    await c.render_get()

@@ -1,7 +1,7 @@
 from logging.handlers import SMTPHandler
 from logging import ERROR
 from logging import Formatter
-import os
+from os import environ
 
 class simpleFormatter(Formatter):
     __fmt = "%(name)s : %(funcName)s : %(lineno)d : %(asctime)s : %(levelname)s : %(message)s"
@@ -12,10 +12,10 @@ class simpleFormatter(Formatter):
 
 class MailHandler(SMTPHandler):
     __mailhost = ('smtp.gmail.com', 587) 
-    __fromaddr = os.environ.get('maillogin')
+    __fromaddr = environ.get('maillogin')
     __toaddrs = __fromaddr
     __subject = "Log Record"
-    __credentials = (__fromaddr, os.environ.get('mailpass'))
+    __credentials = (__fromaddr, environ.get('mailpass'))
     __secure = ()
     def __init__(self):
         super().__init__(mailhost=MailHandler.__mailhost,

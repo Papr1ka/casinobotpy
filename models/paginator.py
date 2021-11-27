@@ -1,12 +1,12 @@
 from typing import List
 
-import discord
+from discord import Embed
 from discord.abc import Messageable
 from discord_components import DiscordComponents, Button, ButtonStyle, Interaction
 
 
 class Paginator:
-    def __init__(self, client: DiscordComponents, channel: Messageable, contents: List[discord.Embed]):
+    def __init__(self, client: DiscordComponents, channel: Messageable, contents: List[Embed]):
         self.client = client
         self.channel = channel
         self.contents = contents

@@ -1,18 +1,16 @@
 from collections import namedtuple
-from discord.ext.commands import Cog, command, cooldown, BucketType
-from discord import File, Embed, Colour
-from asyncio import sleep, TimeoutError
-from random import choice, randint
-import random
-import os
+from discord.ext.commands import Cog, command, BucketType, max_concurrency, guild_only
+from discord import Embed, Colour
+from asyncio import TimeoutError
+from random import randint, choices
 from database import db
 from math import sqrt
-from discord.ext.commands.errors import CommandOnCooldown
+from discord.ext.commands.errors import MaxConcurrencyReached
 
 fish = namedtuple('fish', ['url', 'cost', 'chance', 'name'])
 fishes = [
-    fish("https://key0.cc/images/preview/111781_c674df9fa58a5ad9cc1c1d9394a5d6bc.png", 10, 0.5, 'кислотная рыба'),
-    fish("https://key0.cc/images/preview/97955_e25d2bd07b16fc7e870e6d3421901d02.png", 0, 0.5, 'кости')
+    fish("https://key0.cc/images/preview/111781_c674df9fa58a5ad9cc1c1d9394a5d6bc.png", 10, 0.5, 'Кислотная рыба'),
+    fish("https://key0.cc/images/preview/97955_e25d2bd07b16fc7e870e6d3421901d02.png", 0, 0.5, 'Кости')
 ]
 
 class Jobs(Cog):
@@ -25,18 +23,22 @@ class Jobs(Cog):
     
 
     async def randomFish(self) -> fish:
-        fish = random.choices(fishes, [i.chance for i in fishes])
+        fish = choices(fishes, [i.chance for i in fishes])
         return fish[0]
 
 
-    @command()
-    @cooldown(1, 30, BucketType.member)
+    @command(
+        usage="`=fishing` | `hook` чтобы поймать",
+        help="Активируйте команду и напишите `hook`, чтобы поймать рыбу, главное сделать это вовремя"
+    )
+    @max_concurrency(1, BucketType.member, wait=False)
+    @guild_only()
     async def fishing(self, ctx):
         embed = Embed(title="Закинул удочку", color=Colour.dark_theme())
         await ctx.send(embed=embed)
 
         def check(m):
-            return m.author == ctx.author and "подсекаю" in m.content
+            return m.author == ctx.author and "hook" in m.content
 
         try:
             message = await self.Bot.wait_for('message', timeout=self.__waitingFish(), check=check)
@@ -69,10 +71,9 @@ class Jobs(Cog):
 
     @fishing.error
     async def on_fishing_error(self, ctx, error):
-        if isinstance(error, CommandOnCooldown):
+        if isinstance(error, MaxConcurrencyReached):
             await ctx.send("У вас только 1 спиннинг!")
 
-        
 
 
 def setup(Bot):
