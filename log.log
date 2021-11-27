@@ -1307,7 +1307,7 @@ database : fetch_user : 131 : 24/11/2021 09:35:46 PM : DEBUG : searching user
 database : fetch_user : 140 : 24/11/2021 09:35:46 PM : DEBUG : finded user
 database : wrapper : 34 : 24/11/2021 09:35:46 PM : DEBUG : fetch_user done, time: 0.12900495529174805s
 database : update_user : 194 : 24/11/2021 09:35:46 PM : DEBUG : updating user...
-database : update_user : 195 : 24/11/2021 09:35:46 PM : DEBUG : updating: {'$pull': {'inventory': {'name': 'жига'}}}
+database : update_user : 195 : 24/11/2021 09:35:46 PM : DEBUG : updating: {'$pull': {'inventory': {'name': 'пїЅпїЅпїЅпїЅ'}}}
 database : update_user : 201 : 24/11/2021 09:35:46 PM : DEBUG : updating user complete
 database : wrapper : 34 : 24/11/2021 09:35:46 PM : DEBUG : update_user done, time: 0.13199996948242188s
 database : update_user : 194 : 24/11/2021 09:35:46 PM : DEBUG : updating user...
@@ -1352,7 +1352,7 @@ database : fetch_user : 131 : 24/11/2021 09:38:31 PM : DEBUG : searching user
 database : fetch_user : 140 : 24/11/2021 09:38:31 PM : DEBUG : finded user
 database : wrapper : 34 : 24/11/2021 09:38:31 PM : DEBUG : fetch_user done, time: 0.1350245475769043s
 database : update_user : 194 : 24/11/2021 09:38:31 PM : DEBUG : updating user...
-database : update_user : 195 : 24/11/2021 09:38:31 PM : DEBUG : updating: {'$push': {'inventory': {'name': 'жига', 'cost': 1000, 'description': 'создаёт огонь', 'roles': [891656768197890090]}}, '$inc': {'money': -1000}}
+database : update_user : 195 : 24/11/2021 09:38:31 PM : DEBUG : updating: {'$push': {'inventory': {'name': 'пїЅпїЅпїЅпїЅ', 'cost': 1000, 'description': 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ', 'roles': [891656768197890090]}}, '$inc': {'money': -1000}}
 database : update_user : 201 : 24/11/2021 09:38:31 PM : DEBUG : updating user complete
 database : wrapper : 34 : 24/11/2021 09:38:31 PM : DEBUG : update_user done, time: 0.14015460014343262s
 database : fetch_user : 131 : 24/11/2021 09:38:33 PM : DEBUG : searching user
@@ -1391,7 +1391,7 @@ database : fetch_user : 131 : 24/11/2021 09:44:54 PM : DEBUG : searching user
 database : fetch_user : 140 : 24/11/2021 09:44:55 PM : DEBUG : finded user
 database : wrapper : 34 : 24/11/2021 09:44:55 PM : DEBUG : fetch_user done, time: 0.12903618812561035s
 database : update_user : 194 : 24/11/2021 09:44:55 PM : DEBUG : updating user...
-database : update_user : 195 : 24/11/2021 09:44:55 PM : DEBUG : updating: {'$pull': {'inventory': {'name': 'жига'}}}
+database : update_user : 195 : 24/11/2021 09:44:55 PM : DEBUG : updating: {'$pull': {'inventory': {'name': 'пїЅпїЅпїЅпїЅ'}}}
 database : update_user : 201 : 24/11/2021 09:44:55 PM : DEBUG : updating user complete
 database : wrapper : 34 : 24/11/2021 09:44:55 PM : DEBUG : update_user done, time: 0.13301706314086914s
 database : fetch_user : 131 : 24/11/2021 09:45:01 PM : DEBUG : searching user
@@ -1499,3 +1499,915 @@ database : wrapper : 34 : 24/11/2021 11:22:40 PM : DEBUG : update_many done, tim
 database : wrapper : 34 : 24/11/2021 11:23:40 PM : DEBUG : update_many done, time: 0.0s
 database : wrapper : 34 : 24/11/2021 11:24:40 PM : DEBUG : update_many done, time: 0.0s
 database : wrapper : 34 : 24/11/2021 11:25:40 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 07:53:59 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 07:53:59 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 07:53:59 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 07:53:59 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 07:54:00 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 07:54:00 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 07:54:00 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 07:54:00 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 07:54:00 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 07:54:00 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 07:54:00 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 07:54:00 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 07:54:03 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 07:55:00 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 34 : 27/11/2021 07:55:00 PM : DEBUG : update_many done, time: 0.13499951362609863s
+database : connect : 39 : 27/11/2021 07:55:56 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 07:55:56 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 07:55:56 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 07:55:56 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 07:55:56 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 07:55:56 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 07:55:56 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 07:55:56 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 07:55:56 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 07:55:56 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 07:55:56 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 07:55:56 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 07:55:59 PM : INFO : bot is started
+database : fetch_user : 131 : 27/11/2021 07:56:00 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:56:00 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:56:00 PM : DEBUG : fetch_user done, time: 0.1320335865020752s
+database : update_user : 194 : 27/11/2021 07:56:00 PM : DEBUG : updating user...
+database : update_user : 195 : 27/11/2021 07:56:00 PM : DEBUG : updating: {'$inc': {'money': 177}, '$set': {'exp': 58, 'level': 4}}
+database : update_user : 201 : 27/11/2021 07:56:00 PM : DEBUG : updating user complete
+database : wrapper : 34 : 27/11/2021 07:56:00 PM : DEBUG : update_user done, time: 0.1371448040008545s
+database : fetch_user : 131 : 27/11/2021 07:56:08 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:56:08 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:56:08 PM : DEBUG : fetch_user done, time: 0.13208699226379395s
+database : update_thread : 205 : 27/11/2021 07:56:56 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 34 : 27/11/2021 07:56:56 PM : DEBUG : update_many done, time: 0.13710737228393555s
+database : connect : 39 : 27/11/2021 07:57:02 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 07:57:02 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 07:57:02 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 07:57:02 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 07:57:02 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 07:57:02 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 07:57:02 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 07:57:02 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 07:57:02 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 07:57:02 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 07:57:02 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 07:57:02 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 07:57:05 PM : INFO : bot is started
+database : fetch_user : 131 : 27/11/2021 07:57:33 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:57:33 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:57:33 PM : DEBUG : fetch_user done, time: 0.12501955032348633s
+cogs.error_handler : on_command_error : 26 : 27/11/2021 07:57:41 PM : DEBUG : on_command_error(), You are on cooldown. Try again in 11.81s
+database : update_thread : 205 : 27/11/2021 07:58:02 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 34 : 27/11/2021 07:58:02 PM : DEBUG : update_many done, time: 0.1320948600769043s
+database : connect : 39 : 27/11/2021 07:58:44 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 07:58:44 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 07:58:44 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 07:58:44 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 07:58:44 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 07:58:44 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 07:58:44 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 07:58:44 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 07:58:44 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 07:58:44 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 07:58:44 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 07:58:44 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 07:58:48 PM : INFO : bot is started
+database : fetch_user : 131 : 27/11/2021 07:59:15 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:59:15 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:59:15 PM : DEBUG : fetch_user done, time: 0.13302159309387207s
+database : fetch_user : 131 : 27/11/2021 07:59:19 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:59:19 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:59:19 PM : DEBUG : fetch_user done, time: 0.13105487823486328s
+database : fetch_user : 131 : 27/11/2021 07:59:22 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:59:22 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:59:22 PM : DEBUG : fetch_user done, time: 0.1310100555419922s
+database : fetch_user : 131 : 27/11/2021 07:59:39 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 07:59:39 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 07:59:39 PM : DEBUG : fetch_user done, time: 0.1340174674987793s
+database : update_thread : 205 : 27/11/2021 07:59:44 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 70, 'messages': 7}}]]
+database : wrapper : 34 : 27/11/2021 07:59:45 PM : DEBUG : update_many done, time: 0.1390392780303955s
+database : update_thread : 205 : 27/11/2021 08:00:45 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 08:00:45 PM : DEBUG : update_many done, time: 0.13988614082336426s
+database : wrapper : 34 : 27/11/2021 08:01:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:02:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:03:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:04:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:05:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:06:45 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 08:08:05 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:08:05 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:08:05 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:08:05 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:08:05 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:08:05 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:08:05 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:08:05 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:08:05 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 08:08:05 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:08:05 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:08:05 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:08:08 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:08:14 PM : DEBUG : on_command_error(), Too many people using this command. It can only be used 1 time per member concurrently.
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:08:16 PM : DEBUG : on_command_error(), Too many people using this command. It can only be used 1 time per member concurrently.
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:08:17 PM : DEBUG : on_command_error(), Too many people using this command. It can only be used 1 time per member concurrently.
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:08:17 PM : DEBUG : on_command_error(), Too many people using this command. It can only be used 1 time per member concurrently.
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:08:18 PM : DEBUG : on_command_error(), Too many people using this command. It can only be used 1 time per member concurrently.
+database : fetch_user : 131 : 27/11/2021 08:08:38 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 08:08:38 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 08:08:38 PM : DEBUG : fetch_user done, time: 0.1250002384185791s
+database : update_user : 194 : 27/11/2021 08:08:38 PM : DEBUG : updating user...
+database : update_user : 195 : 27/11/2021 08:08:38 PM : DEBUG : updating: {'$inc': {'money': 20}}
+database : update_user : 201 : 27/11/2021 08:08:38 PM : DEBUG : updating user complete
+database : wrapper : 34 : 27/11/2021 08:08:38 PM : DEBUG : update_user done, time: 0.13100337982177734s
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:08:41 PM : DEBUG : on_command_error(), Too many people using this command. It can only be used 1 time per member concurrently.
+database : update_thread : 205 : 27/11/2021 08:09:05 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 90, 'messages': 9}}]]
+database : wrapper : 34 : 27/11/2021 08:09:05 PM : DEBUG : update_many done, time: 0.13099980354309082s
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:09:36 PM : DEBUG : on_command_error(), Command raised an exception: AttributeError: 'NoneType' object has no attribute 'id'
+database : wrapper : 34 : 27/11/2021 08:10:06 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 08:10:50 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:10:50 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:10:50 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:10:50 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:10:50 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:10:50 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:10:50 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:10:50 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:10:50 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 08:10:50 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:10:50 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:10:50 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:10:53 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:10:58 PM : DEBUG : on_command_error(), This command cannot be used in private messages.
+database : connect : 39 : 27/11/2021 08:11:21 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:11:21 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:11:21 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:11:21 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:11:21 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:11:21 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:11:21 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:11:21 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:11:21 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 08:11:21 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:11:21 PM : INFO : cogs.user_stats Cog has initialized
+database : connect : 39 : 27/11/2021 08:12:45 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:12:45 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:12:45 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:12:45 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:12:45 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:12:45 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:12:45 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:12:45 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:12:45 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 46 : 27/11/2021 08:12:45 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:12:45 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:12:45 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:12:48 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:12:49 PM : DEBUG : on_command_error(), This command cannot be used in private messages.
+database : wrapper : 34 : 27/11/2021 08:13:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:14:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:15:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:16:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:17:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:18:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:19:45 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:20:45 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 08:21:13 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:21:13 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:21:14 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:21:14 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:21:14 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:21:14 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:21:14 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:21:14 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:21:14 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 08:21:14 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:21:14 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:21:14 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:21:17 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 08:22:14 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 08:22:14 PM : DEBUG : update_many done, time: 0.13499689102172852s
+database : wrapper : 34 : 27/11/2021 08:23:14 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 08:23:40 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:23:40 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:23:40 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:23:40 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:23:40 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:23:40 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:23:40 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:23:40 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:23:40 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 48 : 27/11/2021 08:23:40 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:23:40 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:23:40 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:23:43 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 08:24:40 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 08:24:40 PM : DEBUG : update_many done, time: 0.1379985809326172s
+database : wrapper : 34 : 27/11/2021 08:25:40 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 08:26:24 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:26:24 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:26:24 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:26:24 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:26:24 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:26:24 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 136 : 27/11/2021 08:26:24 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:26:24 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:26:24 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 48 : 27/11/2021 08:26:24 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:26:24 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:26:24 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:26:27 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 08:26:40 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 08:26:41 PM : DEBUG : update_many done, time: 0.13499951362609863s
+database : update_thread : 205 : 27/11/2021 08:27:24 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 08:27:24 PM : DEBUG : update_many done, time: 0.13300180435180664s
+database : wrapper : 34 : 27/11/2021 08:27:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:28:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:28:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:29:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:29:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:30:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:30:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:31:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:31:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:32:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:32:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:33:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:33:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:34:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:34:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:35:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:35:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:36:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:36:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:37:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:37:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:38:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:38:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:39:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:39:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:40:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:40:41 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:41:24 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:41:41 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 08:42:09 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:42:09 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:42:09 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:42:09 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:42:09 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:42:09 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 08:42:09 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:42:09 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:42:09 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 08:42:09 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:42:09 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:42:09 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:42:12 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:42:28 PM : DEBUG : on_command_error(), This command cannot be used in private messages.
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:42:39 PM : DEBUG : on_command_error(), Command raised an exception: AttributeError: 'function' object has no attribute 'owner'
+database : connect : 39 : 27/11/2021 08:43:08 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:43:08 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:43:08 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:43:08 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:43:08 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:43:08 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 08:43:08 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:43:08 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:43:08 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 08:43:08 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:43:08 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:43:08 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:43:11 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:43:13 PM : DEBUG : on_command_error(), Command raised an exception: AttributeError: 'function' object has no attribute 'owner'
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:43:30 PM : DEBUG : on_command_error(), Command raised an exception: AttributeError: 'function' object has no attribute 'owner'
+database : connect : 39 : 27/11/2021 08:43:57 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:43:57 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:43:57 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:43:57 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:43:57 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:43:57 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 08:43:57 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:43:57 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:43:57 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 08:43:57 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:43:57 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:43:57 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:44:00 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 08:44:00 PM : DEBUG : on_command_error(), Command raised an exception: AttributeError: 'coroutine' object has no attribute 'owner'
+database : connect : 39 : 27/11/2021 08:44:18 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 08:44:18 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 08:44:18 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 08:44:18 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 08:44:18 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 08:44:18 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 08:44:18 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 08:44:18 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 08:44:18 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 08:44:18 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 27 : 27/11/2021 08:44:18 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 08:44:18 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 08:44:21 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 08:45:18 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 08:45:18 PM : DEBUG : update_many done, time: 0.13499975204467773s
+database : wrapper : 34 : 27/11/2021 08:46:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:47:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:48:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:49:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:50:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:51:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:52:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:53:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:54:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:55:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:56:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:57:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:58:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 08:59:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:00:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:01:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:02:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:03:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:04:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:05:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:06:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:07:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:08:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:09:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:10:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:11:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:12:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:13:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:14:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:15:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:16:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:17:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:18:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:19:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:20:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:21:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:22:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:23:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:24:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:25:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:26:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:27:18 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:28:18 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 09:44:15 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 09:44:15 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 09:44:16 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 09:44:16 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 09:44:16 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 09:44:16 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 09:44:16 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 09:44:16 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 09:44:16 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 09:44:16 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 09:44:16 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 09:44:16 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 09:44:18 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 09:44:38 PM : DEBUG : on_command_error(), Command raised an exception: TypeError: send() got an unexpected keyword argument 'message'
+database : update_thread : 205 : 27/11/2021 09:45:16 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 09:45:16 PM : DEBUG : update_many done, time: 0.1400012969970703s
+database : connect : 39 : 27/11/2021 09:45:23 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 09:45:23 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 09:45:24 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 09:45:24 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 09:45:24 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 09:45:24 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 09:45:24 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 09:45:24 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 09:45:24 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 09:45:24 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 09:45:24 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 09:45:24 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 09:45:26 PM : INFO : bot is started
+database : connect : 39 : 27/11/2021 09:46:19 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 09:46:19 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 09:46:19 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 09:46:19 PM : INFO : connected to database: casino
+__main__ : <module> : 19 : 27/11/2021 09:46:19 PM : INFO : starting...
+__main__ : start : 71 : 27/11/2021 09:46:19 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 09:46:19 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 09:46:19 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 09:46:19 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 09:46:19 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 09:46:19 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 78 : 27/11/2021 09:46:19 PM : DEBUG : loading complete
+__main__ : on_ready : 35 : 27/11/2021 09:46:22 PM : INFO : bot is started
+database : wrapper : 34 : 27/11/2021 09:47:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:48:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:49:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:50:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:51:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:52:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:53:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:54:19 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:55:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:56:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 09:57:20 PM : DEBUG : update_many done, time: 0.0s
+database : update_thread : 205 : 27/11/2021 09:58:20 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 09:58:20 PM : DEBUG : update_many done, time: 0.13300037384033203s
+database : update_thread : 205 : 27/11/2021 09:59:20 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 34 : 27/11/2021 09:59:20 PM : DEBUG : update_many done, time: 0.1300044059753418s
+database : wrapper : 34 : 27/11/2021 10:00:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:01:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:02:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:03:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:04:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:05:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:06:20 PM : DEBUG : update_many done, time: 0.0s
+database : update_thread : 205 : 27/11/2021 10:07:20 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 34 : 27/11/2021 10:07:20 PM : DEBUG : update_many done, time: 0.13000273704528809s
+database : wrapper : 34 : 27/11/2021 10:08:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:09:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:10:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:11:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:12:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:13:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:14:20 PM : DEBUG : update_many done, time: 0.0s
+database : fetch_user : 131 : 27/11/2021 10:14:53 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 10:14:53 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 10:14:53 PM : DEBUG : fetch_user done, time: 0.12700200080871582s
+database : update_user : 194 : 27/11/2021 10:14:53 PM : DEBUG : updating user...
+database : update_user : 195 : 27/11/2021 10:14:53 PM : DEBUG : updating: {'$inc': {'money': 248}, '$set': {'exp': 160, 'level': 5}}
+database : update_user : 201 : 27/11/2021 10:14:53 PM : DEBUG : updating user complete
+database : wrapper : 34 : 27/11/2021 10:14:53 PM : DEBUG : update_user done, time: 0.12899470329284668s
+database : update_user : 194 : 27/11/2021 10:14:58 PM : DEBUG : updating user...
+database : update_user : 195 : 27/11/2021 10:14:58 PM : DEBUG : updating: {'$set': {'custom': 'пїЅпїЅпїЅ'}}
+database : update_user : 201 : 27/11/2021 10:14:58 PM : DEBUG : updating user complete
+database : wrapper : 34 : 27/11/2021 10:14:58 PM : DEBUG : update_user done, time: 0.12900161743164062s
+database : fetch_user : 131 : 27/11/2021 10:15:00 PM : DEBUG : searching user
+database : fetch_user : 140 : 27/11/2021 10:15:00 PM : DEBUG : finded user
+database : wrapper : 34 : 27/11/2021 10:15:00 PM : DEBUG : fetch_user done, time: 0.1260058879852295s
+database : update_thread : 205 : 27/11/2021 10:15:20 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 34 : 27/11/2021 10:15:20 PM : DEBUG : update_many done, time: 0.13000273704528809s
+database : wrapper : 34 : 27/11/2021 10:16:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:17:20 PM : DEBUG : update_many done, time: 0.0s
+database : update_thread : 205 : 27/11/2021 10:18:20 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 20, 'messages': 2}}]]
+database : wrapper : 34 : 27/11/2021 10:18:20 PM : DEBUG : update_many done, time: 0.12999653816223145s
+database : update_thread : 205 : 27/11/2021 10:19:20 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 50, 'messages': 5}}]]
+database : wrapper : 34 : 27/11/2021 10:19:20 PM : DEBUG : update_many done, time: 0.1301124095916748s
+database : wrapper : 34 : 27/11/2021 10:20:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:21:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:22:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:23:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:24:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:25:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:26:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:27:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:28:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:29:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:30:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:31:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:32:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:33:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:34:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:35:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:36:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:37:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:38:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:39:20 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:40:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:41:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:42:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:43:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:44:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:45:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:46:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:47:21 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 10:48:21 PM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 27/11/2021 10:49:09 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:49:09 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:49:09 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:49:09 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:49:09 PM : INFO : starting...
+__main__ : start : 116 : 27/11/2021 10:49:09 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:49:09 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:49:09 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:49:09 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:49:09 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:49:09 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 123 : 27/11/2021 10:49:09 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:49:12 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:49:14 PM : DEBUG : on_command_error(), module_command is a required argument that is missing.
+cogs.error_handler : on_command_error : 41 : 27/11/2021 10:49:14 PM : DEBUG : errors.MissingRequiredArgument
+database : connect : 39 : 27/11/2021 10:49:29 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:49:29 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:49:29 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:49:29 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:49:29 PM : INFO : starting...
+__main__ : start : 116 : 27/11/2021 10:49:29 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:49:29 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:49:29 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:49:29 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:49:29 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:49:29 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 123 : 27/11/2021 10:49:29 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:49:32 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:50:04 PM : DEBUG : on_command_error(), Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.description: This field is required
+database : update_thread : 205 : 27/11/2021 10:50:29 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 50, 'messages': 5}}]]
+database : wrapper : 34 : 27/11/2021 10:50:29 PM : DEBUG : update_many done, time: 0.16500258445739746s
+database : connect : 39 : 27/11/2021 10:51:07 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:51:07 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:51:07 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:51:07 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:51:07 PM : INFO : starting...
+__main__ : start : 119 : 27/11/2021 10:51:07 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:51:07 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:51:07 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:51:07 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:51:07 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:51:07 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 126 : 27/11/2021 10:51:07 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:51:10 PM : INFO : bot is started
+database : connect : 39 : 27/11/2021 10:51:28 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:51:28 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:51:28 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:51:28 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:51:28 PM : INFO : starting...
+__main__ : start : 120 : 27/11/2021 10:51:28 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:51:28 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:51:28 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:51:28 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:51:28 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:51:28 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 127 : 27/11/2021 10:51:28 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:51:30 PM : INFO : bot is started
+database : connect : 39 : 27/11/2021 10:51:54 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:51:54 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:51:54 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:51:54 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:51:54 PM : INFO : starting...
+__main__ : start : 121 : 27/11/2021 10:51:54 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:51:54 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:51:54 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:51:54 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:51:54 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:51:54 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 128 : 27/11/2021 10:51:54 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:51:57 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 10:52:54 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 10:52:54 PM : DEBUG : update_many done, time: 0.1329967975616455s
+database : connect : 39 : 27/11/2021 10:53:10 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:53:10 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:53:11 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:53:11 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:53:11 PM : INFO : starting...
+__main__ : start : 121 : 27/11/2021 10:53:11 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:53:11 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:53:11 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:53:11 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:53:11 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:53:11 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 128 : 27/11/2021 10:53:11 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:53:14 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 10:54:11 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 10:54:11 PM : DEBUG : update_many done, time: 0.1439967155456543s
+database : connect : 39 : 27/11/2021 10:54:51 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:54:51 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:54:51 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:54:51 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:54:51 PM : INFO : starting...
+__main__ : start : 119 : 27/11/2021 10:54:52 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:54:52 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:54:52 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:54:52 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:54:52 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:54:52 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 126 : 27/11/2021 10:54:52 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:54:55 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:54:55 PM : DEBUG : on_command_error(), Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.description: This field is required
+database : connect : 39 : 27/11/2021 10:55:49 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:55:49 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:55:49 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:55:49 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:55:49 PM : INFO : starting...
+__main__ : start : 119 : 27/11/2021 10:55:49 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:55:49 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:55:49 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:55:49 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:55:49 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:55:49 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 126 : 27/11/2021 10:55:49 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:55:52 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 10:56:49 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 10:56:49 PM : DEBUG : update_many done, time: 0.13399410247802734s
+database : connect : 39 : 27/11/2021 10:57:07 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:57:07 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:57:07 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:57:07 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:57:07 PM : INFO : starting...
+__main__ : start : 119 : 27/11/2021 10:57:07 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:57:07 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:57:07 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:57:07 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:57:07 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:57:07 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 126 : 27/11/2021 10:57:07 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:57:10 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:57:11 PM : DEBUG : on_command_error(), Command raised an exception: TypeError: sequence item 0: expected str instance, NoneType found
+database : update_thread : 205 : 27/11/2021 10:58:07 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 10:58:07 PM : DEBUG : update_many done, time: 0.20000410079956055s
+database : connect : 39 : 27/11/2021 10:58:22 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:58:22 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:58:22 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:58:22 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:58:22 PM : INFO : starting...
+__main__ : start : 120 : 27/11/2021 10:58:22 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:58:22 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:58:22 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:58:22 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:58:22 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:58:22 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 127 : 27/11/2021 10:58:22 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:58:25 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:58:26 PM : DEBUG : on_command_error(), Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.description: This field is required
+database : connect : 39 : 27/11/2021 10:58:40 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:58:40 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:58:40 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:58:40 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:58:40 PM : INFO : starting...
+__main__ : start : 120 : 27/11/2021 10:58:40 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:58:40 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:58:40 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:58:40 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:58:40 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:58:40 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 127 : 27/11/2021 10:58:40 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:58:43 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:58:44 PM : DEBUG : on_command_error(), Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.description: This field is required
+database : connect : 39 : 27/11/2021 10:58:54 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 10:58:54 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 10:58:54 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 10:58:54 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 10:58:54 PM : INFO : starting...
+__main__ : start : 120 : 27/11/2021 10:58:54 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 10:58:54 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 10:58:54 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 10:58:54 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 10:58:54 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 10:58:54 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 127 : 27/11/2021 10:58:54 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 10:58:57 PM : INFO : bot is started
+cogs.error_handler : on_command_error : 26 : 27/11/2021 10:58:58 PM : DEBUG : on_command_error(), Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.description: This field is required
+database : update_thread : 205 : 27/11/2021 10:59:54 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 10:59:54 PM : DEBUG : update_many done, time: 0.13899803161621094s
+database : connect : 39 : 27/11/2021 11:00:00 PM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 27/11/2021 11:00:00 PM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 27/11/2021 11:00:00 PM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 27/11/2021 11:00:00 PM : INFO : connected to database: casino
+__main__ : <module> : 20 : 27/11/2021 11:00:00 PM : INFO : starting...
+__main__ : start : 120 : 27/11/2021 11:00:00 PM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 27/11/2021 11:00:00 PM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 27/11/2021 11:00:01 PM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 27/11/2021 11:00:01 PM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 27/11/2021 11:00:01 PM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 27/11/2021 11:00:01 PM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 127 : 27/11/2021 11:00:01 PM : DEBUG : loading complete
+__main__ : on_ready : 36 : 27/11/2021 11:00:03 PM : INFO : bot is started
+database : update_thread : 205 : 27/11/2021 11:01:01 PM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 10, 'messages': 1}}]]
+database : wrapper : 34 : 27/11/2021 11:01:01 PM : DEBUG : update_many done, time: 0.13399982452392578s
+database : wrapper : 34 : 27/11/2021 11:02:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:03:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:04:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:05:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:06:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:07:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:08:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:09:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:10:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:11:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:12:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:13:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:14:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:15:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:16:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:17:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:18:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:19:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:20:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:21:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:22:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:23:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:24:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:25:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:26:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:27:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:28:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:29:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:30:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:31:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:32:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:33:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:34:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:35:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:36:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:37:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:38:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:39:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:40:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:41:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:42:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:43:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:44:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:45:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:46:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:47:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:48:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:49:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:50:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:51:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:52:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:53:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:54:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:55:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:56:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:57:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:58:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 27/11/2021 11:59:01 PM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:00:01 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:01:01 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:02:01 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:03:01 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:04:01 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:05:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:06:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:07:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:08:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:09:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:10:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:11:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:12:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:13:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:14:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:15:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:16:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:17:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:18:00 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:19:00 AM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 28/11/2021 12:19:59 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:19:59 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:19:59 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:19:59 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:19:59 AM : INFO : starting...
+__main__ : start : 122 : 28/11/2021 12:19:59 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:19:59 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:19:59 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:19:59 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:19:59 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:19:59 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 129 : 28/11/2021 12:19:59 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:20:02 AM : INFO : bot is started
+database : connect : 39 : 28/11/2021 12:20:58 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:20:58 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:20:58 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:20:58 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:20:58 AM : INFO : starting...
+__main__ : start : 122 : 28/11/2021 12:20:58 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:20:58 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:20:58 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:20:58 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:20:58 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:20:58 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 129 : 28/11/2021 12:20:58 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:21:01 AM : INFO : bot is started
+database : connect : 39 : 28/11/2021 12:21:15 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:21:15 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:21:15 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:21:15 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:21:15 AM : INFO : starting...
+__main__ : start : 122 : 28/11/2021 12:21:15 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:21:15 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:21:15 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:21:15 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:21:15 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:21:15 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 129 : 28/11/2021 12:21:15 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:21:18 AM : INFO : bot is started
+database : connect : 39 : 28/11/2021 12:21:42 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:21:42 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:21:43 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:21:43 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:21:43 AM : INFO : starting...
+__main__ : start : 122 : 28/11/2021 12:21:43 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:21:43 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:21:43 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:21:43 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:21:43 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:21:43 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 129 : 28/11/2021 12:21:43 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:21:45 AM : INFO : bot is started
+database : connect : 39 : 28/11/2021 12:22:25 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:22:25 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:22:25 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:22:25 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:22:25 AM : INFO : starting...
+__main__ : start : 123 : 28/11/2021 12:22:25 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:22:25 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:22:25 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:22:25 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:22:25 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:22:25 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 130 : 28/11/2021 12:22:25 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:22:28 AM : INFO : bot is started
+database : connect : 39 : 28/11/2021 12:22:38 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:22:38 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:22:38 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:22:38 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:22:38 AM : INFO : starting...
+__main__ : start : 123 : 28/11/2021 12:22:38 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:22:38 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:22:38 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:22:38 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:22:38 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:22:38 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 130 : 28/11/2021 12:22:38 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:22:41 AM : INFO : bot is started
+database : update_thread : 205 : 28/11/2021 12:23:38 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 30, 'messages': 3}}]]
+database : wrapper : 34 : 28/11/2021 12:23:39 AM : DEBUG : update_many done, time: 0.1330711841583252s
+database : wrapper : 34 : 28/11/2021 12:24:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:25:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:26:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:27:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:28:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:29:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:30:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:31:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:32:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:33:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:34:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:35:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:36:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:37:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:38:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:39:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:40:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:41:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:42:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:43:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:44:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:45:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:46:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:47:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:48:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:49:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:50:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:51:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:52:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:53:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:54:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:55:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:56:39 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 12:57:39 AM : DEBUG : update_many done, time: 0.0s
+database : connect : 39 : 28/11/2021 12:58:25 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 12:58:25 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 12:58:25 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 12:58:25 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 12:58:25 AM : INFO : starting...
+__main__ : start : 123 : 28/11/2021 12:58:25 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 12:58:25 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 12:58:25 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 12:58:25 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 12:58:25 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 12:58:25 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 130 : 28/11/2021 12:58:25 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 12:58:28 AM : INFO : bot is started
+database : update_thread : 205 : 28/11/2021 12:59:25 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 100, 'messages': 10}}]]
+database : wrapper : 34 : 28/11/2021 12:59:25 AM : DEBUG : update_many done, time: 0.13611459732055664s
+database : update_thread : 205 : 28/11/2021 01:00:25 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 50, 'messages': 5}}]]
+database : wrapper : 34 : 28/11/2021 01:00:25 AM : DEBUG : update_many done, time: 0.1330718994140625s
+database : update_thread : 205 : 28/11/2021 01:01:25 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 90, 'messages': 9}}]]
+database : wrapper : 34 : 28/11/2021 01:01:26 AM : DEBUG : update_many done, time: 0.13399887084960938s
+database : connect : 39 : 28/11/2021 01:02:05 AM : DEBUG : connecting to cluster...
+asyncio : __init__ : 58 : 28/11/2021 01:02:05 AM : DEBUG : Using selector: SelectSelector
+database : connect : 42 : 28/11/2021 01:02:05 AM : DEBUG : <Future pending cb=[_chain_future.<locals>._call_check_cancel() at c:\users\papr1ka\appdata\local\programs\python\python37\lib\asyncio\futures.py:351]>
+database : connect : 48 : 28/11/2021 01:02:05 AM : INFO : connected to database: casino
+__main__ : <module> : 20 : 28/11/2021 01:02:05 AM : INFO : starting...
+__main__ : start : 124 : 28/11/2021 01:02:05 AM : DEBUG : loading extensions...
+cogs.casino : __init__ : 138 : 28/11/2021 01:02:06 AM : INFO : cogs.casino Cog has initialized
+cogs.error_handler : __init__ : 19 : 28/11/2021 01:02:06 AM : INFO : cogs.error_handler Cog has initialized
+models.to_update : __init__ : 24 : 28/11/2021 01:02:06 AM : DEBUG : to_update initialized
+cogs.leveling : __init__ : 47 : 28/11/2021 01:02:06 AM : INFO : cogs.leveling Cog has initialized
+cogs.user_stats : __init__ : 28 : 28/11/2021 01:02:06 AM : INFO : cogs.user_stats Cog has initialized
+__main__ : start : 131 : 28/11/2021 01:02:06 AM : DEBUG : loading complete
+__main__ : on_ready : 36 : 28/11/2021 01:02:08 AM : INFO : bot is started
+database : update_thread : 205 : 28/11/2021 01:03:06 AM : DEBUG : [[750791175606239397, 397352286487052288, {'$inc': {'exp': 50, 'messages': 5}}]]
+database : wrapper : 34 : 28/11/2021 01:03:06 AM : DEBUG : update_many done, time: 0.1324024200439453s
+database : wrapper : 34 : 28/11/2021 01:04:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:05:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:06:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:07:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:08:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:09:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:10:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:11:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:12:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:13:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:14:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:15:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:16:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:17:06 AM : DEBUG : update_many done, time: 0.0s
+database : wrapper : 34 : 28/11/2021 01:18:06 AM : DEBUG : update_many done, time: 0.0s

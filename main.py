@@ -1,15 +1,10 @@
-import discord
-from discord.embeds import Embed
-from discord.ext import commands
-from discord import Intents
-import os
+from discord import Member, Embed, Intents
+from discord.colour import Colour
+from discord.ext.commands import Bot as Robot
+from os import environ
 from logging import config, getLogger
 from database import db
 from handlers import MailHandler
-import logging
-
-from models.paginator import Paginator
-from discord import Client
 from discord_components import DiscordComponents
 
 
@@ -17,17 +12,17 @@ config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
 logger.addHandler(MailHandler())
 logger.info('starting...')
-logging.getLogger('discord').setLevel('WARNING')
-logging.getLogger('requests').setLevel('WARNING')
-logging.getLogger('urllib3').setLevel('WARNING')
-logging.getLogger('aiohttp').setLevel('WARNING')
-logging.getLogger('asyncio').setLevel('WARNING')
-logging.getLogger('PIL').setLevel('WARNING')
+getLogger('discord').setLevel('WARNING')
+getLogger('requests').setLevel('WARNING')
+getLogger('urllib3').setLevel('WARNING')
+getLogger('aiohttp').setLevel('WARNING')
+getLogger('asyncio').setLevel('WARNING')
+getLogger('PIL').setLevel('WARNING')
 
 
 
-Token = os.environ.get("TOKEN")
-Bot = commands.Bot(command_prefix = "=", intents = Intents.all())
+Token = environ.get("TOKEN")
+Bot = Robot(command_prefix = "=", intents = Intents.all())
 DBot = DiscordComponents(Bot)
 
 @Bot.event
@@ -47,23 +42,75 @@ async def on_guild_remove(guild):
     await db.delete_document(str(guild.id))
 
 @Bot.event
-async def on_member_join(member: discord.Member):
+async def on_member_join(member: Member):
     await db.insert_user(member.guild.id, member.id)
 
 
 @Bot.event
-async def on_member_remove(member: discord.Member):
+async def on_member_remove(member: Member):
     await db.delete_user(member.guild.id, member.id)
 
 Bot.remove_command('help')
 
 @Bot.command()
-async def help(ctx):
-    e = Embed(title='test')
-    for i in range(20):
-        e.add_field(name='asd', value='12312')
-    p = Paginator(DBot, ctx.channel, [e, e])
-    await p.start()
+async def help(ctx, module_command=None):
+    modules = ('casino', 'user', 'store', 'jobs', 'admin')
+    embed = Embed(color=Colour.dark_theme())
+    if not module_command:
+        embed.title=f"{Bot.user.name} модули"
+        embed.add_field(name='Казино', value='`=help casino`', inline=True)
+        embed.add_field(name='Пользовательское', value='`=help user`', inline=True)
+        embed.add_field(name='Магазин', value='`=help store`', inline=True)
+        embed.add_field(name='Заработок', value='`=help jobs`', inline=True)
+        embed.add_field(name='Настройка', value='`=help admin`', inline=True)
+        await ctx.send(embed=embed)
+    else:
+        if module_command in modules:
+            if module_command == 'casino':
+                embed.title=f"{Bot.user.name} casino команды"
+                embed.add_field(name='Рулетка', value='`=rulet`', inline=False)
+            elif module_command == 'user':
+                embed.title=f"{Bot.user.name} user команды"
+                embed.add_field(name='Статистика пользователя', value='`=stats`', inline=False)
+                embed.add_field(name='Карточка пользователя', value='`=status`', inline=False)
+                embed.add_field(name='Сменить тему карточки пользователя', value='`=theme`', inline=False)
+                embed.add_field(name='Сменить описание карточки пользователя', value='`=custom [описание]`', inline=False)
+                embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] сумма`', inline=False)
+                embed.add_field(name='Предложить идею', value='`=offer [идея]`', inline=False)
+                embed.add_field(name='Инвентарь', value='`=inventory`', inline=False)
+                embed.add_field(name='Использовать предмет', value='`=inventory use [название предмета]`', inline=False)
+                embed.add_field(name='Использовать предмет (50% от стоимости)', value='`=inventory sell [название предмета]`', inline=False)
+            elif module_command == 'store':
+                embed.title=f"{Bot.user.name} shop команды"
+                embed.add_field(name='Магазин', value='`=shop`', inline=False)
+                embed.add_field(name='Купить предмет', value='`=buy [название предмета]`', inline=False)
+                embed.add_field(name='Информация по предмету', value='`=info [название предмета]`', inline=False)
+            elif module_command == 'jobs':
+                embed.title=f"{Bot.user.name} jobs команды"
+                embed.add_field(name='Рыбалка', value='`=fishing` | `hook` чтобы поймать', inline=False)
+            elif module_command == 'admin':
+                embed.title=f"{Bot.user.name} admin команды"
+                embed.add_field(name='Сбросить данные пользователей', value='`=reset [exp | money | messages | games | user | shop]`', inline=False)
+                embed.add_field(name='Добавить товар в магазин', value='`=add_item`', inline=False)
+                embed.add_field(name='Удалить товар из магазина', value='`=remove_item`', inline=False)
+            else:
+                embed.title=f"Модуль не найден"
+        else:
+            for i in Bot.commands:
+                if i.name == module_command:
+                    break
+            
+            if i.name != module_command:
+                embed.title = "Команда не найдена"
+            else:
+                embed.title = i.name
+                embed.add_field(name='Использование', value=i.usage, inline=False)
+                embed.description = i.help
+                if i.brief:
+                    embed.add_field(name="Полномочия", value=i.brief)
+    
+    await ctx.send(embed=embed)
+
     
 
 

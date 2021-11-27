@@ -1,12 +1,8 @@
-from math import exp
-import discord
-from discord.colour import Color
-from discord.ext.commands import Cog, command
+from discord.ext.commands import Cog, command, guild_only
 from logging import config, getLogger
-from discord import Member, Embed, embeds, user, File, Colour
-from PIL import Image, ImageFont, ImageDraw, ImageChops
-from io import BytesIO
+from discord import Member, Embed, File, Colour
 from aiohttp import ClientSession as aioSession
+from discord.ext.commands.core import is_owner
 from models.user_model import UserModel
 from database import db
 from handlers import MailHandler
@@ -26,7 +22,11 @@ class UserStats(Cog):
         self.Bot = Bot
         logger.info(f"{__name__} Cog has initialized")
     
-    @command()
+    @command(
+        usage="`=status @(user)`",
+        help="Получить карточку пользователя"
+    )
+    @guild_only()
     async def status(self, ctx, member: Member = None):
         if member is None:
             member = ctx.author
@@ -54,7 +54,11 @@ class UserStats(Cog):
         money = UserModel.only_exp_to_level(level - 1)
         await db.update_user(guild_id, user_id, {'$inc': {'money': money}, '$set': {'exp': exp, 'level': level}})
     
-    @command()
+    @command(
+        usage="`=stats @(user)`",
+        help="Получить статистику пользователя"
+    )
+    @guild_only()
     async def stats(self, ctx, member: Member = None):
         if member is None:
             member = ctx.author
@@ -70,7 +74,11 @@ class UserStats(Cog):
         embed.set_thumbnail(url=member.avatar_url)
         await ctx.send(embed=embed)
     
-    @command()
+    @command(
+        usage="`=theme`",
+        help="Изменить тему для карточки пользователя на противоположную (light / dark)"
+    )
+    @guild_only()
     async def theme(self, ctx):
         theme = await db.fetch_user(ctx.guild.id, ctx.author.id, color=1)
         theme = theme['color']
@@ -85,7 +93,11 @@ class UserStats(Cog):
         )
         await ctx.reply(embed=embed)
     
-    @command()
+    @command(
+        usage="`=custom [описание]`",
+        help="Изменить описание для карточки пользователя"
+    )
+    @guild_only()
     async def custom(self, ctx, *args):
         custom = ' '.join(args)
         if len(custom) > 0:
@@ -112,8 +124,12 @@ class UserStats(Cog):
         ]
         await db.update_many(query)
 
-    @command()
-    async def pay(self, ctx, member: discord.Member, amount: int):
+    @command(
+        usage="`=pay @[user] [сумма]`",
+        help="Перевести сумму денег на счёт пользователя"
+    )
+    @guild_only()
+    async def pay(self, ctx, member: Member, amount: int):
         if not member is None:
             from_wallet = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
             from_wallet = from_wallet['money']
@@ -125,8 +141,34 @@ class UserStats(Cog):
                 raise NotEnoughMoney(f'{(ctx.author.nick if not ctx.author.nick is None else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
         else:
             raise InvalidUser('Некорректный адресат')
+    
+    
+    @command(
+        usage="`=offer [идея]`",
+        help="Отправить предложение по улучшению работы бота, или внедрению новых возможностей"
+    )
+    async def offer(self, ctx, *, message):
+        print(message)
+        if message:
+            owner = await self.Bot.application_info()
+            await owner.owner.send(f"Предложение от {ctx.author.name}#{ctx.author.discriminator}: {message}, message_id={ctx.author.id}")
+            await ctx.send(embed=Embed(title='Предложение отправлено', color=Colour.dark_theme()))
+        else:
+            await ctx.send(embed=Embed(title='Ваше предложение малосодержательное', color=Colour.dark_theme()))
 
-
+    @command(
+        usage="Знать не положено",
+        help="Знать не положено"
+    )
+    @is_owner()
+    async def reply(self, ctx, user_id: int, *, message):
+        try:
+            user = await self.Bot.fetch_user(user_id)
+        except:
+            await ctx.send(embed=Embed(title='пользователь не найден', color=Colour.dark_theme()))
+        else:
+            await user.send('Ответ на ваше предложение: ' + message)
+            await ctx.send(embed=Embed(title='ответ отправлен', color=Colour.dark_theme()))
 
 
 def setup(Bot):

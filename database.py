@@ -1,11 +1,8 @@
 import asyncio
 from handlers import MailHandler
-from discord.errors import InvalidArgument
-from pymongo import MongoClient
 from logging import config, getLogger, log
 from models.shop import get_shop
 from models.user_model import UserModel
-from models.coin import createCoin
 import os
 from time import time
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -139,47 +136,6 @@ class Database(AsyncIOMotorClient):
                 return user.get_json()
             logger.debug("finded user")
             return user
-    
-    @timeit
-    async def get_coin(self, coin, **projection):
-        """
-        """
-        logger.debug("searching coin")
-        try:
-            data = await self.db['burse'].find_one({'_id': coin}, projection)
-        except Exception as E:
-            logger.debug(f'cant fetch coin: {E}')
-        else:
-            logger.debug("finded coin")
-            return data
-    
-    @timeit
-    async def update_coin(self, coin, query):
-        """
-        """
-        logger.debug("updating coin")
-        try:
-            data = await self.db['burse'].update_one({'_id': coin}, query)
-        except Exception as E:
-            logger.debug(f'cant update coin: {E}')
-        else:
-            logger.debug("updated coin")
-            return data
-    
-    @timeit
-    async def create_coin(self, name, cost, size, init_seller):
-        """
-        """
-        logger.debug("inserting new coin")
-        coin = createCoin(name, cost, size, init_seller)
-        try:
-            await self.db['burse'].insert_one(coin)
-            await self.db['burse'].update_one({'_id': 'coins'}, {'$push': {'coins': {'name': coin['_id'], 'cost': coin['cost']}}})
-        except Exception as E:
-            logger.debug(f'cant create coin: {E}')
-        else:
-            logger.debug("created coin")
-            return
 
     @Correct_ids
     @timeit

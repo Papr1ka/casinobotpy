@@ -1,5 +1,5 @@
 from handlers import MailHandler
-from logging import config, getLogger, log
+from logging import config, getLogger
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)

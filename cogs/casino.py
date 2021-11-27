@@ -1,15 +1,13 @@
-from typing import Iterable
+from discord.ext.commands import guild_only
 from handlers import MailHandler
 from database import db
 from models.rulet import Rulet
 import models.errors as errors
 from cogs.error_handler import ErrorHandler
-
-import discord
 from discord.ext import commands
 from logging import config, getLogger
 from asyncio import sleep
-import time
+from time import time
 from discord import Embed, Colour
 
 
@@ -163,9 +161,9 @@ class Casino(commands.Cog):
             if msg['author_id'] != payload.user_id:
                 return
             message = msg['message']
-            embed = discord.Embed(
+            embed = Embed(
                 title = "Рулетка",
-                colour = discord.Colour.dark_teal()
+                colour = Colour.dark_teal()
             )
             embed._fields = self.__rulet_fields
             embed.set_image(url='https://game-wiki.guru/content/Games/ruletka-11-pole.jpg')
@@ -199,7 +197,7 @@ class Casino(commands.Cog):
 
             
             bet_type = self.__bets_type[msg['bet_type']] if not msg['choice'] else self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']]
-            msg['last_use'] = time.time()
+            msg['last_use'] = time()
             self.__messages[message.id] = msg
             description = self.__format_description(msg['mobile'], msg['author'], msg['bet'], bet_type=bet_type)
             embed.description = description
@@ -210,7 +208,7 @@ class Casino(commands.Cog):
             games = self.__messages.keys()
             to_remove = []
             for i in games:
-                if time.time() - self.__messages[i]['last_use'] > self.__sleep:
+                if time() - self.__messages[i]['last_use'] > self.__sleep:
                     to_remove.append(i)
             for i in to_remove:
                 self.__messages.pop(i)
@@ -244,7 +242,11 @@ class Casino(commands.Cog):
             description = '**' + description + '**'
         return description + '\n'
 
-    @commands.command()
+    @commands.command(
+        usage='`=rulet`',
+        help=f"Контроллеры:\n⬅️ - Изменить вид ставки, скролл налево\n➡️ - Изменить вид ставки, скролл налево\n🔳 - Выбрать тип ставки\n⏬ - понизить ставку на 1000$\n🔽 - понизить ставку на 100$\n➖ - понизить ставку на 10$\n➕ - повысить ставку на 10$\n🔼 - повысить ставку на 100$\n⏫ - повысить ставку на 100$\n🎰 - крутить рулетку\nМинимальная ставка - {__min_bet}\nМаксимальная ставка - {__max_bet}\nОграничения - 2 ролла на канал"
+    )
+    @guild_only()
     async def rulet(self, ctx):
         logger.debug('called command rulet')
         user = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
@@ -252,10 +254,10 @@ class Casino(commands.Cog):
         if money < self.__min_bet:
             raise errors.NotEnoughMoney(f'{ctx.author.name}, недостаточно средств')
 
-        embed = discord.Embed(
+        embed = Embed(
             title = "Рулетка",
             description = self.__format_description(ctx.author.is_on_mobile(), ctx.author.name, self.__min_bet.__str__()),
-            colour = discord.Colour.dark_teal()
+            colour = Colour.dark_teal()
         )
         embed._fields = self.__rulet_fields
         embed.set_image(url='https://game-wiki.guru/content/Games/ruletka-11-pole.jpg')
@@ -271,7 +273,7 @@ class Casino(commands.Cog):
             'mobile': ctx.author.is_on_mobile(),
             'author_money': money,
             'guild_id': ctx.guild.id,
-            'last_use': time.time()
+            'last_use': time()
         }
         for emoji in self.__rulet_emojis:
             await message.add_reaction(emoji)
