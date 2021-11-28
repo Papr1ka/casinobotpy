@@ -250,7 +250,6 @@ class Shop(Cog):
                 for i in range(l):
                     embeds[i // 5].add_field(name = str(items[i]['cost']) + '$   |  ' + items[i]['name'], value=items[i]['description'], inline=False)
 
-                
                 p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds)
                 await p.start()
             elif subcommand == 'use':
@@ -272,7 +271,7 @@ class Shop(Cog):
                             embed.title = "Товар устарел, или роль находится выше возможностей бота"
                         else:
                             embed.title = "Товар использован"
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {'inventory': {'name': param}}})        
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {'inventory': {'name': param}}})
                 else:
                     embed.title = "Товар не найден"
             elif subcommand == 'sell':
@@ -288,7 +287,7 @@ class Shop(Cog):
                     await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': cost}})
                 else:
                     embed.title = "Товар не найден"
-        if embed.title != '':
+        if embed.title:
             await ctx.send(embed=embed)
                     
                 
@@ -315,11 +314,15 @@ class Shop(Cog):
                 
                 cost = i['cost']
                 
-                user_money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+                user_money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1, inventory=1)
+                inventory = user_money['inventory']
                 user_money = user_money['money']
                 if user_money >= cost:
-                    embed = Embed(title=f"Поздравляю с покупкой, {i['name']}!", color=Colour.dark_theme())
-                    await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'inventory': i}, '$inc': {'money': -cost}})
+                    if i not in inventory:
+                        embed = Embed(title=f"Поздравляю с покупкой, {i['name']}!", color=Colour.dark_theme())
+                        await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'inventory': i}, '$inc': {'money': -cost}})
+                    else:
+                        embed = Embed(title=f"У вас уже есть этот товар", color=Colour.dark_theme())
                 else:
                     embed = Embed(title=f"Недостатчно средств", color=Colour.dark_theme())
             else:

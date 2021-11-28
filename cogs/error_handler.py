@@ -1,7 +1,7 @@
 from discord import Embed
 from discord.colour import Colour
 from discord.ext import commands
-from discord.ext.commands.errors import MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage
+from discord.ext.commands.errors import CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage
 import models.errors as errors
 from logging import config, getLogger
 from handlers import MailHandler
@@ -47,6 +47,9 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, NoPrivateMessage):
             logger.debug('errors.NoPrivateMessage')
             embed.title = 'Вызов команды возможен только в контексте гильдии'
+        elif isinstance(error, CommandNotFound):
+            logger.debug('errors.CommandNotFound')
+            embed.title = 'Команда не найдена'
         else:
             logger.error(error)
             embed.title = 'Произошла ошибка'

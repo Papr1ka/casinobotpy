@@ -135,7 +135,7 @@ class UserStats(Cog):
             from_wallet = from_wallet['money']
             if amount <= from_wallet:
                 await self.transaction((ctx.guild.id, ctx.author.id), (member.guild.id, member.id), amount)
-                embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick}")
+                embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick if member.nick else member.name}")
                 await ctx.send(embed=embed)
             else:
                 raise NotEnoughMoney(f'{(ctx.author.nick if not ctx.author.nick is None else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
@@ -152,7 +152,7 @@ class UserStats(Cog):
     async def give(self, ctx, member: Member, amount: int):
         if not member is None:
             await db.update_user(member.guild.id, member.id, {'$inc': {'money': amount}})
-            embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick}")
+            embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick if member.nick else member.name}")
             await ctx.send(embed=embed)
         else:
             raise InvalidUser('Некорректный адресат')
