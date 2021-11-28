@@ -130,17 +130,21 @@ class UserStats(Cog):
     )
     @guild_only()
     async def pay(self, ctx, member: Member, amount: int):
-        if not member is None:
-            from_wallet = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
-            from_wallet = from_wallet['money']
-            if amount <= from_wallet:
-                await self.transaction((ctx.guild.id, ctx.author.id), (member.guild.id, member.id), amount)
-                embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick if member.nick else member.name}")
-                await ctx.send(embed=embed)
+        if amount > 0:
+            if not member is None:
+                from_wallet = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+                from_wallet = from_wallet['money']
+                if amount <= from_wallet:
+                    await self.transaction((ctx.guild.id, ctx.author.id), (member.guild.id, member.id), amount)
+                    embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick if member.nick else member.name}")
+                    await ctx.send(embed=embed)
+                else:
+                    raise NotEnoughMoney(f'{(ctx.author.nick if not ctx.author.nick is None else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
             else:
-                raise NotEnoughMoney(f'{(ctx.author.nick if not ctx.author.nick is None else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
+                raise InvalidUser('Некорректный адресат')
         else:
-            raise InvalidUser('Некорректный адресат')
+            embed = Embed(title=f"{amount}$ ? Ты платить собирался, или как?", color=Colour.dark_theme())
+            await ctx.send(embed=embed)
     
     @command(
         usage="`=give @[user] [сумма]`",
