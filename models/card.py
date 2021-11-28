@@ -6,9 +6,9 @@ from PIL import Image, ImageFont, ImageDraw
 
 class Card():
     __size = (980, 320)
-    __main_font = ImageFont.truetype('Montserrat.ttf', 32)
-    __second_font = ImageFont.truetype('Montserrat.ttf', 28)
-    __third_font = ImageFont.truetype('Montserrat.ttf', 40)
+    __main_font = ImageFont.truetype('media/Montserrat.ttf', 32)
+    __second_font = ImageFont.truetype('media/Montserrat.ttf', 28)
+    __third_font = ImageFont.truetype('media/Montserrat.ttf', 40)
     __padding = (35, 35)
     __avatar_size = (250, 250)
     __bar_color = (98,211,245)
@@ -19,7 +19,7 @@ class Card():
         self.__text_color = (255, 255, 255, 192) if self.data['color'] == 'dark' else (8, 8, 8, 256)
         self.img = Image.new('RGBA', self.__size, self.__bg_color)
         self.draw = ImageDraw.Draw(self.img)
-        self.filename = f"{self.data['_id']}.png"
+        self.filename = f"media/{self.data['_id']}.png"
 
     async def __remove_transparency(self, im):
         alpha = im.convert('RGBA').split()[-1]
@@ -73,10 +73,11 @@ class Card():
         self.draw.text((320, self.__padding[1] + 40), '#' + self.data['custom'], font=self.__main_font, fill=(120, 120, 120))
     
     async def __render_progress_bar(self, prcnts):
+        bname = 'media/'
         if self.data['color'] == 'dark':
-            bname = 'progress.png'
+            bname += 'progress.png'
         elif self.data['color'] == 'light':
-            bname = 'progress2.png'
+            bname += 'progress2.png'
         bar = Image.open(bname).convert('RGB')
         draw = ImageDraw.Draw(bar)
         to_fill = 612 / 100 * prcnts

@@ -51,10 +51,6 @@ class ErrorHandler(commands.Cog):
             logger.error(error)
             embed.title = 'Произошла ошибка'
         await ctx.send(embed=embed, delete_after=self.__delete_after)
-            
-            
-
-
 
     @staticmethod
     async def on_error(channel, error):

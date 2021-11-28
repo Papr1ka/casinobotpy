@@ -6,6 +6,7 @@ from logging import config, getLogger
 from database import db
 from models.to_update import To_update
 from handlers import MailHandler
+from discord import ChannelType, Message
 
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)

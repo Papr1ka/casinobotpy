@@ -1,6 +1,6 @@
 from discord.ext.commands import Cog, command, guild_only
 from discord import Member, Embed, File, Colour
-from discord.ext.commands import is_owner
+from discord.ext.commands import is_owner, has_permissions
 from logging import config, getLogger
 from os import remove
 
@@ -126,7 +126,7 @@ class UserStats(Cog):
 
     @command(
         usage="`=pay @[user] [сумма]`",
-        help="Перевести сумму денег на счёт пользователя"
+        help="Перевести сумму денег со своего счёта на счёт пользователя"
     )
     @guild_only()
     async def pay(self, ctx, member: Member, amount: int):
@@ -139,6 +139,21 @@ class UserStats(Cog):
                 await ctx.send(embed=embed)
             else:
                 raise NotEnoughMoney(f'{(ctx.author.nick if not ctx.author.nick is None else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
+        else:
+            raise InvalidUser('Некорректный адресат')
+    
+    @command(
+        usage="`=give @[user] [сумма]`",
+        help="Перевести сумму денег на счёт пользователя",
+        brief="administrator"
+    )
+    @has_permissions(administrator=True)
+    @guild_only()
+    async def give(self, ctx, member: Member, amount: int):
+        if not member is None:
+            await db.update_user(member.guild.id, member.id, {'$inc': {'money': amount}})
+            embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick}")
+            await ctx.send(embed=embed)
         else:
             raise InvalidUser('Некорректный адресат')
     

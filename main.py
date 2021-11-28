@@ -63,7 +63,6 @@ async def help(ctx, module_command=None):
         embed.add_field(name='Магазин', value='`=help store`', inline=True)
         embed.add_field(name='Заработок', value='`=help jobs`', inline=True)
         embed.add_field(name='Настройка', value='`=help admin`', inline=True)
-        await ctx.send(embed=embed)
     else:
         if module_command in modules:
             if module_command == 'casino':
@@ -75,7 +74,7 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Карточка пользователя', value='`=status`', inline=False)
                 embed.add_field(name='Сменить тему карточки пользователя', value='`=theme`', inline=False)
                 embed.add_field(name='Сменить описание карточки пользователя', value='`=custom [описание]`', inline=False)
-                embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] сумма`', inline=False)
+                embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] [сумма]`', inline=False)
                 embed.add_field(name='Предложить идею', value='`=offer [идея]`', inline=False)
                 embed.add_field(name='Инвентарь', value='`=inventory`', inline=False)
                 embed.add_field(name='Использовать предмет', value='`=inventory use [название предмета]`', inline=False)
@@ -93,6 +92,7 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Сбросить данные пользователей', value='`=reset [exp | money | messages | games | user | shop]`', inline=False)
                 embed.add_field(name='Добавить товар в магазин', value='`=add_item`', inline=False)
                 embed.add_field(name='Удалить товар из магазина', value='`=remove_item`', inline=False)
+                embed.add_field(name='Пополнить баланс пользователя', value='`=give @[пользователь] [сумма]`', inline=False)
             else:
                 embed.title=f"Модуль не найден"
         else:
