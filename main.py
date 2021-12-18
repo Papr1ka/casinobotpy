@@ -4,6 +4,7 @@ from discord.ext.commands import Bot as Robot
 from os import environ
 from logging import config, getLogger
 from discord.ext.commands.core import is_owner
+from discord.ext.commands.errors import CommandInvokeError
 
 from database import db
 from handlers import MailHandler
@@ -26,7 +27,7 @@ getLogger('PIL').setLevel('WARNING')
 
 
 
-Token = environ.get("TOKEN")
+Token = environ.get("TOKEN3")
 Bot = Robot(command_prefix = "=", intents = Intents.all())
 DBot = DiscordComponents(Bot)
 
@@ -119,18 +120,24 @@ async def help(ctx, module_command=None):
 
 async def on_command(command):
     print(command)
-
+ 
 
 @Bot.command()
 @is_owner()
 async def announcement(ctx, *, annonce):
     print(annonce)
+    send = 0
     annonce = json.loads(annonce)
     embed = Embed.from_dict(annonce)
     for guild in Bot.guilds:
-        channel = guild.system_channel
-        if not channel is None:
-            await channel.send(embed=embed)
+        try:
+            channel = guild.system_channel
+            if not channel is None:
+                await channel.send(embed=embed)
+                send += 1
+        except Exception as E:
+            logger.warning(E)
+    print(send)
 
 
 

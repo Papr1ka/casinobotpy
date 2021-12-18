@@ -374,7 +374,7 @@ class Casino(Cog):
         self.__messages[msg['message'].id]['author_money'] += won
     
     @command(
-        usage='`=blackjack [ставка] (тайм-аут)`',
+        usage='`=blackjack [ставка] (тайм-аут в секундах)`',
         help=f"`bjoin [@создатель игры]` | `bj [@создатель игры]` для присоединения к существующей игре, `bstart` | `bs` для старта игры\nПравила казино:\nСплит делается 1 раз\nКомбинации не оплачиваются\nСтраховка не разрешена\nБлэкджек оплачивается в конце игры\nБлэкджек дилера не вскрывается\nПачка из 6 колод\nправила классического блэкджека"
     )
     @guild_only()
@@ -646,7 +646,6 @@ class Casino(Cog):
                         )
                         footer += f'{player.name} : проигрыш\n'
         
-        print(game.players)
         embed.set_footer(text=footer)
         await controller.edit(embed=embed)
         await db.update_many(query)
