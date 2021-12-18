@@ -7,6 +7,8 @@ from database import db
 from math import sqrt
 from discord.ext.commands.errors import MaxConcurrencyReached
 
+from main import on_command
+
 fish = namedtuple('fish', ['url', 'cost', 'chance', 'name'])
 fishes = [
     fish("https://key0.cc/images/preview/111781_c674df9fa58a5ad9cc1c1d9394a5d6bc.png", 10, 0.5, 'Кислотная рыба'),
@@ -34,6 +36,7 @@ class Jobs(Cog):
     @max_concurrency(1, BucketType.member, wait=False)
     @guild_only()
     async def fishing(self, ctx):
+        await on_command(self.Bot.get_command('fishing'))
         embed = Embed(title="Закинул удочку", color=Colour.dark_theme())
         await ctx.send(embed=embed)
 

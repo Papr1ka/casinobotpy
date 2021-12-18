@@ -1,13 +1,22 @@
 from asyncio import sleep
+from random import randint
 from discord.ext.commands import guild_only, Cog, command
-from discord import Embed, Colour
+from discord import Embed, Colour, Member
 from logging import config, getLogger
 from time import time
 
+from discord.ext.commands.cooldowns import BucketType
+from discord.ext.commands.core import max_concurrency
+from discord.ext.commands.errors import BadArgument
+
 from database import db
 from cogs.error_handler import ErrorHandler
+from cogs.leveling import LevelTable
 from handlers import MailHandler
+from main import on_command
+from models.colode import *
 from models.rulet import Rulet
+from models.slots import Slots, emoji
 import models.errors as errors
 
 
@@ -248,7 +257,7 @@ class Casino(Cog):
     )
     @guild_only()
     async def rulet(self, ctx):
-        logger.debug('called command rulet')
+        await on_command(self.Bot.get_command('rulet'))
         user = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
         money = user['money']
         if money < self.__min_bet:
@@ -363,7 +372,420 @@ class Casino(Cog):
         await message.edit(embed=embed)
         self.__games[channel.id].remove(msg['message'].id)
         self.__messages[msg['message'].id]['author_money'] += won
+    
+    @command(
+        usage='`=blackjack [ставка] (тайм-аут)`',
+        help=f"`bjoin [@создатель игры]` | `bj [@создатель игры]` для присоединения к существующей игре, `bstart` | `bs` для старта игры\nПравила казино:\nСплит делается 1 раз\nКомбинации не оплачиваются\nСтраховка не разрешена\nБлэкджек оплачивается в конце игры\nБлэкджек дилера не вскрывается\nПачка из 6 колод\nправила классического блэкджека"
+    )
+    @guild_only()
+    @max_concurrency(1, BucketType.member, wait=False)
+    async def blackjack(self, ctx, bet: int, timeout: int=60):
+        await on_command(self.Bot.get_command('blackjack'))
+        if timeout < 15 or timeout > 300:
+            await ctx.reply("Неверный таймаут, укажите в множестве [15-300]")
+            return
+        author_money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+        author_money = author_money['money']
+        if bet < 100 or bet > 1000:
+            await ctx.reply("Ставка должна быть в диапазоне [100, 1000]$")
+            return
+        if author_money < bet:
+            raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
 
+        def check(m):
+            return (m.content.split()[0] in ('bj', 'bs', 'bjoin', 'bstart')) and m.channel == ctx.channel and m.author.id not in game.reg[1:] and not m.author.bot
+        
+        def check2(m):
+            return (m.content in ('hit', 'stand', 'split', 'double', 'surrender')) and m.channel == ctx.channel and m.author.id in game.reg and sum(game.played[m.author.id]) >= 1
+        
+
+        game = Game(bet)
+        await game.add_player(ctx.author.id, (ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator, author_money - bet)
+        
+        embed = Embed(title=f"`Блэкджек | Ставка {bet}$ | @{(ctx.author.nick if ctx.author.nick else ctx.author.name)}`")
+        embed.description = f"`Игроки: {len(game.players)}`"
+        embed.add_field(name="🕵️‍♂️ "+game.players[ctx.author.id][0].name, value=f"`{game.players[ctx.author.id][0].bet}$`")
+        embed.set_footer(text=f'Ожидание игроков, игра начнётся через {timeout} секунд')
+        controller = await ctx.send(embed=embed)
+        start = time()
+        timeout2 = timeout
+        while time() - start < timeout:
+            try:
+                message = await self.Bot.wait_for('message', timeout=timeout - (time() - start), check=check)
+            except:
+                pass
+            else:
+                if message.author.id == game.reg[0]:
+                    if message.content in ('bstart', 'bs'):
+                        timeout = 0
+                else:
+                    if ctx.author in message.mentions:
+                        money = await db.fetch_user(ctx.guild.id, message.author.id, money=1)
+                        money = money['money']
+                        if money >= bet:
+                            
+                            await game.add_player(message.author.id, (message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator, money - bet)
+                            
+                            embed.description = f"`Игроки: {len(game.players)}`"
+                            embed.set_footer(text=f'Ожидание игроков, игра начнётся через {int(timeout - (time() - start))} секунд')
+                            embed.add_field(name="🕵️‍♂️ "+game.players[message.author.id][0].name, value=f"`{game.players[message.author.id][0].bet}$`", inline=False)
+                            await controller.edit(embed=embed)
+                        else:
+                            await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{(message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator}, недостаточно средств'))
+                    else:
+                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Игра не найдена"), delete_after=3)
+        
+        await game.create_dealer()
+        
+        embed.clear_fields()
+        
+        embed.add_field(name="🔴 " +game.dealer.name, value=f"`{game.dealer.bet}$`             {c[game.dealer.hand[0]]}", inline=False)
+        
+        for player_id in game.reg:
+            await game.give_cards(player_id, 2)
+            player = game.players[player_id][await game.getCurrPlayerInd(player_id)]
+
+            embed.add_field(name="🔴 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+            
+    
+        embed.description = "`hit` - взять ещё одну карту\n`stand` - больше не брать карт\n`split` - разбить руку на две\n`double` - удвоить ставку, и взять 1 карту\n`surrender` - сдаться\n"
+        embed.set_footer(text=f"Игра идёт, до конца осталось {timeout2} с")
+        await controller.edit(embed=embed)
+        start = time()
+        while (time() - start < timeout2) and sum([sum(i) for i in game.played.values()]) != 0:
+            try:
+                message = await self.Bot.wait_for('message', timeout=timeout2 - (time() - start), check=check2)
+            except:
+                pass
+            else:
+                player = game.players[message.author.id][await game.getCurrPlayerInd(message.author.id)]
+
+                if message.content == 'hit':
+                    if player.cards >= 1:
+                        player = await game.give_cards(message.author.id, 1)
+                        if player.sm() > 21:
+                            for i in range(len(embed.fields)):
+                                if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
+                                    embed.set_field_at(
+                                        index=i, name="🟢 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False
+                                    )
+                                    break
+                            
+                            player = await game.end_move(message.author.id)
+                        else:
+                            for i in range(len(embed.fields)):
+                                if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
+                                    embed.set_field_at(
+                                        index=i, name="🔴 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False
+                                    )
+                                    break
+                    else:
+                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы не можете взять карту, так как ранее вы удваивали"), delete_after=3)
+                elif message.content == 'stand':
+                    for i in range(len(embed.fields)):
+                        if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
+                            embed.set_field_at(
+                                index=i, name="🟢 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False
+                            )
+                            break
+                    
+                    player = await game.end_move(message.author.id)
+                
+                elif message.content == 'split':
+                    if len(player.hand) == 2:
+                        if points[player.hand[0]] == points[player.hand[1]]:
+                            if player.split is False:
+                                if player.money >= game.bet:
+                                    pl2 = await game.split(message.author.id)
+                                    
+                                    for i in range(len(embed.fields)):
+                                        if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
+                                            embed.set_field_at(
+                                                index=i, name="🔴 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in pl2[0].hand])}", inline=False
+                                            )
+                                            break
+                                    embed.add_field(name="🔴 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in pl2[1].hand])}", inline=False)
+                                else:
+                                    await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{(message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator}, недостаточно средств'))
+                            else:
+                                await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы уже делали сплит"), delete_after=3)
+                        else:
+                            await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы не можете сделать сплит"), delete_after=3)
+                    else:
+                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы не можете сделать сплит"), delete_after=3)
+                        
+                        
+                elif message.content == 'double':
+                    if player.cards > 1:
+                        if player.money >= bet:
+                            player = await game.double(message.author.id)
+                            
+                            for i in range(len(embed.fields)):
+                                if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
+                                    embed.set_field_at(
+                                        index=i, name="🟢 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False
+                                    )
+                                    break
+                        else:
+                            await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{(message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator}, недостаточно средств'))
+                    else:
+                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы уже удваивали"), delete_after=3)
+                elif message.content == 'surrender':
+                    if len(player.hand) == 2:
+                        player = await game.surrender(message.author.id)
+                        for i in range(len(embed.fields)):
+                            if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
+                                embed.set_field_at(
+                                    index=i, name="🟢 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False
+                                )
+                                break
+                    else:
+                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Сдаться можно только с рукой в 2 карты"), delete_after=3)
+                
+                embed.set_footer(text=f"Игра идёт, до конца осталось {int(timeout2 - (time() - start))} с")
+                await controller.edit(embed=embed)
+        embed.set_footer(text=f"Игра")
+        
+        d_points = await game.count_dealer()
+        embed.clear_fields()
+        
+        embed.add_field(name=game.dealer.name, value=f"`{game.dealer.bet}$`             {' , '.join([c[x] for x in game.dealer.hand])}", inline=False)
+        
+        query = []
+        footer = 'Результаты игры:\n'
+        
+        for i in game.players.values():
+            for player in i:
+                summa = player.sm()
+                if player.surrender is True:
+                    embed.add_field(name="💸 " + player.name, value=f"`{int(player.bet / 2)}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                    query.append(
+                        [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -int(player.bet / 2)}}]
+                    )
+                    footer += f'{player.name} : сдался\n'
+                else:
+                    if summa > 21:
+                        embed.add_field(name="💸 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                        #проигрыш
+                        query.append(
+                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -player.bet}}]
+                        )
+                        footer += f'{player.name} : проигрыш\n'
+                    elif d_points > 21:
+                        if summa == 21:
+                            if len(player.hand) == 2:
+                                embed.add_field(name="🤑 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                                #блэкджек
+                                query.append(
+                                    [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 1.5)}}]
+                                )
+                                footer += f'{player.name} : блэкджек\n'
+                            else:
+                                embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                                #победа
+                                query.append(
+                                    [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                                )
+                                footer += f'{player.name} : победа\n'
+                        else:
+                            embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                            #победа
+                            query.append(
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                            )
+                            footer += f'{player.name} : победа\n'
+                    elif summa == d_points:
+                        if len(player.hand) == 2 and len(game.dealer.hand) > 2:
+                            embed.add_field(name="🤑 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                            #блэкджек
+                            query.append(
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 1.5)}}]
+                            )
+                            footer += f'{player.name} : блэкджек\n'
+                        elif len(game.dealer.hand) == 2 and len(player.hand) > 2:
+                            embed.add_field(name="💸 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                            #проигрыш
+                            query.append(
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -player.bet}}]
+                            )
+                            footer += f'{player.name} : проигрыш\n'
+                        else:
+                            embed.add_field(name="🟨 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                            #ничья
+                            query.append(
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1}}]
+                            )
+                            footer += f'{player.name} : ничья\n'
+                    elif summa == 21:
+                        if len(player.hand) == 2:
+                            embed.add_field(name="🤑 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                            #блэкджек
+                            query.append(
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 1.5)}}]
+                            )
+                            footer += f'{player.name} : блэкджек\n'
+                        else:
+                            embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                            #победа
+                            query.append(
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                            )
+                            footer += f'{player.name} : победа\n'
+                    elif summa < 21 and summa > d_points:
+                        embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                        #победа
+                        query.append(
+                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                        )
+                        footer += f'{player.name} : победа\n'
+                    else:
+                        embed.add_field(name="💸 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
+                        #проигрыш
+                        query.append(
+                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -player.bet}}]
+                        )
+                        footer += f'{player.name} : проигрыш\n'
+        
+        print(game.players)
+        embed.set_footer(text=footer)
+        await controller.edit(embed=embed)
+        await db.update_many(query)
+
+
+    @command(
+        usage="`=slots [ставка]`",
+        help=f"Выйгрыши, суммируются, формируется по формуле - `тип выйгрыша` * `тип предметов`\n3 в ряд или по диагонали\nКоэффициент - 1\n4 в ряд\nКоэффициент - 1.5\n5 в ряд\nКоэффициент - 2\n{str(emoji[1])}\nКоэффициент - 0.5\n{str(emoji[2])}\nКоэффициент - 0.75\n{str(emoji[3])}\nКоэффициент - 1\n{str(emoji[4])}\nКоэффициент - 1.25\n{str(emoji[5])}\nКоэффициент - 1.5\nОграничения - 2 ролла на канал"
+    )
+    @guild_only()
+    @max_concurrency(2, BucketType.channel, wait=False)
+    async def slots(self, ctx, bet: int):
+        await on_command(self.Bot.get_command('slots'))
+        if bet > 1000 or bet < 100:
+            await ctx.send(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
+            return
+        money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+        money = money['money']
+        if money < bet:
+            raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
+        else:
+            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet}})
+        embed = Embed(title = "Слоты", color = Colour.dark_theme())
+        embed.set_author(name = ctx.author.name, icon_url = ctx.author.avatar_url)
+        embed.set_thumbnail(url = "https://cdn.iconscout.com/icon/free/png-512/casino-chance-gamble-gambling-roulette-table-wheel-4-17661.png")
+        lines = ["☠️☠️☠️☠️☠️", "☠️☠️☠️☠️☠️", "☠️☠️☠️☠️☠️"]
+        for l in range(3):
+            lines[l] = " ".join(list(lines[l]))
+        embed.description = "".join([i + "\n" for i in lines])
+        game = await ctx.send(embed = embed)
+        roll = Slots().spin(bet)
+        for i in range(5):
+            await sleep(1)
+            for lin in range(3):
+                lines[lin] = lines[lin][:i * 2] + str(emoji[roll[1][i + lin * 5]]) + " " + lines[lin][(i + 2) * 2:]
+            description = "".join([i + "\n" for i in lines])
+            embed.description = description
+            await game.edit(embed = embed)
+        embed.set_footer(text = ("Вы потеряли" if roll[0] - bet < 0 else "Вы выиграли") + " " + str(abs(int(roll[0] - bet))) + " $", icon_url = "https://image.flaticon.com/icons/png/512/8/8817.png")
+        await game.edit(embed = embed)
+        await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': int(roll[0])}})
+
+
+    @slots.error
+    async def on_slots_error(self, ctx, error):
+        if isinstance(error, BadArgument):
+            embed = Embed(title="Ставка должна быть в диапазоне [100, 1000]", color=Colour.dark_theme())
+            await ctx.send(embed=embed)
+    
+    async def rollTheDice(self):
+        return randint(1, 6), randint(1, 6)
+    
+    @command(
+        usage="`=dice [ставка] (@оппонент)`",
+        help="Выигрывает тот, кому выпадет большее число"
+    )
+    @guild_only()
+    @max_concurrency(1, BucketType.member, wait=False)
+    async def dice(self, ctx, bet: int, member: Member=None):
+        await on_command(self.Bot.get_command('dice'))
+        if bet > 1000 or bet < 100:
+            await ctx.send(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
+            return
+        money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+        money = money['money']
+        if money < bet:
+            raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
+        else:
+            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
+            embed = Embed(color = Colour.dark_theme())
+            embed.set_author(name = ctx.author.display_name, icon_url = ctx.author.avatar_url)
+            if member is None:
+                embed.title = f"{ctx.author.display_name} vs King Dice!"
+                embed.set_thumbnail(url = "https://i.pinimg.com/originals/a0/39/f0/a039f043d0c0089a203fc3b974081496.png")
+                win = await self.rollTheDice()
+                embed.title = f"{ctx.author.display_name} : {emomoji[win[0]]} vs {emomoji[win[1]]} : King Dice"
+                dic = await ctx.send(embed = embed)
+                if win[0] > win[1]:
+                    description = f"{ctx.author.display_name} выйграл! {bet}$"
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2}})
+                elif win[0] == win[1]:
+                    description = f"ничья"
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                else:
+                    description = f"King Dice выйграл! {bet}$"
+                await sleep(1)
+                embed.set_footer(text = description)
+                await dic.edit(embed = embed)
+            else:
+                if member.id != ctx.author.id:
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
+                    await ctx.send(f"{member.mention}, {ctx.author.display_name} приглашает вас в сыграть в кости, ставка {bet}, напишите `claim`, чтобы сыграть, осталось 60 секунд")
+
+                    def check(m):
+                        return ('claim' in m.content) and m.channel == ctx.channel and m.author == member
+
+                    try:
+                        msg = await self.Bot.wait_for('message', check=check, timeout=60)
+                    except TimeoutError:
+                        embed = Embed(title="Никто не присоединился", color=Colour.dark_theme())
+                        await ctx.send(embed=embed)
+                        return
+                    else:
+                        member_money = await db.fetch_user(ctx.guild.id, member.id, money=1)
+                        member_money = member_money['money']
+                        if member_money < bet:
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                            raise errors.NotEnoughMoney(f'{(member.nick if member.nick else member.name) + "#" + member.discriminator}, недостаточно средств')
+                        else:
+                            await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': -bet }})
+                            embed.title = f"{ctx.author.display_name} vs {member.display_name}!"
+                            embed.set_thumbnail(url = msg.author.avatar_url)
+                            win = await self.rollTheDice()
+                            embed.title = f"{ctx.author.display_name} : {emomoji[win[0]]} vs {emomoji[win[1]]} : {member.display_name}"
+                            dic = await ctx.send(embed = embed)
+                            if win[0] > win[1]:
+                                description = f"{ctx.author.display_name} выйграл! {bet}$"
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2 }})
+                            elif win[0] == win[1]:
+                                description = f"ничья!"
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                                await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': bet }})
+                            else:
+                                description = f"{member.display_name} выйграл! {bet}$"
+                                await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': bet * 2}})
+                            await sleep(1)
+                            embed.set_footer(text = description)
+                            await dic.edit(embed = embed)
+                else:
+                    embed = Embed(title="Вы не можете играть с самим собой")
+                    await ctx.reply(embed = embed)
+                
+    
+    @dice.error
+    async def on_dice_error(self, ctx, error):
+        if isinstance(error, BadArgument):
+            embed = Embed(title="Ставка должна быть в диапазоне [100, 1000]", color=Colour.dark_theme())
+            await ctx.send(embed=embed)
+        
 
     @Cog.listener()
     async def on_raw_reaction_add(self, payload):

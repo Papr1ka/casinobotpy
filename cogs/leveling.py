@@ -17,7 +17,9 @@ logger.addHandler(MailHandler())
 class Leveling(Cog):
 
     leveling_table = {
-        'message': 10
+        'message': 10,
+        'fishing': 20,
+        'casino': 20
     }
     timing = 60
 
@@ -48,3 +50,5 @@ class Leveling(Cog):
 
 def setup(Bot):
     Bot.add_cog(Leveling(Bot))
+    
+LevelTable = Leveling.leveling_table

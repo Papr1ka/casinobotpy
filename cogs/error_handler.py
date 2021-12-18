@@ -1,7 +1,8 @@
 from discord import Embed
 from discord.colour import Colour
+from discord.errors import NotFound
 from discord.ext import commands
-from discord.ext.commands.errors import CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage
+from discord.ext.commands.errors import CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage, NotOwner
 import models.errors as errors
 from logging import config, getLogger
 from handlers import MailHandler
@@ -50,10 +51,17 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, CommandNotFound):
             logger.debug('errors.CommandNotFound')
             embed.title = 'Команда не найдена'
+        elif isinstance(error, NotFound):
+            pass
+        elif isinstance(error, TimeoutError):
+            pass
+        elif isinstance(error, NotOwner):
+            pass
         else:
             logger.error(error)
             embed.title = 'Произошла ошибка'
-        await ctx.send(embed=embed, delete_after=self.__delete_after)
+        if embed.title != "":
+            await ctx.send(embed=embed, delete_after=self.__delete_after)
 
     @staticmethod
     async def on_error(channel, error):

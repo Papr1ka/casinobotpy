@@ -3,9 +3,14 @@ from discord.colour import Colour
 from discord.ext.commands import Bot as Robot
 from os import environ
 from logging import config, getLogger
+from discord.ext.commands.core import is_owner
+
 from database import db
 from handlers import MailHandler
 from discord_components import DiscordComponents
+
+
+import json
 
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
@@ -54,6 +59,7 @@ Bot.remove_command('help')
 
 @Bot.command()
 async def help(ctx, module_command=None):
+    await on_command(Bot.get_command('help'))
     modules = ('casino', 'user', 'store', 'jobs', 'admin')
     embed = Embed(color=Colour.dark_theme())
     if not module_command:
@@ -68,6 +74,9 @@ async def help(ctx, module_command=None):
             if module_command == 'casino':
                 embed.title=f"{Bot.user.name} casino команды"
                 embed.add_field(name='Рулетка', value='`=rulet`', inline=False)
+                embed.add_field(name='Блэкджек', value='`=blackjack [ставка]`', inline=False)
+                embed.add_field(name='Слоты', value='`=slots [ставка]`', inline=False)
+                embed.add_field(name='Кости', value='`=dice [ставка] (оппонент)`', inline=False)
             elif module_command == 'user':
                 embed.title=f"{Bot.user.name} user команды"
                 embed.add_field(name='Статистика пользователя', value='`=stats`', inline=False)
@@ -77,13 +86,9 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] [сумма]`', inline=False)
                 embed.add_field(name='Предложить идею', value='`=offer [идея]`', inline=False)
                 embed.add_field(name='Инвентарь', value='`=inventory`', inline=False)
-                embed.add_field(name='Использовать предмет', value='`=inventory use [название предмета]`', inline=False)
-                embed.add_field(name='Использовать предмет (50% от стоимости)', value='`=inventory sell [название предмета]`', inline=False)
             elif module_command == 'store':
                 embed.title=f"{Bot.user.name} shop команды"
                 embed.add_field(name='Магазин', value='`=shop`', inline=False)
-                embed.add_field(name='Купить предмет', value='`=buy [название предмета]`', inline=False)
-                embed.add_field(name='Информация по предмету', value='`=info [название предмета]`', inline=False)
             elif module_command == 'jobs':
                 embed.title=f"{Bot.user.name} jobs команды"
                 embed.add_field(name='Рыбалка', value='`=fishing` | `hook` чтобы поймать', inline=False)
@@ -111,7 +116,22 @@ async def help(ctx, module_command=None):
     
     await ctx.send(embed=embed)
 
-    
+
+async def on_command(command):
+    print(command)
+
+
+@Bot.command()
+@is_owner()
+async def announcement(ctx, *, annonce):
+    print(annonce)
+    annonce = json.loads(annonce)
+    embed = Embed.from_dict(annonce)
+    for guild in Bot.guilds:
+        channel = guild.system_channel
+        if not channel is None:
+            await channel.send(embed=embed)
+
 
 
 def start():

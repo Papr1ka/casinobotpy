@@ -3,6 +3,7 @@ from discord import Member, Embed, File, Colour
 from discord.ext.commands import is_owner, has_permissions
 from logging import config, getLogger
 from os import remove
+from main import on_command
 
 from models.user_model import UserModel
 from models.card import Card
@@ -28,6 +29,7 @@ class UserStats(Cog):
     )
     @guild_only()
     async def status(self, ctx, member: Member = None):
+        await on_command(self.Bot.get_command('status'))
         if member is None:
             member = ctx.author
         user = await db.fetch_user(ctx.guild.id, member.id, exp=1, level=1, custom=1, color=1)
@@ -53,6 +55,7 @@ class UserStats(Cog):
     async def __update_level(self, guild_id, user_id, exp, level):
         money = UserModel.only_exp_to_level(level - 1)
         await db.update_user(guild_id, user_id, {'$inc': {'money': money}, '$set': {'exp': exp, 'level': level}})
+        return money
     
     @command(
         usage="`=stats @(user)`",
@@ -60,12 +63,13 @@ class UserStats(Cog):
     )
     @guild_only()
     async def stats(self, ctx, member: Member = None):
+        await on_command(self.Bot.get_command('stats'))
         if member is None:
             member = ctx.author
         user = await db.fetch_user(ctx.guild.id, member.id, money=1, messages=1, games=1, exp=1, level=1)
         exp, level, _ = UserModel.exp_to_level(user['exp'], user['level'])
         if level > user['level']:
-            await self.__update_level(ctx.guild.id, member.id, exp, level)
+            user['money'] += await self.__update_level(ctx.guild.id, member.id, exp, level)
         embed = Embed(title = member.name + '#' + member.discriminator)
         embed.add_field(name='Денег', value=user['money'])
         embed.add_field(name='Сообщений', value=user['messages'])
@@ -80,6 +84,7 @@ class UserStats(Cog):
     )
     @guild_only()
     async def theme(self, ctx):
+        await on_command(self.Bot.get_command('theme'))
         theme = await db.fetch_user(ctx.guild.id, ctx.author.id, color=1)
         theme = theme['color']
         if theme == 'dark':
@@ -99,6 +104,7 @@ class UserStats(Cog):
     )
     @guild_only()
     async def custom(self, ctx, *args):
+        await on_command(self.Bot.get_command('custom'))
         custom = ' '.join(args)
         if len(custom) > 0:
             custom = custom[:19]
@@ -130,6 +136,7 @@ class UserStats(Cog):
     )
     @guild_only()
     async def pay(self, ctx, member: Member, amount: int):
+        await on_command(self.Bot.get_command('pay'))
         if amount > 0:
             if not member is None:
                 from_wallet = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
@@ -154,6 +161,7 @@ class UserStats(Cog):
     @has_permissions(administrator=True)
     @guild_only()
     async def give(self, ctx, member: Member, amount: int):
+        await on_command(self.Bot.get_command('give'))
         if not member is None:
             await db.update_user(member.guild.id, member.id, {'$inc': {'money': amount}})
             embed = Embed(title=f"`{amount}$` переведено на счёт {member.nick if member.nick else member.name}")
@@ -167,7 +175,7 @@ class UserStats(Cog):
         help="Отправить предложение по улучшению работы бота, или внедрению новых возможностей"
     )
     async def offer(self, ctx, *, message):
-        print(message)
+        await on_command(self.Bot.get_command('offer'))
         if message:
             owner = await self.Bot.application_info()
             await owner.owner.send(f"Предложение от {ctx.author.name}#{ctx.author.discriminator}: {message}, message_id={ctx.author.id}")
@@ -181,6 +189,7 @@ class UserStats(Cog):
     )
     @is_owner()
     async def reply(self, ctx, user_id: int, *, message):
+        await on_command(self.Bot.get_command('reply'))
         try:
             user = await self.Bot.fetch_user(user_id)
         except:

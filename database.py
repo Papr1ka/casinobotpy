@@ -1,4 +1,4 @@
-from asyncio import get_event_loop, create_task, gather
+from asyncio import events, get_event_loop, create_task, gather
 from handlers import MailHandler
 from logging import config, getLogger
 from models.shop import get_shop
