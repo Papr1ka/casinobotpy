@@ -27,7 +27,7 @@ getLogger('PIL').setLevel('WARNING')
 
 
 
-Token = environ.get("TOKEN3")
+Token = environ.get("TOKEN")
 Bot = Robot(command_prefix = "=", intents = Intents.all())
 DBot = DiscordComponents(Bot)
 
