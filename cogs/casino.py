@@ -383,12 +383,12 @@ class Casino(Cog):
     async def blackjack(self, ctx, bet: int, timeout: int=60):
         await on_command(self.Bot.get_command('blackjack'))
         if timeout < 15 or timeout > 300:
-            await ctx.reply("Неверный таймаут, укажите в множестве [15-300]")
+            await ctx.reply(embed=Embed(title="Неверный таймаут, укажите в множестве [15-300]", color=Colour.dark_theme()))
             return
         author_money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
         author_money = author_money['money']
         if bet < 100 or bet > 1000:
-            await ctx.reply("Ставка должна быть в диапазоне [100, 1000]$")
+            await ctx.reply(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
             return
         if author_money < bet:
             raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
