@@ -10,6 +10,7 @@ from discord.ext.commands.core import max_concurrency
 from discord.ext.commands.errors import BadArgument
 
 from database import db
+from discord_components import Button, ButtonStyle
 from cogs.error_handler import ErrorHandler
 from cogs.leveling import LevelTable
 from handlers import MailHandler
@@ -375,7 +376,7 @@ class Casino(Cog):
     
     @command(
         usage='`=blackjack [ставка] (тайм-аут в секундах)`',
-        help=f"`bjoin [@создатель игры]` | `bj [@создатель игры]` для присоединения к существующей игре, `bstart` | `bs` для старта игры\nПравила казино:\nСплит делается 1 раз\nКомбинации не оплачиваются\nСтраховка не разрешена\nБлэкджек оплачивается в конце игры\nБлэкджек дилера не вскрывается\nПачка из 6 колод\nправила классического блэкджека"
+        help=f"Правила казино:\nСплит делается 1 раз\nКомбинации не оплачиваются\nСтраховка не разрешена\nБлэкджек оплачивается в конце игры\nБлэкджек дилера не вскрывается\nПачка из 6 колод\nправила классического блэкджека"
     )
     @guild_only()
     @max_concurrency(1, BucketType.member, wait=False)
@@ -392,11 +393,11 @@ class Casino(Cog):
         if author_money < bet:
             raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
 
-        def check(m):
-            return (m.content.split()[0] in ('bj', 'bs', 'bjoin', 'bstart')) and m.channel == ctx.channel and m.author.id not in game.reg[1:] and not m.author.bot
+        def check(interaction):
+            return (interaction.custom_id[-1:-6:-1][::-1] in ('bjoin', 'start')) and interaction.channel == ctx.channel and interaction.user.id not in game.reg[1:]
         
-        def check2(m):
-            return (m.content in ('hit', 'stand', 'split', 'double', 'surrender')) and m.channel == ctx.channel and m.author.id in game.reg and sum(game.played[m.author.id]) >= 1
+        def check2(interaction):
+            return (interaction.custom_id[-1:-10:-1][::-1] in ('hit______', 'stand____', 'split____', 'double___', 'surrender')) and interaction.channel == ctx.channel and interaction.user.id in game.reg and sum(game.played[interaction.user.id]) >= 1
         
 
         game = Game(bet)
@@ -406,34 +407,39 @@ class Casino(Cog):
         embed.description = f"`Игроки: {len(game.players)}`"
         embed.add_field(name="🕵️‍♂️ "+game.players[ctx.author.id][0].name, value=f"`{game.players[ctx.author.id][0].bet}$`")
         embed.set_footer(text=f'Ожидание игроков, игра начнётся через {timeout} секунд')
-        controller = await ctx.send(embed=embed)
+        
+        c_id = str(ctx.message.id)
+        bs_buttons = [
+            Button(label="Старт", style=ButtonStyle.green, custom_id=c_id + "start"),
+            Button(label="Присоединиться", style=ButtonStyle.blue, custom_id=c_id + "bjoin"),
+        ]
+        
+        controller = await ctx.send(embed=embed, components=bs_buttons)
         start = time()
         timeout2 = timeout
+        
         while time() - start < timeout:
             try:
-                message = await self.Bot.wait_for('message', timeout=timeout - (time() - start), check=check)
+                interaction = await self.Bot.wait_for('button_click', timeout=timeout - (time() - start), check=check)
             except:
                 pass
             else:
-                if message.author.id == game.reg[0]:
-                    if message.content in ('bstart', 'bs'):
+                if interaction.user.id == game.reg[0]:
+                    if interaction.custom_id[-1:-6:-1][::-1] == 'start':
                         timeout = 0
                 else:
-                    if ctx.author in message.mentions:
-                        money = await db.fetch_user(ctx.guild.id, message.author.id, money=1)
-                        money = money['money']
-                        if money >= bet:
-                            
-                            await game.add_player(message.author.id, (message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator, money - bet)
-                            
-                            embed.description = f"`Игроки: {len(game.players)}`"
-                            embed.set_footer(text=f'Ожидание игроков, игра начнётся через {int(timeout - (time() - start))} секунд')
-                            embed.add_field(name="🕵️‍♂️ "+game.players[message.author.id][0].name, value=f"`{game.players[message.author.id][0].bet}$`", inline=False)
-                            await controller.edit(embed=embed)
-                        else:
-                            await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{(message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator}, недостаточно средств'))
+                    money = await db.fetch_user(ctx.guild.id, interaction.user.id, money=1)
+                    money = money['money']
+                    if money >= bet:
+                        
+                        await game.add_player(interaction.user.id, (interaction.user.nick if interaction.user.nick else interaction.user.name) + "#" + interaction.user.discriminator, money - bet)
+                        
+                        embed.description = f"`Игроки: {len(game.players)}`"
+                        embed.set_footer(text=f'Ожидание игроков, игра начнётся через {int(timeout - (time() - start))} секунд')
+                        embed.add_field(name="🕵️‍♂️ "+game.players[interaction.user.id][0].name, value=f"`{game.players[interaction.user.id][0].bet}$`", inline=False)
+                        await interaction.edit_origin(embed=embed)
                     else:
-                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Игра не найдена"), delete_after=3)
+                        await interaction.respond(embed=Embed(title=f'{(interaction.user.nick if interaction.user.nick else interaction.user.name) + "#" + interaction.user.discriminator}, недостаточно средств', color=Colour.dark_theme()))
         
         await game.create_dealer()
         
@@ -450,19 +456,29 @@ class Casino(Cog):
     
         embed.description = "`hit` - взять ещё одну карту\n`stand` - больше не брать карт\n`split` - разбить руку на две\n`double` - удвоить ставку, и взять 1 карту\n`surrender` - сдаться\n"
         embed.set_footer(text=f"Игра идёт, до конца осталось {timeout2} с")
-        await controller.edit(embed=embed)
+        blackjack_buttons = [
+            [Button(label='hit', style=ButtonStyle.blue, custom_id=c_id + "hit______"),
+            Button(label='stand', style=ButtonStyle.green, custom_id=c_id + "stand____"),
+            Button(label='split', style=ButtonStyle.blue, custom_id=c_id + "split____"),
+            Button(label='double', style=ButtonStyle.green, custom_id=c_id + "double___"),
+            Button(label='surrender', style=ButtonStyle.green, custom_id=c_id + "surrender")]
+        ]
+        
+        await interaction.edit_origin(embed=embed, components=blackjack_buttons)
         start = time()
+        
+        
         while (time() - start < timeout2) and sum([sum(i) for i in game.played.values()]) != 0:
             try:
-                message = await self.Bot.wait_for('message', timeout=timeout2 - (time() - start), check=check2)
+                interaction = await self.Bot.wait_for('button_click', timeout=timeout2 - (time() - start), check=check2)
             except:
                 pass
             else:
-                player = game.players[message.author.id][await game.getCurrPlayerInd(message.author.id)]
+                player = game.players[interaction.user.id][await game.getCurrPlayerInd(interaction.user.id)]
 
-                if message.content == 'hit':
+                if interaction.custom_id[-1:-10:-1][::-1] == 'hit______':
                     if player.cards >= 1:
-                        player = await game.give_cards(message.author.id, 1)
+                        player = await game.give_cards(interaction.user.id, 1)
                         if player.sm() > 21:
                             for i in range(len(embed.fields)):
                                 if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
@@ -471,7 +487,7 @@ class Casino(Cog):
                                     )
                                     break
                             
-                            player = await game.end_move(message.author.id)
+                            player = await game.end_move(interaction.user.id)
                         else:
                             for i in range(len(embed.fields)):
                                 if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
@@ -480,8 +496,8 @@ class Casino(Cog):
                                     )
                                     break
                     else:
-                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы не можете взять карту, так как ранее вы удваивали"), delete_after=3)
-                elif message.content == 'stand':
+                        await interaction.respond(embed=Embed(color=Colour.dark_theme(), title="Вы не можете взять карту, так как ранее вы удваивали"))
+                elif interaction.custom_id[-1:-10:-1][::-1] == 'stand____':
                     for i in range(len(embed.fields)):
                         if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
                             embed.set_field_at(
@@ -489,14 +505,14 @@ class Casino(Cog):
                             )
                             break
                     
-                    player = await game.end_move(message.author.id)
+                    player = await game.end_move(interaction.user.id)
                 
-                elif message.content == 'split':
+                elif interaction.custom_id[-1:-10:-1][::-1] == 'split____':
                     if len(player.hand) == 2:
                         if points[player.hand[0]] == points[player.hand[1]]:
                             if player.split is False:
                                 if player.money >= game.bet:
-                                    pl2 = await game.split(message.author.id)
+                                    pl2 = await game.split(interaction.user.id)
                                     
                                     for i in range(len(embed.fields)):
                                         if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
@@ -506,19 +522,19 @@ class Casino(Cog):
                                             break
                                     embed.add_field(name="🔴 " +player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in pl2[1].hand])}", inline=False)
                                 else:
-                                    await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{(message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator}, недостаточно средств'))
+                                    await ErrorHandler.on_error(channel=interaction.channel, error=errors.NotEnoughMoney(f'{(interaction.user.nick if interaction.user.nick else interaction.user.name) + "#" + interaction.user.discriminator}, недостаточно средств'))
                             else:
-                                await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы уже делали сплит"), delete_after=3)
+                                await interaction.respond(embed=Embed(color=Colour.dark_theme(), title="Вы уже делали сплит"))
                         else:
-                            await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы не можете сделать сплит"), delete_after=3)
+                            await interaction.respond(embed=Embed(color=Colour.dark_theme(), title="Вы не можете сделать сплит"))
                     else:
-                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы не можете сделать сплит"), delete_after=3)
+                        await interaction.respond(embed=Embed(color=Colour.dark_theme(), title="Вы не можете сделать сплит"))
                         
                         
-                elif message.content == 'double':
+                elif interaction.custom_id[-1:-10:-1][::-1] == 'double___':
                     if player.cards > 1:
                         if player.money >= bet:
-                            player = await game.double(message.author.id)
+                            player = await game.double(interaction.user.id)
                             
                             for i in range(len(embed.fields)):
                                 if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
@@ -527,12 +543,12 @@ class Casino(Cog):
                                     )
                                     break
                         else:
-                            await ErrorHandler.on_error(channel=message.channel, error=errors.NotEnoughMoney(f'{(message.author.nick if message.author.nick else message.author.name) + "#" + message.author.discriminator}, недостаточно средств'))
+                            await ErrorHandler.on_error(channel=interaction.channel, error=errors.NotEnoughMoney(f'{(interaction.user.nick if interaction.user.nick else interaction.user.name) + "#" + interaction.user.discriminator}, недостаточно средств'))
                     else:
-                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Вы уже удваивали"), delete_after=3)
-                elif message.content == 'surrender':
+                        await interaction.respond(embed=Embed(color=Colour.dark_theme(), title="Вы уже удваивали"))
+                elif interaction.custom_id[-1:-10:-1][::-1] == 'surrender':
                     if len(player.hand) == 2:
-                        player = await game.surrender(message.author.id)
+                        player = await game.surrender(interaction.user.id)
                         for i in range(len(embed.fields)):
                             if player.name in embed.fields[i].name and embed.fields[i].name.startswith("🔴"):
                                 embed.set_field_at(
@@ -540,10 +556,10 @@ class Casino(Cog):
                                 )
                                 break
                     else:
-                        await message.reply(embed=Embed(color=Colour.dark_theme(), title="Сдаться можно только с рукой в 2 карты"), delete_after=3)
+                        await interaction.respond(embed=Embed(color=Colour.dark_theme(), title="Сдаться можно только с рукой в 2 карты"))
                 
                 embed.set_footer(text=f"Игра идёт, до конца осталось {int(timeout2 - (time() - start))} с")
-                await controller.edit(embed=embed)
+                await interaction.edit_origin(embed=embed)
         embed.set_footer(text=f"Игра")
         
         d_points = await game.count_dealer()
@@ -647,7 +663,7 @@ class Casino(Cog):
                         footer += f'{player.name} : проигрыш\n'
         
         embed.set_footer(text=footer)
-        await controller.edit(embed=embed)
+        await controller.edit(embed=embed, components=[])
         await db.update_many(query)
 
 

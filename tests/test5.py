@@ -281,3 +281,16 @@ class Game():
                     tuz.pop(0)
                     s -= 10
         return s
+
+
+async def main():
+    game = Game(100)
+    id = 1000
+    await game.add_player(id, 123, 123)
+    await game.give_cards(id, 2)
+    print(game.players[id])
+    await game.split(id)
+    print(game.players[id])
+
+import asyncio
+asyncio.run(main())

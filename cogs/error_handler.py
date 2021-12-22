@@ -1,8 +1,8 @@
 from discord import Embed
 from discord.colour import Colour
-from discord.errors import NotFound
+from discord.errors import Forbidden, NotFound
 from discord.ext import commands
-from discord.ext.commands.errors import CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage, NotOwner
+from discord.ext.commands.errors import BadArgument, CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage, NotOwner
 import models.errors as errors
 from logging import config, getLogger
 from handlers import MailHandler
@@ -39,6 +39,9 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, MissingRequiredArgument):
             logger.debug('errors.MissingRequiredArgument')
             embed.title = 'Пропущен параметр'
+        elif isinstance(error, BadArgument):
+            logger.debug('errors.BadArgument')
+            embed.title = 'Неверный параметр'
         elif isinstance(error, MissingPermissions):
             logger.debug('errors.MissingPermissions')
             embed.title = 'Недостаточно прав'
@@ -51,6 +54,8 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, CommandNotFound):
             logger.debug('errors.CommandNotFound')
             embed.title = 'Команда не найдена'
+        elif isinstance(error, Forbidden):
+            logger.debug('errors.Forbidden')
         elif isinstance(error, NotFound):
             pass
         elif isinstance(error, TimeoutError):
