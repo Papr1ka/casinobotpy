@@ -54,6 +54,9 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, CommandNotFound):
             logger.debug('errors.CommandNotFound')
             embed.title = 'Команда не найдена'
+        elif isinstance(error, BadArgument):
+            logger.debug('errors.BadArgument')
+            embed.title = 'Неверный параметр'
         elif isinstance(error, Forbidden):
             logger.debug('errors.Forbidden')
         elif isinstance(error, NotFound):
