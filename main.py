@@ -119,7 +119,7 @@ async def help(ctx, module_command=None):
 
 
 async def on_command(command):
-    print(command)
+    logger.info(command)
  
 
 @Bot.command()

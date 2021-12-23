@@ -2,7 +2,7 @@ from discord import Embed
 from discord.colour import Colour
 from discord.errors import Forbidden, NotFound
 from discord.ext import commands
-from discord.ext.commands.errors import BadArgument, CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage, NotOwner
+from discord.ext.commands.errors import BadArgument, CommandInvokeError, CommandNotFound, MaxConcurrencyReached, MissingRequiredArgument, MissingPermissions, NoPrivateMessage, NotOwner
 import models.errors as errors
 from logging import config, getLogger
 from handlers import MailHandler
@@ -60,6 +60,8 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, Forbidden):
             logger.debug('errors.Forbidden')
         elif isinstance(error, NotFound):
+            pass
+        elif isinstance(error, CommandInvokeError):
             pass
         elif isinstance(error, TimeoutError):
             pass
