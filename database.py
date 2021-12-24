@@ -1,4 +1,4 @@
-from asyncio import events, get_event_loop, create_task, gather
+from asyncio import get_event_loop, create_task, gather
 from handlers import MailHandler
 from logging import config, getLogger
 from models.shop import get_shop
@@ -7,6 +7,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from math import ceil
 from os import environ
 from time import time
+from aiohttp import ClientSession as aioSession
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
@@ -19,6 +20,8 @@ class Database(AsyncIOMotorClient):
     __database_name = "casino"
     __mongo_password = environ.get("MONGO_PASSWORD")
     __thread_size = 30
+    __dbl_token = environ.get("DBLTOKEN")
+    __site_url = "https://top.gg/api"
 
     def __init__(self):
         pass
@@ -136,6 +139,18 @@ class Database(AsyncIOMotorClient):
                 return user.get_json()
             logger.debug("finded user")
             return user
+    
+    @timeit
+    async def dblget_user_vote(self, user_id):
+        async with aioSession() as session:
+            async with session.get(
+                    self.__site_url + '/bots/883201346759704606/check', headers={
+                        "Authorization": self.__dbl_token
+                    }, params={
+                        'userId': user_id
+                        }
+                ) as resp:
+                return resp.status, await resp.json()
 
     @Correct_ids
     @timeit

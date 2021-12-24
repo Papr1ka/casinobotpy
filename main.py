@@ -1,17 +1,16 @@
+from math import ceil
 from discord import Member, Embed, Intents
 from discord.colour import Colour
 from discord.ext.commands import Bot as Robot
 from os import environ
 from logging import config, getLogger
-from discord.ext.commands.core import is_owner
-from discord.ext.commands.errors import CommandInvokeError
+from discord.ext.commands.core import guild_only, is_owner
 
 from database import db
 from handlers import MailHandler
 from discord_components import DiscordComponents
-
-
-import json
+from json import loads
+from time import time
 
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
@@ -30,6 +29,7 @@ getLogger('PIL').setLevel('WARNING')
 Token = environ.get("TOKEN")
 Bot = Robot(command_prefix = "=", intents = Intents.all())
 DBot = DiscordComponents(Bot)
+
 
 @Bot.event
 async def on_ready():
@@ -120,14 +120,53 @@ async def help(ctx, module_command=None):
 
 async def on_command(command):
     logger.info(command)
- 
+
+
+@Bot.command(
+    help="Проголосуйте за бота и получите 3000$!",
+    usage="`=vote`"
+)
+@guild_only()
+async def vote(ctx):
+    await on_command(Bot.get_command('vote'))
+    status, r = await db.dblget_user_vote(ctx.author.id)
+    embed = Embed(title=ctx.author.display_name, color=Colour.dark_purple())
+    if status == 200:
+        voted = False if not r['voted'] else True
+        if voted:
+            last_vote = await db.fetch_user(ctx.guild.id, ctx.author.id, claim=1)
+            last_vote = last_vote['claim']
+            now_time = time()
+            if last_vote != 0:
+                diff = now_time - last_vote
+                if diff >= 43200:
+                    embed.title = "**Спасибо за голос! Начислено: `3000$`**"
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 3000}})
+                else:
+                    diff = 43200 - diff
+                    h = int(diff // 3600)
+                    m = ceil((diff - h * 3600) / 60)
+                    embed.title = f"**Вы уже получили награду, голосуйте через {h} часов, {m} минут!**"
+            else:
+                embed.title = "**Спасибо за голос! Начислено: `3000$`**"
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 3000}})
+        else:
+            embed.title = "**Чтобы получить награду, проголосуйте на сайте и обратитесь снова**"
+            embed.url = 'https://top.gg/bot/883201346759704606'
+    elif status == 401:
+        logger.error(f"Topgg auth if failed; {r}")
+        embed.title = "Обратитесь позже"
+    else:
+        logger.error(f"Topgg search failed, status:{r.status}; {r}")
+        embed.title = "Сервера сайта недоступны, обратитесь позже"
+    await ctx.send(embed=embed)
 
 @Bot.command()
 @is_owner()
 async def announcement(ctx, *, annonce):
     print(annonce)
     send = 0
-    annonce = json.loads(annonce)
+    annonce = loads(annonce)
     embed = Embed.from_dict(annonce)
     for guild in Bot.guilds:
         try:
