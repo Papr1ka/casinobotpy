@@ -153,7 +153,7 @@ async def vote(ctx):
                 await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 3000}})
         else:
             embed.title = "**Чтобы получить награду, проголосуйте на сайте и обратитесь снова**"
-            embed.url = 'https://top.gg/bot/883201346759704606'
+            embed.url = 'https://top.gg/bot/883201346759704606/vote'
     elif status == 401:
         logger.error(f"Topgg auth if failed; {r}")
         embed.title = "Обратитесь позже"
