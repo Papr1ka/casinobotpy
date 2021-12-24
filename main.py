@@ -87,6 +87,7 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] [сумма]`', inline=False)
                 embed.add_field(name='Предложить идею', value='`=offer [идея]`', inline=False)
                 embed.add_field(name='Инвентарь', value='`=inventory`', inline=False)
+                embed.add_field(name='Голосовать', value='`=vote`', inline=False)
             elif module_command == 'store':
                 embed.title=f"{Bot.user.name} shop команды"
                 embed.add_field(name='Магазин', value='`=shop`', inline=False)
