@@ -6,6 +6,7 @@ from discord.ext.commands.errors import BadArgument, CommandInvokeError, Command
 import models.errors as errors
 from logging import config, getLogger
 from handlers import MailHandler
+from asyncio import TimeoutError as TError
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
@@ -62,6 +63,8 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, NotFound):
             pass
         elif isinstance(error, CommandInvokeError):
+            pass
+        elif isinstance(error, TError):
             pass
         elif isinstance(error, TimeoutError):
             pass

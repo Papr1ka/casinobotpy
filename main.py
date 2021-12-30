@@ -61,14 +61,14 @@ Bot.remove_command('help')
 @Bot.command()
 async def help(ctx, module_command=None):
     await on_command(Bot.get_command('help'))
-    modules = ('casino', 'user', 'store', 'jobs', 'admin')
+    modules = ('casino', 'user', 'store', 'fishing', 'admin')
     embed = Embed(color=Colour.dark_theme())
     if not module_command:
         embed.title=f"{Bot.user.name} модули"
         embed.add_field(name='Казино', value='`=help casino`', inline=True)
         embed.add_field(name='Пользовательское', value='`=help user`', inline=True)
         embed.add_field(name='Магазин', value='`=help store`', inline=True)
-        embed.add_field(name='Заработок', value='`=help jobs`', inline=True)
+        embed.add_field(name='Рыбалка', value='`=help fishing`', inline=True)
         embed.add_field(name='Настройка', value='`=help admin`', inline=True)
     else:
         if module_command in modules:
@@ -91,9 +91,13 @@ async def help(ctx, module_command=None):
             elif module_command == 'store':
                 embed.title=f"{Bot.user.name} shop команды"
                 embed.add_field(name='Магазин', value='`=shop`', inline=False)
-            elif module_command == 'jobs':
-                embed.title=f"{Bot.user.name} jobs команды"
-                embed.add_field(name='Рыбалка', value='`=fishing` | `hook` чтобы поймать', inline=False)
+            elif module_command == 'fishing':
+                embed.title=f"{Bot.user.name} fishing команды"
+                embed.add_field(name='Рыбачить', value='`=fish`', inline=False)
+                embed.add_field(name='Рыболовный магазин', value='`=fshop`', inline=False)
+                embed.add_field(name='Садок', value='`=cage`', inline=False)
+                embed.add_field(name='Мастерская', value='`=workshop`', inline=False)
+                embed.add_field(name='Гайд по рыбалке', value='`=guide`', inline=False)
             elif module_command == 'admin':
                 embed.title=f"{Bot.user.name} admin команды"
                 embed.add_field(name='Сбросить данные пользователей', value='`=reset [exp | money | messages | games | user | shop]`', inline=False)
@@ -124,7 +128,7 @@ async def on_command(command):
 
 
 @Bot.command(
-    help="Проголосуйте за бота и получите 3000$!",
+    help="Проголосуйте за бота и получите 5000$!",
     usage="`=vote`"
 )
 @guild_only()
@@ -141,16 +145,16 @@ async def vote(ctx):
             if last_vote != 0:
                 diff = now_time - last_vote
                 if diff >= 43200:
-                    embed.title = "**Спасибо за голос! Начислено: `3000$`**"
-                    await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 3000}})
+                    embed.title = "**Спасибо за голос! Начислено: `5000$`**"
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000}})
                 else:
                     diff = 43200 - diff
                     h = int(diff // 3600)
                     m = ceil((diff - h * 3600) / 60)
                     embed.title = f"**Вы уже получили награду, голосуйте через {h} часов, {m} минут!**"
             else:
-                embed.title = "**Спасибо за голос! Начислено: `3000$`**"
-                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 3000}})
+                embed.title = "**Спасибо за голос! Начислено: `5000$`**"
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000}})
         else:
             embed.title = "**Чтобы получить награду, проголосуйте на сайте и обратитесь снова**"
             embed.url = 'https://top.gg/bot/883201346759704606/vote'
@@ -161,6 +165,24 @@ async def vote(ctx):
         logger.error(f"Topgg search failed, status:{r.status}; {r}")
         embed.title = "Сервера сайта недоступны, обратитесь позже"
     await ctx.send(embed=embed)
+
+
+@Bot.command()
+@is_owner()
+async def add(ctx):
+    for guild in Bot.guilds:
+        pre_shop = await db.fetch_user(guild.id, guild.id, items=1)
+        try:
+            pre_shop = pre_shop['items']
+        except KeyError:
+            await db.create_shop(guild.id)
+            continue
+        else:
+            await db.create_shop(guild.id)
+            await db.update_user(guild.id, -1, {'$set': {'items': pre_shop}})
+        await db.update_guild(guild.id, {'_id': {'$ne': -1}}, {'$set': {'finventory': {'rods': [1], 'ponds': [1], 'cage': [], 'components': {}}}})
+    print("finished")
+
 
 @Bot.command()
 @is_owner()

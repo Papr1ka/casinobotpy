@@ -4,6 +4,7 @@ from logging import config, getLogger
 from models.shop import get_shop
 from models.user_model import UserModel
 from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.errors import CollectionInvalid
 from math import ceil
 from os import environ
 from time import time
@@ -62,7 +63,7 @@ class Database(AsyncIOMotorClient):
 
     @staticmethod
     async def __check_id(user_id):
-        if isinstance(user_id, int) and user_id.__str__().__len__() == 18:
+        if isinstance(user_id, int):
             return True
         else:
             return False
@@ -78,7 +79,12 @@ class Database(AsyncIOMotorClient):
         logger.debug(f"creating new document - {doc_name} in database {self.db.name}...")
         try:
             await self.db.create_collection(doc_name)
-            await self.db[doc_name].insert_one(get_shop(int(doc_name)))
+            await self.db[doc_name].insert_one(get_shop())
+        except CollectionInvalid:
+            try:
+                await self.db[doc_name].insert_one(get_shop())
+            except Exception as E:
+                logger.error(f"can't create new document: {E}")
         except Exception as E:
             logger.error(f"can't create new document: {E}")
         else:
@@ -117,6 +123,25 @@ class Database(AsyncIOMotorClient):
         else:
             logger.debug('inserted new user')
             return user
+    
+    
+    @timeit
+    async def create_shop(self, guild_id):
+        """
+        create shop: dict to database
+        guild_id: int
+        return shop
+        """
+        logger.debug("creating shop")
+        shop = get_shop()
+        try:
+            await self.db[guild_id.__str__()].insert_one(shop)
+        except Exception as E:
+            logger.error(f'cant create shop: {E}')
+        else:
+            logger.debug('created shop')
+            return shop
+    
     
     @Correct_ids
     @timeit

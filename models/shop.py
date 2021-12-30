@@ -3,9 +3,10 @@ from typing import NamedTuple, List, Dict
 
 Item = NamedTuple("Item", [('name', str), ('cost', int), ('description', str), ('roles', list)])
 item: Item = namedtuple('Item', ['name', 'cost', 'description', 'roles'])
+shop_id = -1
 
-def get_shop(id) -> Dict[str, List[Item]]:
+def get_shop() -> Dict[str, List[Item]]:
     return {
-        '_id': id,
+        '_id': -1,
         'items': [],
     }
