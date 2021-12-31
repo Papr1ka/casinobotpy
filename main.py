@@ -169,23 +169,6 @@ async def vote(ctx):
 
 @Bot.command()
 @is_owner()
-async def add(ctx):
-    for guild in Bot.guilds:
-        pre_shop = await db.fetch_user(guild.id, guild.id, items=1)
-        try:
-            pre_shop = pre_shop['items']
-        except KeyError:
-            await db.create_shop(guild.id)
-            continue
-        else:
-            await db.create_shop(guild.id)
-            await db.update_user(guild.id, -1, {'$set': {'items': pre_shop}})
-        await db.update_guild(guild.id, {'_id': {'$ne': -1}}, {'$set': {'finventory': {'rods': [1], 'ponds': [1], 'cage': [], 'components': {}}}})
-    print("finished")
-
-
-@Bot.command()
-@is_owner()
 async def announcement(ctx, *, annonce):
     print(annonce)
     send = 0

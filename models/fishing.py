@@ -32,7 +32,7 @@ rods: Dict[int, fish_rod] = {
 
 #id must be unicle with rods
 custom_rods: Dict[int, fish_rod] = {
-    1000: fish_rod("Пенак", [(components['1'], 50), (components['7'], 30)], "именно с него начинал свой путь рыбака незнакомен на обложке Престного водоёма", {'x': 1.5, 'aim': 2}, "https://i.ibb.co/JxmZLxz/image.png", 1000),
+    1000: fish_rod("Пенак", [(components['1'], 50), (components['7'], 30)], "именно с него начинал свой путь рыбака незнакомец на обложке Престного водоёма", {'x': 1.5, 'aim': 2}, "https://i.ibb.co/JxmZLxz/image.png", 1000),
     1001: fish_rod("Танзаврида", [(components['6'], 80), (components['2'], 100), (components['7'], 300)], "Любит туман", {'x': 2, 'aim': 2, 'weather': {"🌫️ Туман": 1.25, "🌞 Ясно": 0.75, "🌧️ Дождь": 0.75}}, "https://i.ibb.co/XxHhbvy/image.png", 1001),
     1002: fish_rod("Корвина", [(components['5'], 1000), (components['3'], 400), (components['6'], 800), (components['4'], 80), (components['8'], 250)], "Выкована в кузне богов", {'x': 4, 'aim': 3}, "https://i.ibb.co/4Pt9LNF/image.png", 1002),
 }
@@ -40,8 +40,8 @@ custom_rods: Dict[int, fish_rod] = {
 all_rods = {**rods, **custom_rods}
 
 ponds: Dict[int, pond] = {
-    1: pond("Престный водоём", 1000, "И людей там поймать можно было", {'x': 1.0, "chances": [fish_chance(2, 0.5), fish_chance(8, 0.3), fish_chance(7, 0.1), fish_chance(5, 0.08), fish_chance(1, 0.02)]}, "https://i.ibb.co/KNky44x/image.png", 1),
-    2: pond("Море", 30000, "И людей там поймать можно было", {'x': 1.0, "chances": [fish_chance(3, 0.4), fish_chance(9, 0.36), fish_chance(10, 0.2), fish_chance(6, 0.03), fish_chance(4, 0.01)]}, "https://i.ibb.co/njdKhpf/image.png", 2)
+    1: pond("Престный водоём", 1000, "Единственный престный водоём в округе", {'x': 1.0, "chances": [fish_chance(2, 0.5), fish_chance(8, 0.3), fish_chance(7, 0.1), fish_chance(5, 0.08), fish_chance(1, 0.02)]}, "https://i.ibb.co/KNky44x/image.png", 1),
+    2: pond("Море", 30000, "либо поймаешь ты, либо поймают тебя", {'x': 1.0, "chances": [fish_chance(3, 0.4), fish_chance(9, 0.36), fish_chance(10, 0.2), fish_chance(6, 0.03), fish_chance(4, 0.01)]}, "https://i.ibb.co/njdKhpf/image.png", 2)
 }
 
 fishs: Dict[int, fish] = {
