@@ -76,7 +76,7 @@ class Jobs(Cog):
         finventory = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1)
         finventory = finventory['finventory']
         p = [ponds[i] for i in finventory['ponds']]
-        r = [all_rods[i] for i in finventory['rods']]
+        r = [all_rods[i] for i in set(finventory['rods'])]
         
         t = time() // 3600 % 24
         temp = self.temperature[t]

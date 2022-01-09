@@ -118,7 +118,8 @@ class UserStats(Cog):
         )
         await ctx.reply(embed=embed)
     
-    async def transaction(self, fromaddr, toaddr, amount: int):
+    @staticmethod
+    async def transaction(fromaddr, toaddr, amount: int):
         """
         fromaddr: (guild.id, member.id),
         toaddr: (guild.id, member.id),
@@ -201,3 +202,5 @@ class UserStats(Cog):
 
 def setup(Bot):
     Bot.add_cog(UserStats(Bot))
+
+transaction = UserStats.transaction

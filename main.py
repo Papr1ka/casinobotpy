@@ -91,12 +91,15 @@ async def help(ctx, module_command=None):
             elif module_command == 'store':
                 embed.title=f"{Bot.user.name} shop команды"
                 embed.add_field(name='Магазин', value='`=shop`', inline=False)
+                embed.add_field(name='Рынок', value='`=market`', inline=False)
             elif module_command == 'fishing':
                 embed.title=f"{Bot.user.name} fishing команды"
                 embed.add_field(name='Рыбачить', value='`=fish`', inline=False)
                 embed.add_field(name='Рыболовный магазин', value='`=fshop`', inline=False)
                 embed.add_field(name='Садок', value='`=cage`', inline=False)
+                embed.add_field(name='Удочки', value='`=rods`', inline=False)
                 embed.add_field(name='Мастерская', value='`=workshop`', inline=False)
+                embed.add_field(name='Рынок', value='`=market`', inline=False)
                 embed.add_field(name='Гайд по рыбалке', value='`=guide`', inline=False)
             elif module_command == 'admin':
                 embed.title=f"{Bot.user.name} admin команды"
@@ -185,6 +188,14 @@ async def announcement(ctx, *, annonce):
     print(send)
 
 
+@Bot.command()
+@is_owner()
+async def add(ctx):
+    for guild in Bot.guilds:
+        await db.update_guild(guild.id, {'_id': -1}, {'$set': {'ah': [], 'rods': []}})
+    print('finished')
+
+
 
 def start():
     logger.debug("loading extensions...")
@@ -196,6 +207,7 @@ def start():
     Bot.load_extension("cogs.shop")
     logger.debug("loading complete")
     Bot.run(Token)
+
 
 if __name__ == '__main__':
     start()

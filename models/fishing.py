@@ -1,13 +1,14 @@
 from collections import namedtuple
 from random import uniform
-from typing import Dict, List
+from typing import Dict, List, Union
 
 fish_rod = namedtuple('Fish_rod', ['name', 'cost', 'description', 'modifiers', 'url', 'id'])
 pond = namedtuple('Pond', ['name', 'cost', 'description', 'modifiers', 'url', 'id'])
 fish = namedtuple('Fish', ['name', 'cost', 'description', 'url', 'weight', 'components'])
 fish_chance = namedtuple('FishChance', ['id', 'chance'])
-
+MarketFish = namedtuple("MarketFish", ['name', 'cost', 'description', 'url', 'weight', 'components', 'seller', 'sellcost', 'sellername', 'id'])
 component = namedtuple('Component', ['name', 'id', 're'])
+box = namedtuple('Box', ['name', 'cost', 'description', 'loot', 'url'])
 
 components: Dict[int, component] = {
     "1": component('Бамбук', "1", 'BA'),
@@ -56,6 +57,20 @@ fishs: Dict[int, fish] = {
     9: fish("Треска", 200, "Популярный трофей северных морей", "https://i.ibb.co/gSQvXgk/image.png", (0.1, 10, 5.05), (components["6"], )),
     10: fish("Палтус", 100, "В этом море они долго не живут", "https://i.ibb.co/k6yh87t/image.png", (7, 100, 53.5), (components["1"], )),
 }
+
+prise = Union[int, fish, component]
+
+prises: Dict = {
+    1: 500,
+    2: components['1'],
+    3: "1"
+}
+
+boxes: Dict[int, fish] = {
+    10000: box("Бамбуковая коробка", [(components['1'], 5), (components['7'], 5)], "Деньги, бамбук, или лосось!", [fish_chance(1, 0.45), fish_chance(2, 0.45), fish_chance(3, 0.98)], "https://i.ibb.co/VmTVbwL/present1.png")
+}
+
+wshop = {**custom_rods, **boxes}
 
 fishing_shop = {
     'rods': list(rods.keys()), #id fish_rod,

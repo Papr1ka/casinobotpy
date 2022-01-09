@@ -72,7 +72,7 @@ class ErrorHandler(commands.Cog):
             pass
         else:
             logger.error(error)
-            embed.title = 'Произошла ошибка'
+            embed.title = 'Что-то пошло не так'
         if embed.title != "":
             await ctx.send(embed=embed, delete_after=self.__delete_after)
 

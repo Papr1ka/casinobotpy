@@ -1,4 +1,3 @@
-from collections import namedtuple
 from typing import List
 
 from discord import Embed
