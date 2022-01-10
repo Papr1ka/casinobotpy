@@ -84,6 +84,7 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Карточка пользователя', value='`=status`', inline=False)
                 embed.add_field(name='Сменить тему карточки пользователя', value='`=theme`', inline=False)
                 embed.add_field(name='Сменить описание карточки пользователя', value='`=custom [описание]`', inline=False)
+                embed.add_field(name='Топ участников по опыту', value='`=scoreboard`', inline=False)
                 embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] [сумма]`', inline=False)
                 embed.add_field(name='Предложить идею', value='`=offer [идея]`', inline=False)
                 embed.add_field(name='Инвентарь', value='`=inventory`', inline=False)

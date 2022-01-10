@@ -1,8 +1,15 @@
+from collections import namedtuple
+from math import ceil
 from discord.ext.commands import Cog, command, guild_only
 from discord import Member, Embed, File, Colour
 from discord.ext.commands import is_owner, has_permissions
 from logging import config, getLogger
 from os import remove
+from discord.ext.commands.cooldowns import BucketType
+from discord.ext.commands.core import cooldown, max_concurrency
+
+from discord_components.client import DiscordComponents
+
 from main import on_command
 
 from models.user_model import UserModel
@@ -10,6 +17,9 @@ from models.card import Card
 from models.errors import NotEnoughMoney, InvalidUser
 from database import db
 from handlers import MailHandler
+from models.shop import shop_id
+from models.pagi import Paginator
+from models.user_model import UserModel
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
 logger = getLogger(__name__)
@@ -198,6 +208,38 @@ class UserStats(Cog):
         else:
             await user.send('Ответ на ваше предложение: ' + message)
             await ctx.send(embed=Embed(title='ответ отправлен', color=Colour.dark_theme()))
+            
+    async def exp_sum(self, level):
+        if level == 1:
+            return 0
+        return UserModel.only_exp_to_level(level) + await self.exp_sum(level - 1)
+    
+    
+    @command(
+        usage="`=scoreboard`",
+        help="Топ участников сервера по опыту"
+    )
+    @max_concurrency(1, BucketType.member, wait=False)
+    @cooldown(1, 60, BucketType.member)
+    @guild_only()
+    async def scoreboard(self, ctx):
+        guild_id = str(ctx.guild.id)
+        q = db.db[guild_id].aggregate([
+            {'$match': {'_id': {'$ne': shop_id}}},
+            {'$project': {'_id': 1, 'custom': 1, 'level': 1, 'exp': 1}},
+        ])
+      
+        q = await q.to_list(length=None)
+        for i in range(len(q)):
+            q[i]['ex'] = await self.exp_sum(q[i]['level']) + q[i]['exp']
+        
+        l = len(q)
+        users = sorted(q, key=lambda item: item['ex'])[::-1]
+        
+        embeds = [Embed(title=f'Рейтинг участников {ctx.guild.name}', color=Colour.dark_theme()) for i in range(ceil(l / 10))]
+        
+        s = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild)
+        await s.start()
 
 
 def setup(Bot):

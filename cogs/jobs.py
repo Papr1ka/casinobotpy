@@ -4,7 +4,7 @@ from time import time
 from discord.ext.commands import Cog, command, guild_only
 from discord import Embed, Colour
 from asyncio import TimeoutError
-from random import randint, choices, random
+from random import randint, choices, random, shuffle
 
 from database import db
 from math import sqrt
@@ -147,14 +147,19 @@ class Jobs(Cog):
                 st = time()
                 circle = round(random(), 1)
                 if circle > 0.9: circle = 0.9
-                timeout = randint(10, 20)
+                timeout = 13
+                
+                coc = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+                shuffle(coc)
+                
                 while not self.games[r.id]:
-                    if time() - st > timeout:
-                        self.games[r.id] = True
+                    await sleep(1)
+                    if time() - st > timeout or self.games[r.id]:
+                        #self.games[r.id] = True
+                        break
                     description = ""
-                    co -= 0.1
-                    co %= 1
-                    co = round(co, 1)
+                    co = coc[0]
+                    coc.pop(0)
                     for y in range(screen[1]):
                         y_cord = y / screen[1] * 2 - 1
                         for x in range(screen[0]):
@@ -167,7 +172,6 @@ class Jobs(Cog):
                             else:
                                 description += "."
                         description += "\n"
-                    await sleep(1)
                     embed.description = "```"+description+"```"
                     await r.edit(embed=embed)
                 
