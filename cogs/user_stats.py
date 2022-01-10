@@ -223,6 +223,7 @@ class UserStats(Cog):
     @cooldown(1, 60, BucketType.member)
     @guild_only()
     async def scoreboard(self, ctx):
+        await on_command(self.Bot.get_command('scoreboard'))
         guild_id = str(ctx.guild.id)
         q = db.db[guild_id].aggregate([
             {'$match': {'_id': {'$ne': shop_id}}},
