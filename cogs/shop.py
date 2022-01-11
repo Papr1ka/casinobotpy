@@ -623,7 +623,7 @@ class Shop(Cog):
                 
     @command(
         usage="`=market`",
-        help="Рынок гольдии"
+        help="Рынок гольдии, выставить на продажу: =cage =rods , вернуть предмет - купить (деньги не снимутся)"
     )
     @max_concurrency(1, BucketType.member, wait=False)
     @guild_only()
@@ -655,7 +655,7 @@ class Shop(Cog):
         l = len(shop)
         
         if l == 0:
-            embed.description = "Товаров нет в наличии"
+            embed.description = "Товаров нет в наличии, для выставления на продажу, используйте =cage и =rods"
             await interaction.send(embed=embed, components=[])
             return
         
