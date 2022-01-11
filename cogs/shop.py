@@ -430,11 +430,11 @@ class Shop(Cog):
             try:
                 item_opts['cost'] = int(item_opts['cost'])
             except ValueError:
-                embed.set_footer(text='Введите цену товара [число > 0] | `отменить` для отмены')
+                embed.set_footer(text='Введите цену товара [число >= 0] | `отменить` для отмены')
                 await main.edit(embed=embed)
             else:
                 if item_opts['cost'] < 0:
-                    embed.set_footer(text='Введите цену товара [число > 0] | `отменить` для отмены')
+                    embed.set_footer(text='Введите цену товара [число >= 0] | `отменить` для отмены')
                     await main.edit(embed=embed)
                 else:
                     cost = True
