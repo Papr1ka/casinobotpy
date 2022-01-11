@@ -374,6 +374,7 @@ class Shop(Cog):
         brief='administrator'
     )
     @guild_only()
+    @max_concurrency(1, BucketType.channel, wait=False)
     @has_permissions(administrator=True)
     async def add_item(self, ctx):
         await on_command(self.Bot.get_command('add_item'))
@@ -429,10 +430,14 @@ class Shop(Cog):
             try:
                 item_opts['cost'] = int(item_opts['cost'])
             except ValueError:
-                embed.set_footer(text='Введите цену товара [число] | `отменить` для отмены')
+                embed.set_footer(text='Введите цену товара [число > 0] | `отменить` для отмены')
                 await main.edit(embed=embed)
             else:
-                cost = True
+                if item_opts['cost'] < 0:
+                    embed.set_footer(text='Введите цену товара [число > 0] | `отменить` для отмены')
+                    await main.edit(embed=embed)
+                else:
+                    cost = True
         
         embed.add_field(name='Цена', value=item_opts['cost'], inline=False)
         embed.set_footer(text='Введите описание товара | `отменить` для отмены')

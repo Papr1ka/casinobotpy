@@ -373,6 +373,17 @@ class Casino(Cog):
         await message.edit(embed=embed)
         self.__games[channel.id].remove(msg['message'].id)
         self.__messages[msg['message'].id]['author_money'] += won
+
+    
+    async def closeGame(self, author_id, guild_id):
+            games = self.__messages.keys()
+            to_remove = []
+            for i in games:
+                if self.__messages[i]['author_id'] == author_id and self.__messages[i]['guild_id'] == guild_id:
+                    to_remove.append(i)
+            for i in to_remove:
+                self.__messages.pop(i)
+                logger.debug(f"removed old game {i}")
     
     @command(
         usage='`=blackjack [ставка] (тайм-аут в секундах)`',
@@ -382,6 +393,7 @@ class Casino(Cog):
     @max_concurrency(1, BucketType.member, wait=False)
     async def blackjack(self, ctx, bet: int, timeout: int=60):
         await on_command(self.Bot.get_command('blackjack'))
+        await self.closeGame(ctx.author.id, ctx.guild.id)
         if timeout < 15 or timeout > 300:
             await ctx.reply(embed=Embed(title="Неверный таймаут, укажите в множестве [15-300]", color=Colour.dark_theme()))
             return
@@ -392,7 +404,7 @@ class Casino(Cog):
             return
         if author_money < bet:
             raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
-
+        await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet}})
         def check(interaction):
             return (interaction.custom_id[-1:-6:-1][::-1] in ('bjoin', 'start')) and interaction.channel == ctx.channel and interaction.user.id not in game.reg[1:]
         
@@ -534,6 +546,7 @@ class Casino(Cog):
                 elif interaction.custom_id[-1:-10:-1][::-1] == 'double___':
                     if player.cards > 1:
                         if player.money >= bet:
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet}})
                             player = await game.double(interaction.user.id)
                             
                             for i in range(len(embed.fields)):
@@ -576,7 +589,7 @@ class Casino(Cog):
                 if player.surrender is True:
                     embed.add_field(name="💸 " + player.name, value=f"`{int(player.bet / 2)}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                     query.append(
-                        [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -int(player.bet / 2)}}]
+                        [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet / 2)}}]
                     )
                     footer += f'{player.name} : сдался\n'
                 else:
@@ -584,7 +597,7 @@ class Casino(Cog):
                         embed.add_field(name="💸 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                         #проигрыш
                         query.append(
-                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -player.bet}}]
+                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1}}]
                         )
                         footer += f'{player.name} : проигрыш\n'
                     elif d_points > 21:
@@ -593,43 +606,43 @@ class Casino(Cog):
                                 embed.add_field(name="🤑 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                                 #блэкджек
                                 query.append(
-                                    [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 1.5)}}]
+                                    [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet + int(player.bet * 1.5)}}]
                                 )
                                 footer += f'{player.name} : блэкджек\n'
                             else:
                                 embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                                 #победа
                                 query.append(
-                                    [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                                    [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 2)}}]
                                 )
                                 footer += f'{player.name} : победа\n'
                         else:
                             embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                             #победа
                             query.append(
-                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 2)}}]
                             )
                             footer += f'{player.name} : победа\n'
                     elif summa == d_points:
-                        if len(player.hand) == 2 and len(game.dealer.hand) > 2:
+                        if len(player.hand) == 2 and len(game.dealer.hand) > 2 and summa == 21:
                             embed.add_field(name="🤑 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                             #блэкджек
                             query.append(
-                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 1.5)}}]
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet + int(player.bet * 1.5)}}]
                             )
                             footer += f'{player.name} : блэкджек\n'
-                        elif len(game.dealer.hand) == 2 and len(player.hand) > 2:
+                        elif len(game.dealer.hand) == 2 and len(player.hand) > 2 and summa == 21:
                             embed.add_field(name="💸 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                             #проигрыш
                             query.append(
-                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -player.bet}}]
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1}}]
                             )
                             footer += f'{player.name} : проигрыш\n'
                         else:
                             embed.add_field(name="🟨 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                             #ничья
                             query.append(
-                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1}}]
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
                             )
                             footer += f'{player.name} : ничья\n'
                     elif summa == 21:
@@ -637,28 +650,28 @@ class Casino(Cog):
                             embed.add_field(name="🤑 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                             #блэкджек
                             query.append(
-                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 1.5)}}]
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet + int(player.bet * 1.5)}}]
                             )
                             footer += f'{player.name} : блэкджек\n'
                         else:
                             embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                             #победа
                             query.append(
-                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                                [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 2)}}]
                             )
                             footer += f'{player.name} : победа\n'
                     elif summa < 21 and summa > d_points:
                         embed.add_field(name="💰 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                         #победа
                         query.append(
-                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': player.bet}}]
+                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': int(player.bet * 2)}}]
                         )
                         footer += f'{player.name} : победа\n'
                     else:
                         embed.add_field(name="💸 " + player.name, value=f"`{player.bet}$`             {' , '.join([c[x] for x in player.hand])}", inline=False)
                         #проигрыш
                         query.append(
-                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1, 'money': -player.bet}}]
+                            [ctx.guild.id, player.id, {'$inc': {'exp': LevelTable['casino'], 'games': 1}}]
                         )
                         footer += f'{player.name} : проигрыш\n'
         
@@ -675,6 +688,7 @@ class Casino(Cog):
     @max_concurrency(2, BucketType.channel, wait=False)
     async def slots(self, ctx, bet: int):
         await on_command(self.Bot.get_command('slots'))
+        await self.closeGame(ctx.author.id, ctx.guild.id)
         if bet > 1000 or bet < 100:
             await ctx.send(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
             return
@@ -722,6 +736,7 @@ class Casino(Cog):
     @max_concurrency(1, BucketType.member, wait=False)
     async def dice(self, ctx, bet: int, member: Member=None):
         await on_command(self.Bot.get_command('dice'))
+        await self.closeGame(ctx.author.id, ctx.guild.id)
         if bet > 1000 or bet < 100:
             await ctx.send(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
             return

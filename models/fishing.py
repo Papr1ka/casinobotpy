@@ -1,5 +1,5 @@
 from collections import namedtuple
-from random import uniform
+from random import uniform, choice
 from typing import Dict, List, Union
 
 fish_rod = namedtuple('Fish_rod', ['name', 'cost', 'description', 'modifiers', 'url', 'id'])
@@ -67,7 +67,7 @@ prises: Dict = {
 }
 
 boxes: Dict[int, fish] = {
-    10000: box("Бамбуковая коробка", [(components['1'], 5), (components['7'], 5)], "Деньги, бамбук, или лосось!", [fish_chance(1, 0.45), fish_chance(2, 0.45), fish_chance(3, 0.98)], "https://i.ibb.co/VmTVbwL/present1.png")
+    10000: box("Бамбуковая коробка", [(components['1'], 5), (components['7'], 5)], "Деньги, бамбук, или лосось!", [fish_chance(1, 0.45), fish_chance(2, 0.45), fish_chance(3, 0.98)], "https://i.ibb.co/VmTVbwL/present1.png"),
 }
 
 wshop = {**custom_rods, **boxes}
