@@ -152,7 +152,15 @@ async def vote(ctx):
                 diff = now_time - last_vote
                 if diff >= 43200:
                     embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`**"
-                    await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000}})
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time},
+                                                                   '$push': {f'inventory': {'$each': [{
+                        'name': rod.name,
+                        'cost': rod.cost,
+                        'description': rod.description,
+                        'loot': rod.loot,
+                        'url': rod.url,
+                        'tier': rod.tier
+                        } for i in range(3)]}}})
                 else:
                     diff = 43200 - diff
                     h = int(diff // 3600)
@@ -160,7 +168,7 @@ async def vote(ctx):
                     embed.title = f"**Вы уже получили награду, голосуйте через {h} часов, {m} минут!**"
             else:
                 embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`**"
-                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000},
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time},
                                                                    '$push': {f'inventory': {'$each': [{
                         'name': rod.name,
                         'cost': rod.cost,
