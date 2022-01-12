@@ -54,7 +54,7 @@ class ErrorHandler(commands.Cog):
             embed.title = 'Вызов команды возможен только в контексте гильдии'
         elif isinstance(error, CommandNotFound):
             logger.debug('errors.CommandNotFound')
-            embed.title = 'Команда не найдена'
+            embed.title = ""
         elif isinstance(error, BadArgument):
             logger.debug('errors.BadArgument')
             embed.title = 'Неверный параметр'
@@ -62,16 +62,17 @@ class ErrorHandler(commands.Cog):
             embed.title = f'Команда на перезарядке, попробуйте через `{round(error.retry_after, 1)}` секунд'
         elif isinstance(error, Forbidden):
             logger.debug('errors.Forbidden')
+            embed.title = ""
         elif isinstance(error, NotFound):
-            pass
+            embed.title = ""
         elif isinstance(error, CommandInvokeError):
-            pass
+            embed.title = ""
         elif isinstance(error, TError):
-            pass
+            embed.title = ""
         elif isinstance(error, TimeoutError):
-            pass
+            embed.title = ""
         elif isinstance(error, NotOwner):
-            pass
+            embed.title = ""
         else:
             logger.error(error)
             embed.title = 'Что-то пошло не так'

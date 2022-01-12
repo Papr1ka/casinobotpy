@@ -71,7 +71,7 @@ prises: Dict = {
 
 boxes: Dict[int, fish] = {
     10000: box("Бамбуковая коробка", [(components['1'], 5), (components['7'], 5)], "Деньги, бамбук, или лосось!", [fish_chance(1, 0.45), fish_chance(2, 0.45), fish_chance(3, 0.98)], "https://i.ibb.co/VmTVbwL/present1.png", 1),
-    10001: box("Подарочная коробка", [(components['1'], 5), (components['2'], 5), (components['3'], 5), (components['4'], 5), (components['5'], 5), (components['6'], 5), (components['7'], 5), (components['8'], 5)], "Никто не знает, что там лежит!", [fish_chance(4, 0.33), fish_chance(5, 0.33), fish_chance(6, 0.34)], "https://i.ibb.co/VmTVbwL/present1.png", 4),
+    10001: box("Подарочная коробка", [(components['1'], 5), (components['2'], 5), (components['3'], 5), (components['4'], 5), (components['5'], 5), (components['6'], 5), (components['7'], 5), (components['8'], 5)], "Никто не знает, что там лежит!", [fish_chance(4, 0.33), fish_chance(5, 0.33), fish_chance(6, 0.34)], "https://i.ibb.co/Tv2qysN/present2.png", 4),
 }
 
 wshop = {**custom_rods, **boxes}

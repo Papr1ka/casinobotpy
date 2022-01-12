@@ -11,6 +11,7 @@ from handlers import MailHandler
 from discord_components import DiscordComponents
 from json import loads
 from time import time
+from models.fishing import wshop
 
 
 config.fileConfig('./logging.ini', disable_existing_loggers=False)
@@ -132,7 +133,7 @@ async def on_command(command):
 
 
 @Bot.command(
-    help="Проголосуйте за бота и получите 5000$!",
+    help="Проголосуйте за бота и получите 3 подарочных коробки!",
     usage="`=vote`"
 )
 @guild_only()
@@ -143,13 +144,14 @@ async def vote(ctx):
     if status == 200:
         voted = False if not r['voted'] else True
         if voted:
+            rod = wshop[10001]
             last_vote = await db.fetch_user(ctx.guild.id, ctx.author.id, claim=1)
             last_vote = last_vote['claim']
             now_time = time()
             if last_vote != 0:
                 diff = now_time - last_vote
                 if diff >= 43200:
-                    embed.title = "**Спасибо за голос! Начислено: `5000$`**"
+                    embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`**"
                     await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000}})
                 else:
                     diff = 43200 - diff
@@ -157,8 +159,16 @@ async def vote(ctx):
                     m = ceil((diff - h * 3600) / 60)
                     embed.title = f"**Вы уже получили награду, голосуйте через {h} часов, {m} минут!**"
             else:
-                embed.title = "**Спасибо за голос! Начислено: `5000$`**"
-                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000}})
+                embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`**"
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time}, '$inc': {'money': 5000},
+                                                                   '$push': {f'inventory': {'$each': [{
+                        'name': rod.name,
+                        'cost': rod.cost,
+                        'description': rod.description,
+                        'loot': rod.loot,
+                        'url': rod.url,
+                        'tier': rod.tier
+                        } for i in range(3)]}}})
         else:
             embed.title = "**Чтобы получить награду, проголосуйте на сайте и обратитесь снова**"
             embed.url = 'https://top.gg/bot/883201346759704606/vote'
