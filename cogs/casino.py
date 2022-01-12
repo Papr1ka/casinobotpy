@@ -164,7 +164,7 @@ class Casino(Cog):
             msg = self.__messages[payload.message_id]
         except:
             channel = self.Bot.get_channel(payload.channel_id)
-            await ErrorHandler.on_error(channel=channel, error=errors.BadGamesession("Сессия устарела"))
+            #await ErrorHandler.on_error(channel=channel, error=errors.BadGamesession("Сессия устарела"))
         else:
             if msg['author_id'] != payload.user_id:
                 return
