@@ -234,8 +234,9 @@ class Shop(Cog):
         await inter.edit_origin(embed=embed, components=[[
             component.Button(style=component.ButtonStyle.green, label="Продать", custom_id=c_id + "sell"),
             component.Button(label="Разобрать", style=component.ButtonStyle.green, custom_id=c_id + "disa"),
-            component.Button(label="На рынок", style=component.ButtonStyle.green, custom_id=c_id + "market")]])
-        interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "sell" or i.custom_id == c_id + "disa" or i.custom_id == c_id + "market") and i.user == ctx.author)
+            component.Button(label="На рынок", style=component.ButtonStyle.green, custom_id=c_id + "market"),
+            component.Button(label="Отменить", style=component.ButtonStyle.green, custom_id=c_id + "r")]])
+        interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "sell" or i.custom_id == c_id + "disa" or i.custom_id == c_id + "market" or i.custom_id == c_id + "r") and i.user == ctx.author)
 
         if interaction.custom_id == c_id + "sell":
             cost = item['cost']
@@ -270,6 +271,8 @@ class Shop(Cog):
             await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.cage': None}})
             embed = Embed(title="Товар выставлен на рынок", color=Colour.dark_theme())
             await message.reply(embed=embed)
+        elif interaction.custom_id == c_id + "r":
+            pass
         else:
             await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {f'finventory.components.{i}': item['components'][i] for i in item['components']}, '$unset': {f'finventory.cage.{response}': 1}})
             await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.cage': None}})
@@ -359,7 +362,8 @@ class Shop(Cog):
                         'cost': rod.cost,
                         'description': rod.description,
                         'loot': rod.loot,
-                        'url': rod.url
+                        'url': rod.url,
+                        'tier': rod.tier
                         }}, '$inc': {f'finventory.components.{i[0].id}': -i[1] for i in rod.cost}})
                 else:
                     embed = Embed(title=f"У вас уже есть этот товар", color=Colour.dark_theme())
@@ -607,6 +611,9 @@ class Shop(Cog):
                     f = i['loot']
                     loot = choices([i[0] for i in f], [i[1] for i in f])
                     loot = prises[loot[0]]
+                    if isinstance(loot, tuple):
+                        loot = loot[0](loot[1])
+                        print(loot)
                     if isinstance(loot, int):
                         embed.description = f"Начислено: `{loot}$`"
                         await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': loot}, '$unset': {f'inventory.{response}': 1}})
@@ -615,7 +622,7 @@ class Shop(Cog):
                         embed.description = f"Начислено: `{loot.name}`"
                         await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'finventory.cage': await json_fish(loot)}, '$unset': {f'inventory.{response}': 1}})
                     else:
-                        amount = randint(1, 5)
+                        amount = randint(1 * i['tier'], 5 * i['tier'])
                         await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {f'finventory.components.{loot.id}': amount}, '$unset': {f'inventory.{response}': 1}})
                         embed.description = f"Начислено: `{loot.name}: {amount}`"
                     await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'inventory': None}})
@@ -802,34 +809,36 @@ class Shop(Cog):
         embed.add_field(name='Описание', value=item.description, inline=False)
         embed.set_image(url=item.url)
         if item.name != "Бамбук":
-            await inter.edit_origin(embed=embed, components=[[component.Button(label="На рынок", style=component.ButtonStyle.green, custom_id=c_id + "market2")]])
-            interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "market2") and i.user == ctx.author)
+            await inter.edit_origin(embed=embed, components=[[component.Button(label="На рынок", style=component.ButtonStyle.green, custom_id=c_id + "market2"), component.Button(label="Отменить", style=component.ButtonStyle.green, custom_id=c_id + "r2")]])
+            interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "market2" or i.custom_id == c_id + "r2") and i.user == ctx.author)
+            if interaction.custom_id == c_id + "market2":
+                embed = Embed(title="Введите желаемую цену", color=Colour.dark_theme())
+                await interaction.send(embed=embed)
+                cost = False
+                while not cost:
+                    message = await self.Bot.wait_for("message", check = lambda m: m.author == ctx.author and m.channel == ctx.channel)
+                    cost = await self.is_cost(message.content)
+                    if not cost:
+                        await message.reply(embed=Embed(title="Некорректная цена"))
+                    else:
+                        cost = int(message.content)
 
-            embed = Embed(title="Введите желаемую цену", color=Colour.dark_theme())
-            await interaction.send(embed=embed)
-            cost = False
-            while not cost:
-                message = await self.Bot.wait_for("message", check = lambda m: m.author == ctx.author and m.channel == ctx.channel)
-                cost = await self.is_cost(message.content)
-                if not cost:
-                    await message.reply(embed=Embed(title="Некорректная цена"))
-                else:
-                    cost = int(message.content)
-
-            await db.update_user(ctx.guild.id, shop_id, {'$push': {'rods': {
-                'name': item.name,
-                'cost': item.cost,
-                'description': item.description,
-                'url': item.url,
-                'seller': ctx.author.id,
-                'sellcost': cost,
-                'sellername': message.author.display_name,
-                'id': f"{ctx.guild.id}{ctx.channel.id}{ctx.message.id}"
-            }}})
-            await db.update_user(ctx.guild.id, ctx.author.id, {'$unset': {f'finventory.rods.{response}': 1}})
-            await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.rods': None}})
-            embed = Embed(title="Товар выставлен на рынок", color=Colour.dark_theme())
-            await message.reply(embed=embed)
+                await db.update_user(ctx.guild.id, shop_id, {'$push': {'rods': {
+                    'name': item.name,
+                    'cost': item.cost,
+                    'description': item.description,
+                    'url': item.url,
+                    'seller': ctx.author.id,
+                    'sellcost': cost,
+                    'sellername': message.author.display_name,
+                    'id': f"{ctx.guild.id}{ctx.channel.id}{ctx.message.id}"
+                }}})
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$unset': {f'finventory.rods.{response}': 1}})
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.rods': None}})
+                embed = Embed(title="Товар выставлен на рынок", color=Colour.dark_theme())
+                await message.reply(embed=embed)
+            else:
+                await interaction.edit_origin(embed=embed, components=[])
         else:
             await inter.edit_origin(embed=embed, components=[])
 

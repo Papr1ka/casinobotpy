@@ -340,6 +340,7 @@ class Casino(Cog):
 
     async def __roll(self, msg):
         bet = msg['bet']
+        await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': -bet, 'games': 1}})
         self.__messages[msg['message'].id]['author_money'] -= bet
         message = msg['message']
         channel = message.channel
@@ -368,7 +369,7 @@ class Casino(Cog):
         win = self.__get_win(self.__bets[self.__bets_type[msg['bet_type']]][msg['bet_type_type']], win, final[win_ind])
         won = bet * (win['kf'] if win['win'] else 0)
         increase += won
-        await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': increase, 'games': 1}})
+        await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': bet + increase, 'games': 1}})
         embed.set_footer(text=self.__format_footer(won, bet))
         await message.edit(embed=embed)
         self.__games[channel.id].remove(msg['message'].id)
