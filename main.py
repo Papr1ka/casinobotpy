@@ -133,7 +133,7 @@ async def on_command(command):
 
 
 @Bot.command(
-    help="Проголосуйте за бота и получите 3 подарочных коробки!",
+    help="Проголосуйте за бота и получите 3 подарочных коробки! (раз в 12 часов)",
     usage="`=vote`"
 )
 @guild_only()
@@ -151,7 +151,7 @@ async def vote(ctx):
             if last_vote != 0:
                 diff = now_time - last_vote
                 if diff >= 43200:
-                    embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`**"
+                    embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`** Голосуйте снова через 12ч"
                     await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time},
                                                                    '$push': {f'inventory': {'$each': [{
                         'name': rod.name,
@@ -167,7 +167,7 @@ async def vote(ctx):
                     m = ceil((diff - h * 3600) / 60)
                     embed.title = f"**Вы уже получили награду, голосуйте через {h} часов, {m} минут!**"
             else:
-                embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`**"
+                embed.title = "**Спасибо за голос! Начислено: `3 подарочных коробки`** Голосуйте снова через 12ч"
                 await db.update_user(ctx.guild.id, ctx.author.id, {'$set': {'claim': now_time},
                                                                    '$push': {f'inventory': {'$each': [{
                         'name': rod.name,
