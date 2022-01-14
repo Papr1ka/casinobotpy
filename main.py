@@ -78,7 +78,8 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Рулетка', value='`=rulet`', inline=False)
                 embed.add_field(name='Блэкджек', value='`=blackjack [ставка]`', inline=False)
                 embed.add_field(name='Слоты', value='`=slots [ставка]`', inline=False)
-                embed.add_field(name='Кости', value='`=dice [ставка] (оппонент)`', inline=False)
+                embed.add_field(name='Кости', value='`=dice [ставка] @(оппонент)`', inline=False)
+                embed.add_field(name='Камень, Ножницы, Бумага', value='`=rps [ставка] @(оппонент)`', inline=False)
             elif module_command == 'user':
                 embed.title=f"{Bot.user.name} user команды"
                 embed.add_field(name='Статистика пользователя', value='`=stats`', inline=False)

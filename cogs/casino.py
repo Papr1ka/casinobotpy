@@ -1,5 +1,6 @@
 from asyncio import sleep
 from random import randint
+from discord.errors import NotFound
 from discord.ext.commands import guild_only, Cog, command
 from discord import Embed, Colour, Member
 from logging import config, getLogger
@@ -95,6 +96,12 @@ class Casino(Cog):
         'на число': ["на " + i.__str__() for i in range(0, 37)]
     }
 
+    __rps_emoji = {
+        1: "🥌",
+        2: "✂️",
+        3: "🧻"
+    }
+    
     __messages = {} #{message_id: {'message': discord.Message, 'author': str, 'bet_type': int, 'bet': int, 'bet_type_type': int, 'author_id': int, 'choice': bool, 'mobile': bool, 'author_money': int, 'guild_id': int, 'last_use': time.time}}
     __games = {
         #{'channel_id': []}
@@ -108,7 +115,7 @@ class Casino(Cog):
         '⏫': 1000,
     }
     __min_bet = 100
-    __max_bet = 5000
+    __max_bet = 10000
     __max_games = 2
     __sleep = 300 #300
 
@@ -361,7 +368,14 @@ class Casino(Cog):
             embed.clear_fields()
             embed.add_field(name=f"```{'♥️':-^{padding}}```", value='```elixir\n' + '  '.join([self.__visualize_number(number) for number in i]) + '\n' + '  '.join([self.__vcolors[game.check(number)[0]] * 2 for number in i]) + '```')
             await sleep(1)
-            await message.edit(embed=embed)
+            try:
+                await message.edit(embed=embed)
+            except NotFound:
+                await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': bet}})
+                await ErrorHandler.on_error(channel=channel, error=errors.BadGamesession("Игра была прервана, ставка возвращена"))
+                self.__games[channel.id].remove(msg['message'].id)
+                self.__messages[msg['message'].id]['author_money'] += bet
+                return
         
         win_ind = step // 2
         win = game.check(final[win_ind])
@@ -370,7 +384,14 @@ class Casino(Cog):
         increase += won
         await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': bet + increase, 'games': 1}})
         embed.set_footer(text=self.__format_footer(won, bet))
-        await message.edit(embed=embed)
+        try:
+            await message.edit(embed=embed)
+        except NotFound:
+            await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': bet}})
+            await ErrorHandler.on_error(channel=channel, error=errors.BadGamesession("Игра была прервана, ставка возвращена"))
+            self.__games[channel.id].remove(msg['message'].id)
+            self.__messages[msg['message'].id]['author_money'] += bet
+            return
         self.__games[channel.id].remove(msg['message'].id)
         self.__messages[msg['message'].id]['author_money'] += won
 
@@ -399,8 +420,8 @@ class Casino(Cog):
             return
         author_money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
         author_money = author_money['money']
-        if bet < 100 or bet > 1000:
-            await ctx.reply(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
+        if bet < self.__min_bet or bet > self.__max_bet:
+            await ctx.reply(embed=Embed(title=f"Ставка должна быть в диапазоне [{self.__min_bet}, {self.__max_bet}]$", color=Colour.dark_theme()))
             return
         if author_money < bet:
             raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
@@ -690,8 +711,8 @@ class Casino(Cog):
     async def slots(self, ctx, bet: int):
         await on_command(self.Bot.get_command('slots'))
         await self.closeGame(ctx.author.id, ctx.guild.id)
-        if bet > 1000 or bet < 100:
-            await ctx.send(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
+        if bet > self.__max_bet or bet < self.__min_bet:
+            await ctx.send(embed=Embed(title=f"Ставка должна быть в диапазоне [{self.__min_bet}, {self.__max_bet}]$", color=Colour.dark_theme()))
             return
         money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
         money = money['money']
@@ -728,6 +749,9 @@ class Casino(Cog):
     
     async def rollTheDice(self):
         return randint(1, 6), randint(1, 6)
+
+    async def rollRPS(self):
+        return randint(1, 3), randint(1, 3)
     
     @command(
         usage="`=dice [ставка] (@оппонент)`",
@@ -738,18 +762,18 @@ class Casino(Cog):
     async def dice(self, ctx, bet: int, member: Member=None):
         await on_command(self.Bot.get_command('dice'))
         await self.closeGame(ctx.author.id, ctx.guild.id)
-        if bet > 1000 or bet < 100:
-            await ctx.send(embed=Embed(title="Ставка должна быть в диапазоне [100, 1000]$", color=Colour.dark_theme()))
+        if bet > self.__max_bet or bet < self.__min_bet:
+            await ctx.send(embed=Embed(title=f"Ставка должна быть в диапазоне [{self.__min_bet}, {self.__max_bet}]$", color=Colour.dark_theme()))
             return
         money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
         money = money['money']
         if money < bet:
             raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
         else:
-            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
             embed = Embed(color = Colour.dark_theme())
             embed.set_author(name = ctx.author.display_name, icon_url = ctx.author.avatar_url)
             if member is None:
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
                 embed.title = f"{ctx.author.display_name} vs King Dice!"
                 embed.set_thumbnail(url = "https://i.pinimg.com/originals/a0/39/f0/a039f043d0c0089a203fc3b974081496.png")
                 win = await self.rollTheDice()
@@ -767,14 +791,17 @@ class Casino(Cog):
                 embed.set_footer(text = description)
                 await dic.edit(embed = embed)
             else:
-                if member.id != ctx.author.id:
-                    await ctx.send(f"{member.mention}, {ctx.author.display_name} приглашает вас в сыграть в кости, ставка {bet}, напишите `claim`, чтобы сыграть, осталось 60 секунд")
+                if member.id != ctx.author.id and not member.bot:
+                    c_id = str(ctx.message.id)
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
+                    components = [Button(label="Играть", style=ButtonStyle.green, custom_id=c_id + 'acceptdice')]
+                    await ctx.send(f"{member.mention}, {ctx.author.display_name} приглашает вас в сыграть в кости, ставка `{bet}$`, осталось `60` секунд", components=components)
 
-                    def check(m):
-                        return ('claim' in m.content) and m.channel == ctx.channel and m.author == member
+                    def check(inter):
+                        return inter.custom_id == c_id + 'acceptdice' and inter.channel.id == ctx.channel.id and inter.user.id == member.id
 
                     try:
-                        msg = await self.Bot.wait_for('message', check=check, timeout=60)
+                        interaction = await self.Bot.wait_for('button_click', timeout=60, check=check)
                     except TError:
                         await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
                         embed = Embed(title="Никто не присоединился", color=Colour.dark_theme())
@@ -789,10 +816,10 @@ class Casino(Cog):
                         else:
                             await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': -bet }})
                             embed.title = f"{ctx.author.display_name} vs {member.display_name}!"
-                            embed.set_thumbnail(url = msg.author.avatar_url)
+                            embed.set_thumbnail(url = interaction.user.avatar_url)
                             win = await self.rollTheDice()
                             embed.title = f"{ctx.author.display_name} : {emomoji[win[0]]} vs {emomoji[win[1]]} : {member.display_name}"
-                            dic = await ctx.send(embed = embed)
+                            dic = await interaction.edit_origin(embed=embed, components=[])
                             if win[0] > win[1]:
                                 description = f"{ctx.author.display_name} выйграл! {bet}$"
                                 await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2 }})
@@ -805,9 +832,9 @@ class Casino(Cog):
                                 await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': bet * 2}})
                             await sleep(1)
                             embed.set_footer(text = description)
-                            await dic.edit(embed = embed)
+                            await dic.edit(embed=embed, components=[])
                 else:
-                    embed = Embed(title="Вы не можете играть с самим собой")
+                    embed = Embed(title="Вы не можете играть с самим собой или с другим ботом")
                     await ctx.reply(embed = embed)
                 
     
@@ -816,7 +843,90 @@ class Casino(Cog):
         if isinstance(error, BadArgument):
             embed = Embed(title="Ставка должна быть в диапазоне [100, 1000]", color=Colour.dark_theme())
             await ctx.send(embed=embed)
-        
+    
+    
+    @command(
+        usage="`=rps [ставка] (@оппонент)`",
+        help="Камень ломает ножницы, ножницы разрезают бумагу, бумага обёртывает камень"
+    )
+    @guild_only()
+    @max_concurrency(1, BucketType.member, wait=False)
+    async def rps(self, ctx, bet: int, member: Member = None):
+        await on_command(self.Bot.get_command('rps'))
+        await self.closeGame(ctx.author.id, ctx.guild.id)
+        if bet > self.__max_bet or bet < self.__min_bet:
+            await ctx.send(embed=Embed(title=f"Ставка должна быть в диапазоне [{self.__min_bet}, {self.__max_bet}]$", color=Colour.dark_theme()))
+            return
+        money = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1)
+        money = money['money']
+        if money < bet:
+            raise errors.NotEnoughMoney(f'{(ctx.author.nick if ctx.author.nick else ctx.author.name) + "#" + ctx.author.discriminator}, недостаточно средств')
+        else:
+            embed = Embed(color = Colour.dark_theme())
+            embed.set_author(name = ctx.author.display_name, icon_url = ctx.author.avatar_url)
+            if member is None:
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
+                embed.set_thumbnail(url = "https://i.pinimg.com/originals/a0/39/f0/a039f043d0c0089a203fc3b974081496.png")
+                win = await self.rollRPS()
+                embed.title = f"{ctx.author.display_name} : {self.__rps_emoji[win[0]]} vs {self.__rps_emoji[win[1]]} : King Dice"
+                dic = await ctx.send(embed = embed)
+                if (win[0] == 1 and win[1] == 2) or (win[0] == 2 and win[1] == 3) or (win[0] == 3 and win[1] == 1):
+                    description = f"{ctx.author.display_name} выйграл! {bet}$"
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2}})
+                elif win[0] == win[1]:
+                    description = f"ничья"
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                else:
+                    description = f"King Dice выйграл! {bet}$"
+                await sleep(1)
+                embed.set_footer(text = description)
+                await dic.edit(embed = embed)
+            else:
+                if member.id != ctx.author.id and not member.bot:
+                    c_id = str(ctx.message.id)
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
+                    components = [Button(label="Играть", style=ButtonStyle.green, custom_id=c_id + 'claimrps')]
+                    await ctx.send(f"{member.mention}, {ctx.author.display_name} приглашает вас в сыграть в Камень, Ножницы, Бумага, ставка `{bet}$`, осталось `60` секунд", components=components)
+
+                    def check(inter):
+                        return inter.custom_id == c_id + 'claimrps' and inter.channel.id == ctx.channel.id and inter.user.id == member.id
+
+                    try:
+                        interaction = await self.Bot.wait_for('button_click', timeout=60, check=check)
+                    except TError:
+                        await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                        embed = Embed(title="Никто не присоединился", color=Colour.dark_theme())
+                        await ctx.send(embed=embed)
+                        return
+                    else:
+                        member_money = await db.fetch_user(ctx.guild.id, member.id, money=1)
+                        member_money = member_money['money']
+                        if member_money < bet:
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                            raise errors.NotEnoughMoney(f'{(member.nick if member.nick else member.name) + "#" + member.discriminator}, недостаточно средств')
+                        else:
+                            await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': -bet }})
+                            embed.title = f"{ctx.author.display_name} vs {member.display_name}!"
+                            embed.set_thumbnail(url = interaction.user.avatar_url)
+                            win = await self.rollRPS()
+                            embed.title = f"{ctx.author.display_name} : {self.__rps_emoji[win[0]]} vs {self.__rps_emoji[win[1]]} : {member.display_name}"
+                            dic = await interaction.edit_origin(embed=embed, components=[])
+                            if (win[0] == 1 and win[1] == 2) or (win[0] == 2 and win[1] == 3) or (win[0] == 3 and win[1] == 1):
+                                description = f"{ctx.author.display_name} выйграл! {bet}$"
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2 }})
+                            elif win[0] == win[1]:
+                                description = f"ничья!"
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                                await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': bet }})
+                            else:
+                                description = f"{member.display_name} выйграл! {bet}$"
+                                await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': bet * 2}})
+                            await sleep(1)
+                            embed.set_footer(text=description)
+                            await dic.edit(embed=embed, components=[])
+                else:
+                    embed = Embed(title="Вы не можете играть с самим собой или с другим ботом")
+                    await ctx.reply(embed=embed)
 
     @Cog.listener()
     async def on_raw_reaction_add(self, payload):
