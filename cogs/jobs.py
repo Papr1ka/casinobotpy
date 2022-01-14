@@ -5,6 +5,7 @@ from discord.ext.commands import Cog, command, guild_only
 from discord import Embed, Colour
 from asyncio import TimeoutError
 from random import randint, choices, random, shuffle
+from cogs.leveling import LevelTable
 
 from database import db
 from math import sqrt
@@ -200,16 +201,16 @@ class Jobs(Cog):
                         await interaction.edit_origin(embed=Embed(title="Улов отправлен в садок", color=Colour.dark_theme()), components=[])
                     else:
                         if interaction.custom_id == c_id + "sell":
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': fish.cost}})
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': fish.cost, 'exp': LevelTable['fishing']}})
                             user_money += fish.cost
                             await interaction.edit_origin(embed=Embed(title=f"Улов продан, получено: `{fish.cost}$`", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
                         elif interaction.custom_id == c_id + "disa":
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {f'finventory.components.{i}': fish.components[i] for i in fish.components}})
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {f'finventory.components.{i}': fish.components[i] for i in fish.components}, '$inc': {'exp': LevelTable['fishing']}})
                             for i in fish.components:
                                 user_components[i] += fish.components[i]
                             await interaction.edit_origin(embed=Embed(title=f"Рыба разобрана, получено: {', '.join([f'{fish_components[i].name} - {fish.components[i]}' for i in fish.components])}", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
                         else:
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'finventory.cage': await json_fish(fish)}})
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'finventory.cage': await json_fish(fish)}, '$inc': {'exp': LevelTable['fishing']}})
                             await interaction.edit_origin(embed=Embed(title="Улов отправлен в садок", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
                 else:
                     embed = Embed(title="Рыба ускользнула", color=Colour.dark_theme())

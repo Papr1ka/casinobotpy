@@ -18,7 +18,7 @@ class Leveling(Cog):
 
     leveling_table = {
         'message': 10,
-        'fishing': 20,
+        'fishing': 10,
         'casino': 20
     }
     timing = 60

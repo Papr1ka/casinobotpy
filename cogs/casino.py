@@ -444,7 +444,7 @@ class Casino(Cog):
                     if money >= bet:
                         
                         await game.add_player(interaction.user.id, (interaction.user.nick if interaction.user.nick else interaction.user.name) + "#" + interaction.user.discriminator, money - bet)
-                        
+                        await db.update_user(ctx.guild.id, interaction.user.id, {'$inc': {'money': -bet}})
                         embed.description = f"`Игроки: {len(game.players)}`"
                         embed.set_footer(text=f'Ожидание игроков, игра начнётся через {int(timeout - (time() - start))} секунд')
                         embed.add_field(name="🕵️‍♂️ "+game.players[interaction.user.id][0].name, value=f"`{game.players[interaction.user.id][0].bet}$`", inline=False)
@@ -766,7 +766,6 @@ class Casino(Cog):
                 await dic.edit(embed = embed)
             else:
                 if member.id != ctx.author.id:
-                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
                     await ctx.send(f"{member.mention}, {ctx.author.display_name} приглашает вас в сыграть в кости, ставка {bet}, напишите `claim`, чтобы сыграть, осталось 60 секунд")
 
                     def check(m):
