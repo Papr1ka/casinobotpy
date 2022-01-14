@@ -119,9 +119,9 @@ class Jobs(Cog):
                     components = [Button(label="Рыбачить", style=ButtonStyle.green, custom_id=c_id + "fish")]
                 await interaction.edit_origin(embed=embed, components=components)
         user_data = await db.fetch_user(ctx.guild.id, ctx.author.id, money=1, finventory=1)
-        user_money = user_data['money']
         user_components = {str(i): 0 for i in range(1, 9)}
         user_components.update(user_data['finventory']['components'])
+        catched = 0
         
         start = time()
         while time() - start < 300:
@@ -131,7 +131,7 @@ class Jobs(Cog):
                 start = time()
             else:
                 e = Embed(title=f"Погода: {footer}", color=Colour.dark_theme())
-                e.description = f"Денег: `{user_money}`$ | Инвентарь:\n"
+                e.description = f"Поймано за заход: `{catched}`   | Инвентарь:\n"
                 pl = ', '.join([f'{fish_components[i].re} - `{user_components[i]}`' for i in user_components if user_components[i] != 0])
                 e.description += pl if pl != "" else "Пусто"
                 await interaction.respond(embed=e)
@@ -178,6 +178,7 @@ class Jobs(Cog):
                 
                 catch = abs(co - circle) <= main_rod.modifiers['aim'] * 0.1
                 if catch:
+                    catched += 1
                     f = main_pond.modifiers['chances']
                     fish = choices([i.id for i in f], [i.chance for i in f])
                     fish_index = fish[0]
@@ -202,10 +203,11 @@ class Jobs(Cog):
                     else:
                         if interaction.custom_id == c_id + "sell":
                             await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': fish.cost, 'exp': LevelTable['fishing']}})
-                            user_money += fish.cost
                             await interaction.edit_origin(embed=Embed(title=f"Улов продан, получено: `{fish.cost}$`", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
                         elif interaction.custom_id == c_id + "disa":
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {f'finventory.components.{i}': fish.components[i] for i in fish.components}, '$inc': {'exp': LevelTable['fishing']}})
+                            q = {f'finventory.components.{i}': fish.components[i] for i in fish.components}
+                            q['exp'] = LevelTable['fishing']
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': q})
                             for i in fish.components:
                                 user_components[i] += fish.components[i]
                             await interaction.edit_origin(embed=Embed(title=f"Рыба разобрана, получено: {', '.join([f'{fish_components[i].name} - {fish.components[i]}' for i in fish.components])}", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])

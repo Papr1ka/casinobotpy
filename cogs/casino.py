@@ -19,6 +19,7 @@ from models.colode import *
 from models.rulet import Rulet
 from models.slots import Slots, emoji
 import models.errors as errors
+from asyncio import TimeoutError as TError
 
 
 config.fileConfig('logging.ini', disable_existing_loggers=False)
@@ -523,6 +524,7 @@ class Casino(Cog):
                         if points[player.hand[0]] == points[player.hand[1]]:
                             if player.split is False:
                                 if player.money >= game.bet:
+                                    await db.update_user(ctx.guild.id, interaction.user.id, {'$inc': {'money': -bet}})
                                     pl2 = await game.split(interaction.user.id)
                                     
                                     for i in range(len(embed.fields)):
@@ -545,7 +547,7 @@ class Casino(Cog):
                 elif interaction.custom_id[-1:-10:-1][::-1] == 'double___':
                     if player.cards > 1:
                         if player.money >= bet:
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet}})
+                            await db.update_user(ctx.guild.id, interaction.user.id, {'$inc': {'money': -bet}})
                             player = await game.double(interaction.user.id)
                             
                             for i in range(len(embed.fields)):
@@ -773,7 +775,8 @@ class Casino(Cog):
 
                     try:
                         msg = await self.Bot.wait_for('message', check=check, timeout=60)
-                    except TimeoutError:
+                    except TError:
+                        await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
                         embed = Embed(title="Никто не присоединился", color=Colour.dark_theme())
                         await ctx.send(embed=embed)
                         return
