@@ -286,7 +286,6 @@ class Shop(Cog):
         usage="`=workshop`",
         help="Мастерская вашей гильдии"
     )
-    @max_concurrency(1, BucketType.member, wait=False)
     @guild_only()
     async def workshop(self, ctx):
         await on_command(self.Bot.get_command('workshop'))
@@ -632,7 +631,6 @@ class Shop(Cog):
         usage="`=market`",
         help="Рынок гольдии, выставить на продажу: =cage =rods , вернуть предмет - купить (деньги не снимутся)"
     )
-    @max_concurrency(1, BucketType.member, wait=False)
     @guild_only()
     async def market(self, ctx):
         await on_command(self.Bot.get_command('market'))
