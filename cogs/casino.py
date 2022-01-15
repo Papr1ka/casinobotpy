@@ -751,7 +751,7 @@ class Casino(Cog):
         return randint(1, 6), randint(1, 6)
 
     async def rollRPS(self):
-        return randint(1, 3), randint(1, 3)
+        return [randint(1, 3), randint(1, 3)]
     
     @command(
         usage="`=dice [ставка] (@оппонент)`",
@@ -854,6 +854,7 @@ class Casino(Cog):
     async def rps(self, ctx, bet: int, member: Member = None):
         await on_command(self.Bot.get_command('rps'))
         await self.closeGame(ctx.author.id, ctx.guild.id)
+        c_id = str(ctx.message.id)
         if bet > self.__max_bet or bet < self.__min_bet:
             await ctx.send(embed=Embed(title=f"Ставка должна быть в диапазоне [{self.__min_bet}, {self.__max_bet}]$", color=Colour.dark_theme()))
             return
@@ -867,9 +868,31 @@ class Casino(Cog):
             if member is None:
                 await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
                 embed.set_thumbnail(url = "https://i.pinimg.com/originals/a0/39/f0/a039f043d0c0089a203fc3b974081496.png")
+                embed.title = f"{ctx.author.display_name} vs King Dice"
                 win = await self.rollRPS()
+                components = [[Button(label="Камень", style=ButtonStyle.blue, custom_id=c_id + 'rock'),
+                               Button(label="Ножницы", style=ButtonStyle.blue, custom_id=c_id + 'scissors'),
+                               Button(label="Бумага", style=ButtonStyle.blue, custom_id=c_id + 'paper')]]
+                origin = await ctx.send(embed=embed, components=components)
+                def check1(inter):
+                    return (inter.custom_id == c_id + 'rock' or inter.custom_id == c_id + 'scissors' or inter.custom_id == c_id + 'paper') and inter.channel.id == ctx.channel.id and inter.user.id == ctx.author.id
+                try:
+                    interaction = await self.Bot.wait_for('button_click', timeout=60, check=check1)
+                except TError:
+                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                    embed = Embed(title="Нет ответа", color=Colour.dark_theme())
+                    await ctx.send(embed=embed)
+                    return
+                else:
+                    if interaction.custom_id == c_id + 'rock':
+                        win[0] = 1
+                    elif interaction.custom_id == c_id + 'scissors':
+                        win[0] = 2
+                    else:
+                        win[0] = 3
+                
                 embed.title = f"{ctx.author.display_name} : {self.__rps_emoji[win[0]]} vs {self.__rps_emoji[win[1]]} : King Dice"
-                dic = await ctx.send(embed = embed)
+                dic = await interaction.edit_origin(embed=embed, components=[])
                 if (win[0] == 1 and win[1] == 2) or (win[0] == 2 and win[1] == 3) or (win[0] == 3 and win[1] == 1):
                     description = f"{ctx.author.display_name} выйграл! {bet}$"
                     await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2}})
@@ -880,10 +903,9 @@ class Casino(Cog):
                     description = f"King Dice выйграл! {bet}$"
                 await sleep(1)
                 embed.set_footer(text = description)
-                await dic.edit(embed = embed)
+                await dic.edit(embed=embed, components=[])
             else:
                 if member.id != ctx.author.id and not member.bot:
-                    c_id = str(ctx.message.id)
                     await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': -bet }})
                     components = [Button(label="Играть", style=ButtonStyle.green, custom_id=c_id + 'claimrps')]
                     await ctx.send(f"{member.mention}, {ctx.author.display_name} приглашает вас в сыграть в Камень, Ножницы, Бумага, ставка `{bet}$`, осталось `60` секунд", components=components)
@@ -908,9 +930,47 @@ class Casino(Cog):
                             await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': -bet }})
                             embed.title = f"{ctx.author.display_name} vs {member.display_name}!"
                             embed.set_thumbnail(url = interaction.user.avatar_url)
+                            
+                            
+                            components = [[Button(label="Камень", style=ButtonStyle.blue, custom_id=c_id + 'rock'),
+                               Button(label="Ножницы", style=ButtonStyle.blue, custom_id=c_id + 'scissors'),
+                               Button(label="Бумага", style=ButtonStyle.blue, custom_id=c_id + 'paper')]]
+                            origin = await interaction.edit_origin(embed=embed, components=components)
+                            def check2(inter):
+                                return (inter.custom_id == c_id + 'rock' or inter.custom_id == c_id + 'scissors' or inter.custom_id == c_id + 'paper') and inter.channel.id == ctx.channel.id and (inter.user.id == ctx.author.id or inter.user.id == member.id)
+                            sm = 0
                             win = await self.rollRPS()
+                            while sm < 2:
+                                try:
+                                    interaction = await self.Bot.wait_for('button_click', timeout=60, check=check2)
+                                except TError:
+                                    await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet }})
+                                    embed = Embed(title="Никто не присоединился", color=Colour.dark_theme())
+                                    await ctx.send(embed=embed)
+                                    return
+                                else:
+                                    if interaction.custom_id == c_id + 'rock':
+                                        if interaction.user.id == ctx.author.id:
+                                            win[0] = 1
+                                        else:
+                                            win[1] = 1
+                                    elif interaction.custom_id == c_id + 'scissors':
+                                        if interaction.user.id == ctx.author.id:
+                                            win[0] = 2
+                                        else:
+                                            win[1] = 2
+                                    else:
+                                        if interaction.user.id == ctx.author.id:
+                                            win[0] = 3
+                                        else:
+                                            win[1] = 3
+                                    sm += 1
+                                    if sm < 2:
+                                        await interaction.respond(embed=Embed(title="Ждём ответа соперника...", color=Colour.dark_theme()))
+                            
+                            
                             embed.title = f"{ctx.author.display_name} : {self.__rps_emoji[win[0]]} vs {self.__rps_emoji[win[1]]} : {member.display_name}"
-                            dic = await interaction.edit_origin(embed=embed, components=[])
+                            await origin.edit(embed=embed, components=[])
                             if (win[0] == 1 and win[1] == 2) or (win[0] == 2 and win[1] == 3) or (win[0] == 3 and win[1] == 1):
                                 description = f"{ctx.author.display_name} выйграл! {bet}$"
                                 await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': bet * 2 }})
@@ -923,7 +983,7 @@ class Casino(Cog):
                                 await db.update_user(ctx.guild.id, member.id, {'$inc': {'money': bet * 2}})
                             await sleep(1)
                             embed.set_footer(text=description)
-                            await dic.edit(embed=embed, components=[])
+                            await origin.edit(embed=embed, components=[])
                 else:
                     embed = Embed(title="Вы не можете играть с самим собой или с другим ботом")
                     await ctx.reply(embed=embed)
