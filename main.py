@@ -1,7 +1,7 @@
 from math import ceil
 from discord import Member, Embed, Intents
 from discord.colour import Colour
-from discord.ext.commands import Bot as Robot
+from discord.ext.commands import AutoShardedBot as Robot
 from os import environ
 from logging import config, getLogger
 from discord.ext.commands.core import guild_only, is_owner
@@ -28,7 +28,7 @@ getLogger('PIL').setLevel('WARNING')
 
 
 Token = environ.get("TOKEN")
-Bot = Robot(command_prefix = "=", intents = Intents.all())
+Bot = Robot(shard_count=2, command_prefix = "=", intents = Intents.all())
 DBot = DiscordComponents(Bot)
 
 
