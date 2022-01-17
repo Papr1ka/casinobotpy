@@ -28,7 +28,7 @@ getLogger('PIL').setLevel('WARNING')
 
 
 Token = environ.get("TOKEN")
-Bot = Robot(shard_count=3, command_prefix = "=", intents = Intents.all())
+Bot = Robot(shard_count=8, command_prefix = "=", intents = Intents.all())
 DBot = DiscordComponents(Bot)
 
 
