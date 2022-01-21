@@ -25,10 +25,10 @@ getLogger('aiohttp').setLevel('WARNING')
 getLogger('asyncio').setLevel('WARNING')
 getLogger('PIL').setLevel('WARNING')
 
-
+ints = Intents(guilds=True, members=True, guild_messages=True, guild_reactions=True)
 
 Token = environ.get("TOKEN")
-Bot = Robot(shard_count=2, command_prefix = "=", intents = Intents.all())
+Bot = Robot(shard_count=8, command_prefix="=", intents=ints)
 DBot = DiscordComponents(Bot)
 
 

@@ -61,11 +61,13 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, CommandOnCooldown):
             embed.title = f'Команда на перезарядке, попробуйте через `{round(error.retry_after, 1)}` секунд'
         elif isinstance(error, Forbidden):
-            logger.debug('errors.Forbidden')
+            logger.warning('errors.Forbidden')
             embed.title = ""
         elif isinstance(error, NotFound):
+            logger.warning('errors.NotFound')
             embed.title = ""
         elif isinstance(error, CommandInvokeError):
+            logger.warning('errors.CommandInvokeError')
             embed.title = ""
         elif isinstance(error, TError):
             embed.title = ""

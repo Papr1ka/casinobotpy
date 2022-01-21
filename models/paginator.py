@@ -24,7 +24,7 @@ class Paginator:
     def get_components(self):
         current = self.get_current()
         return [[self.client.add_callback(Button(style=ButtonStyle.blue, emoji="◀️"), self.button_left_callback, ),
-                Button(label=f"Page {self.index + 1}/{len(self.contents)}", disabled=True),
+                Button(label=f"Страница {self.index + 1}/{len(self.contents)}", disabled=True),
                 self.client.add_callback(Button(style=ButtonStyle.blue, emoji="▶️"), self.button_right_callback)],
                 [Select(
                     placeholder='Выберите товар',

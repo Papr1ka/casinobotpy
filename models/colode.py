@@ -167,7 +167,7 @@ class Game():
         self.played = {}
         self.reg = []
         self.bet = bet
-        self.colode = col
+        self.colode = col.copy()
         self.dealer: Player
     
     async def add_player(self, id, name, money):
