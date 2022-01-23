@@ -14,6 +14,7 @@ from discord_components.component import Select, SelectOption, Button, ButtonSty
 from main import on_command
 from models.fishing import *
 from models.fishing import components as fish_components
+from models.business import BUSINESSES, B, SUCCESS
 
 fish = namedtuple('fish', ['url', 'cost', 'chance', 'name'])
 fishes = [
@@ -28,7 +29,7 @@ class Jobs(Cog):
 
     def __init__(self, Bot):
         self.Bot = Bot
-        self.games = {}
+        self.games = {} #{message.id: [bool, author]}
         temperature = randint(0, 30), randint(0, 30)
         self.max_temp = max(temperature)
         self.min_temp = min(temperature)
@@ -74,7 +75,8 @@ class Jobs(Cog):
             color=Colour.dark_theme()
         )
         
-        finventory = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1)
+        finventory = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1, business=1)
+        business = finventory['business']
         finventory = finventory['finventory']
         p = [ponds[i] for i in finventory['ponds']]
         r = [all_rods[i] for i in set(finventory['rods'])]
@@ -143,7 +145,7 @@ class Jobs(Cog):
                 embed.description = description
                 r = await ctx.send(embed=embed)
                 await r.add_reaction("🎣")
-                self.games[r.id] = False
+                self.games[r.id] = [False, ctx.author.id]
                 co = 0.5
                 st = time()
                 circle = round(random(), 1)
@@ -153,10 +155,10 @@ class Jobs(Cog):
                 coc = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
                 shuffle(coc)
                 
-                while not self.games[r.id]:
+                while not self.games[r.id][0]:
                     await sleep(1)
-                    if time() - st > timeout or self.games[r.id]:
-                        #self.games[r.id] = True
+                    if time() - st > timeout or self.games[r.id][0]:
+                        #self.games[r.id][0] = True
                         break
                     description = ""
                     co = coc[0]
@@ -194,26 +196,48 @@ class Jobs(Cog):
                          Button(label="В садок", style=ButtonStyle.green, custom_id=c_id + "cage"),
                          Button(label="Разобрать", style=ButtonStyle.green, custom_id=c_id + "disa")]
                         ]
+                    print(business)
+                    for i in business:
+                        b = BUSINESSES[i]
+                        if not b.stock:
+                            components[0].append(Button(label=b.action_name, style=ButtonStyle.blue, custom_id=c_id + f"business{i}"))
+                        
                     r = await ctx.send(embed=embed, components=components)
-                    try:
-                        interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "sell" or i.custom_id == c_id + "cage" or i.custom_id == c_id + "disa") and i.user == ctx.author, timeout=60)
-                    except TimeoutError:
-                        await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {f'finventory.cage': await json_fish(fish)}})
-                        await interaction.edit_origin(embed=Embed(title="Улов отправлен в садок", color=Colour.dark_theme()), components=[])
-                    else:
-                        if interaction.custom_id == c_id + "sell":
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': fish.cost, 'exp': LevelTable['fishing']}})
-                            await interaction.edit_origin(embed=Embed(title=f"Улов продан, получено: `{fish.cost}$`", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
-                        elif interaction.custom_id == c_id + "disa":
-                            q = {f'finventory.components.{i}': fish.components[i] for i in fish.components}
-                            q['exp'] = LevelTable['fishing']
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': q})
-                            for i in fish.components:
-                                user_components[i] += fish.components[i]
-                            await interaction.edit_origin(embed=Embed(title=f"Рыба разобрана, получено: {', '.join([f'{fish_components[i].name} - {fish.components[i]}' for i in fish.components])}", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
+                    o = False
+                    while not o:
+                        try:
+                            #!!!warning поддерживает до 9 бизнесов, 10-й работать не будет из-за [:-1]
+                            interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "sell" or i.custom_id == c_id + "cage" or i.custom_id == c_id + "disa" or i.custom_id[:-1] == c_id + "business") and i.user == ctx.author, timeout=60)
+                        except TimeoutError:
+                            await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {f'finventory.cage': await json_fish(fish)}})
+                            await interaction.edit_origin(embed=Embed(title="Улов отправлен в садок", color=Colour.dark_theme()), components=[])
                         else:
-                            await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'finventory.cage': await json_fish(fish)}, '$inc': {'exp': LevelTable['fishing']}})
-                            await interaction.edit_origin(embed=Embed(title="Улов отправлен в садок", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
+                            print(interaction.custom_id)
+                            if interaction.custom_id == c_id + "sell":
+                                o = True
+                                cost, pretty = await B.sell(business, fish.cost, fish.name)
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {'money': cost, 'exp': LevelTable['fishing']}})
+                                await interaction.edit_origin(embed=Embed(title=f"Улов продан, получено: `{pretty}$`", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
+                            elif interaction.custom_id == c_id + "disa":
+                                o = True
+                                q = {f'finventory.components.{i}': fish.components[i] for i in fish.components}
+                                q['exp'] = LevelTable['fishing']
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': q})
+                                for i in fish.components:
+                                    user_components[i] += fish.components[i]
+                                await interaction.edit_origin(embed=Embed(title=f"Рыба разобрана, получено: {', '.join([f'{fish_components[i].name} - {fish.components[i]}' for i in fish.components])}", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
+                            elif interaction.custom_id[:-1] == c_id + "business":
+                                b = BUSINESSES[int(interaction.custom_id[-1])]
+                                e, state = await B.logic(b, ctx.guild.id, ctx.author.id, fish.components, fish.cost, user_components)
+                                if state is SUCCESS:
+                                    o = True
+                                    await interaction.edit_origin(embed=e, components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
+                                else:
+                                    await interaction.send(embed=e)
+                            else:
+                                o = True
+                                await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'finventory.cage': await json_fish(fish)}, '$inc': {'exp': LevelTable['fishing']}})
+                                await interaction.edit_origin(embed=Embed(title="Улов отправлен в садок", color=Colour.dark_theme()), components=[Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")])
                 else:
                     embed = Embed(title="Рыба ускользнула", color=Colour.dark_theme())
                     components = [Button(label="Рыбачить", style=ButtonStyle.blue, custom_id=c_id + "fish")]
@@ -246,7 +270,12 @@ class Jobs(Cog):
     @Cog.listener()
     async def on_raw_reaction_add(self, payload):
         if payload.emoji.__str__() == "🎣" and not payload.member.bot:
-            self.games[payload.message_id] = True
+            try:
+                author = self.games[payload.message_id][1]
+                if author == payload.user_id:
+                    self.games[payload.message_id][0] = True
+            except KeyError:
+                pass
 
 def setup(Bot):
     Bot.add_cog(Jobs(Bot))

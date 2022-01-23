@@ -23,7 +23,8 @@ class UserModel():
         'cage': [],
         'components': {}
     }
-    __slots__ = ['__user_id', '__money', '__exp', '__messages', '__level', '__custom', '__color', '__games', '__inventory', '__claim', '__finventory']
+    __BUSINESS = []
+    __slots__ = ['__user_id', '__money', '__exp', '__messages', '__level', '__custom', '__color', '__games', '__inventory', '__claim', '__finventory', '__business']
     slots = [i[2:] for i in __slots__]
     def __init__(self, user_id = None):
         self.__user_id = user_id
@@ -36,6 +37,7 @@ class UserModel():
         self.__exp, self.__level, _ = self.exp_to_level(self.__EXP, self.__LEVEL)
         self.__claim = self.__CLAIM
         self.__finventory = self.__FINVENTORY
+        self.__business = self.__BUSINESS
         logger.debug('created UserModel')
     
     def get_custom():
@@ -67,6 +69,7 @@ class UserModel():
         'cage': [],
         'components': {}
     })
+        cls.__BUSINESS = params.pop("BUSINESS", [])
         cls.__LEVEL_COST_FORMULA = params.pop('LEVEL_COST_FORMULA', lambda level: level * (50 + level * 3))
     
     def get_json(self):
@@ -81,7 +84,8 @@ class UserModel():
             'inventory': self.__inventory,
             'color': self.__color,
             'claim': self.__claim,
-            'finventory': self.__finventory
+            'finventory': self.__finventory,
+            'business': self.__business
         }
     
     @staticmethod

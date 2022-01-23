@@ -1,3 +1,4 @@
+from hashlib import new
 from random import choices, randint
 from discord.ext.commands import Cog, command, has_permissions, guild_only
 from discord import Embed
@@ -13,11 +14,13 @@ from logging import config, getLogger
 from cogs.user_stats import transaction
 from database import db
 from main import on_command
+from models.business import BUSINESSES
 from models.paginator import Paginator
 from models.errors import CommandCanceled
 from models.fishing import *
 from models.fishing import components as fish_components
 from models.shop import shop_id
+from models.business import B
 from discord_components import DiscordComponents, component
 
 
@@ -90,7 +93,7 @@ class Shop(Cog):
                 user_money = user_money['money']
                 if user_money >= cost:
                     if i not in inventory:
-                        embed = Embed(title=f"Поздравляю с покупкой, {i['name']}!", color=Colour.dark_theme())
+                        embed = Embed(title=f"Поздравляю с покупкой, {i['name']}! Предмет перемещён в ваш `inventory`", color=Colour.dark_theme())
                         await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {'inventory': i}, '$inc': {'money': -cost}})
                     else:
                         embed = Embed(title=f"У вас уже есть этот товар", color=Colour.dark_theme())
@@ -191,11 +194,12 @@ class Shop(Cog):
         help="Садок"
     )
     @guild_only()
-    @max_concurrency(1, BucketType.member, wait=False)
     async def cage(self, ctx):
         await on_command(self.Bot.get_command('cage'))
         c_id = str(ctx.message.id)
-        shop = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1)
+        shop = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1, business=1)
+        user_components = {str(i): 0 for i in range(1, 9)}
+        user_components.update(shop['finventory']['components'])
         cage = shop['finventory']['cage']
         ides = {
             i: cage[i] for i in range(len(cage))
@@ -231,16 +235,33 @@ class Shop(Cog):
         embed.description = f"\nВес: {item['weight']} кг\n"
         cp = "components"
         embed.description += f"\Можно разобрать: {', '.join([f'{fish_components[i].name} - {item[cp][i]}' for i in item[cp]])}\n"
-        await inter.edit_origin(embed=embed, components=[[
+        components=[[
             component.Button(style=component.ButtonStyle.green, label="Продать", custom_id=c_id + "sell"),
             component.Button(label="Разобрать", style=component.ButtonStyle.green, custom_id=c_id + "disa"),
             component.Button(label="На рынок", style=component.ButtonStyle.green, custom_id=c_id + "market"),
-            component.Button(label="Отменить", style=component.ButtonStyle.green, custom_id=c_id + "r")]])
-        interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "sell" or i.custom_id == c_id + "disa" or i.custom_id == c_id + "market" or i.custom_id == c_id + "r") and i.user == ctx.author)
+            component.Button(label="Отменить", style=component.ButtonStyle.green, custom_id=c_id + "r")]]
+        
+        b = shop['business']
+        for i in b:
+            buss = BUSINESSES[i]
+            if not buss.stock:
+                components[0].insert(-1, component.Button(label=buss.action_name, style=component.ButtonStyle.blue, custom_id=c_id + f"business{i}"))
+        
+        await inter.edit_origin(embed=embed, components=components)
+        interaction = await self.Bot.wait_for("button_click", check = lambda i: (i.custom_id == c_id + "sell" or i.custom_id == c_id + "disa" or i.custom_id == c_id + "market" or i.custom_id == c_id + "r" or i.custom_id[:-1] == c_id + "business") and i.user == ctx.author)
 
+        
+        new_shop = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1)
+        new_cage = new_shop['finventory']['cage']
+        if item not in new_cage:
+            embed = Embed(title="предмета уже нет в садке", color=Colour.dark_theme())
+            await interaction.respond(embed=embed, components=[])
+            return
+        
+        
         if interaction.custom_id == c_id + "sell":
-            cost = item['cost']
-            embed = Embed(title=f"Продано: {item['name']} за `{item['cost']}$`", color=Colour.dark_theme())
+            cost, pretty = await B.sell(b, item['cost'], item['name'])
+            embed = Embed(title=f"Улов продан, получено: `{pretty}$`", color=Colour.dark_theme())
             await db.update_user(ctx.guild.id, ctx.author.id, {'$unset': {f'finventory.cage.{response}': 1}})
             await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.cage': None}, '$inc': {'money': cost}})
         elif interaction.custom_id == c_id + "market":
@@ -273,6 +294,10 @@ class Shop(Cog):
             await message.reply(embed=embed)
         elif interaction.custom_id == c_id + "r":
             pass
+        elif interaction.custom_id[:-1] == c_id + "business":
+            b = BUSINESSES[int(interaction.custom_id[-1])]
+            e, state = await B.logic(b, ctx.guild.id, ctx.author.id, item['components'], item['cost'], user_components)
+            embed=e
         else:
             await db.update_user(ctx.guild.id, ctx.author.id, {'$inc': {f'finventory.components.{i}': item['components'][i] for i in item['components']}, '$unset': {f'finventory.cage.{response}': 1}})
             await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.cage': None}})
@@ -467,7 +492,7 @@ class Shop(Cog):
         item_opts['roles'] = n
         
         await db.update_user(ctx.guild.id, shop_id, {'$push': {'items': item_opts}})
-
+    
 
     @command(
         usage="`=remove_item [название предмета]`",
@@ -564,7 +589,7 @@ class Shop(Cog):
                 return
 
             response = int(response)
-            i = items[i]
+            i = items[response]
             embed = Embed(title=i['name'], color=Colour.dark_theme())
             embed.add_field(name='Описание', value=i['description'], inline=False)
             components = [[]]
@@ -584,6 +609,14 @@ class Shop(Cog):
                 components[0].append(component.Button(style=component.ButtonStyle.blue, label="Использовать", custom_id=c_id + "use5"))
                 await inter.edit_origin(embed=embed, components=components)
             interaction = await self.Bot.wait_for("button_click", check = lambda i: i.user == ctx.author and (i.custom_id == c_id + "use5" or i.custom_id == c_id + "sel5"))
+            
+            
+            new_items = await db.fetch_user(ctx.guild.id, ctx.author.id, inventory=1)
+            new_items = new_items['inventory']
+            if i not in new_items:
+                embed = Embed(title="предмета уже нет в инвентаре", color=Colour.dark_theme())
+                await interaction.respond(embed=embed, components=[])
+                return
             
             embed = Embed(color=Colour.dark_theme())
             
@@ -776,7 +809,6 @@ class Shop(Cog):
         usage="`=rods`",
         help="Коллекция удочек"
     )
-    @max_concurrency(1, BucketType.member, wait=False)
     @guild_only()
     async def rods(self, ctx):
         await on_command(self.Bot.get_command('rods'))
@@ -820,7 +852,19 @@ class Shop(Cog):
                         await message.reply(embed=Embed(title="Некорректная цена"))
                     else:
                         cost = int(message.content)
-
+                
+                
+                embed = Embed(title="Обрабатываем...", color=Colour.dark_theme())
+                r = await interaction.send(embed=embed, components=[])
+                
+                new_shop = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1)
+                new_rods = new_shop['finventory']['rods']
+                print(item.id, new_rods)
+                if item.id not in new_rods:
+                    embed = Embed(title="удочка уже не у вас", color=Colour.dark_theme())
+                    await message.reply(embed=embed)
+                    return
+                
                 await db.update_user(ctx.guild.id, shop_id, {'$push': {'rods': {
                     'name': item.name,
                     'cost': item.cost,
@@ -839,6 +883,72 @@ class Shop(Cog):
                 await interaction.edit_origin(embed=embed, components=[])
         else:
             await inter.edit_origin(embed=embed, components=[])
+    
+    @command()
+    @guild_only()
+    async def business(self, ctx):
+        await on_command(self.Bot.get_command('business'))
+        c_id = str(ctx.message.id)
+        embed = Embed(title='Бизнесы', color=Colour.dark_theme())
+        
+        buss = [BUSINESSES[i] for i in BUSINESSES]
+        l = len(buss)
+        
+        fcomponents = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1, business=1)
+        fbusiness = fcomponents['business']
+        fcomponents = fcomponents['finventory']['components']
+        
+        materials = "Инвентарь:\n"
+        pr = ", ".join([f'{fish_components[i].re} - {fcomponents[i]}' for i in fcomponents])
+        materials += pr if pr != "" else "Пусто"
+        embeds = [Embed(title='Бизнесы', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
+        values = [[] for i in range(ceil(l / 5))]
+        for i in range(l):
+            embeds[i // 5].add_field(name=buss[i].name + '  |  ' + ", ".join([f'{i[0].re}-{i[1]}' for i in buss[i].cost]), value=buss[i].description, inline=False)
+            embeds[i // 5].description = materials
+            values[i // 5].append(i)
+        
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi148856", values=values)
+        response, inter, msg = await p.start()
+        if response == "Отменить":
+            await msg.delete()
+            return
+        response = int(response)
+  
+        b = buss[response]
+        
+        embed = Embed(title=b.name, color=Colour.dark_theme())
+        embed.description = "Инвентарь:\n" + ", ".join([f'{fish_components[i].name} - {fcomponents[i]}' for i in fcomponents])
+        embed.add_field(name='Необходимые материалы', value=", ".join([f'{i[0].name} - {i[1]}' for i in b.cost]), inline=False)
+        embed.add_field(name='Описание', value=b.description, inline=False)
+        await inter.edit_origin(embed=embed, components=[component.Button(style=component.ButtonStyle.blue, label="Собрать", custom_id=c_id + "buy_991")])
+        interaction = await self.Bot.wait_for("button_click", check = lambda i: i.custom_id == c_id + "buy_991" and i.user == ctx.author)
+
+        finventory = await db.fetch_user(ctx.guild.id, ctx.author.id, finventory=1)
+        finventory = finventory['finventory']
+        user_components = finventory['components']
+        
+        can_pay = True
+        
+        for comp, col in b.cost:
+            try:
+                if user_components[comp.id] < col:
+                    can_pay = False
+                    break
+            except KeyError:
+                can_pay = False
+                break
+        
+        if can_pay:
+            if response not in fbusiness:
+                embed = Embed(title=f"{b.name} куплен!", color=Colour.dark_theme())
+                await db.update_user(ctx.guild.id, ctx.author.id, {'$push': {f'business': response}, '$inc': {f'finventory.components.{i[0].id}': -i[1] for i in b.cost}})
+            else:
+                embed = Embed(title=f"У вас уже есть этот бизнес", color=Colour.dark_theme())
+        else:
+            embed = Embed(title=f"Недостатчно материалов", color=Colour.dark_theme())
+
+        await interaction.edit_origin(embed=embed, components=[])
 
 
 

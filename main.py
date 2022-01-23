@@ -212,7 +212,7 @@ async def announcement(ctx, *, annonce):
 @is_owner()
 async def add(ctx):
     for guild in Bot.guilds:
-        await db.update_guild(guild.id, {'_id': -1}, {'$set': {'ah': [], 'rods': []}})
+        await db.update_guild(guild.id, {'_id': {'$ne': -1}}, {'$set': {'business': []}})
     print('finished')
 
 

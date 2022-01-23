@@ -383,7 +383,7 @@ class Casino(Cog):
         won = bet * (win['kf'] if win['win'] else 0)
         increase += won
         await db.update_user(msg['guild_id'], msg['author_id'], {'$inc': {'money': bet + increase, 'games': 1}})
-        embed.set_footer(text=self.__format_footer(won, bet))
+        embed.set_footer(text=self.__format_footer(won - bet, bet))
         try:
             await message.edit(embed=embed)
         except NotFound:
