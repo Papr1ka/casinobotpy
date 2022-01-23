@@ -7,7 +7,7 @@ from discord_components import DiscordComponents, Button, ButtonStyle, Interacti
 from discord.errors import NotFound
 
 class Paginator:
-    def __init__(self, client: DiscordComponents, channel: Messageable, contents: List[Embed], author: Member, id: int, values: List, guild):
+    def __init__(self, client: DiscordComponents, channel: Messageable, contents: List[Embed], author: Member, id: int, values: List, guild, t=1):
         self.client = client
         self.channel = channel
         self.contents = contents
@@ -19,6 +19,7 @@ class Paginator:
         self.l = len(self.values)
         self.guild = guild
         self.force = 10
+        self.type = t
     
     async def get_current(self):
         if len(self.prosessed) - 1 >= self.index:
@@ -32,13 +33,16 @@ class Paginator:
                     m = m.display_name
                 except NotFound:
                     m = 'неизвестный'
-                embed.add_field(name=f"`{i + 1}` | " + m + " | " + self.values[i]['custom'], value=f"Уровень: `{self.values[i]['level']}`, опыта `{self.values[i]['exp']}`", inline=False)
+                if self.type == 1:
+                    embed.add_field(name=f"`{i + 1}` | {m} | {self.values[i]['custom']}", value=f"Уровень: `{self.values[i]['level']}`, опыта `{self.values[i]['exp']}`", inline=False)
+                else:
+                    embed.add_field(name=f"`{i + 1}` | {m} | {self.values[i]['custom']}", value=f"Счёт: `{self.values[i]['money']}$`", inline=False)
             self.prosessed.append(embed)
             return embed
 
     def get_components(self):
         return [[self.client.add_callback(Button(style=ButtonStyle.blue, emoji="◀️"), self.button_left_callback, ),
-                Button(label=f"Page {self.index + 1}/{len(self.contents)}", disabled=True),
+                Button(label=f"Страница {self.index + 1}/{len(self.contents)}", disabled=True),
                 self.client.add_callback(Button(style=ButtonStyle.blue, emoji="▶️"), self.button_right_callback)]
                 ]
 

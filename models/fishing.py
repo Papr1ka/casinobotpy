@@ -43,9 +43,9 @@ custom_rods: Dict[int, fish_rod] = {
 all_rods = {**rods, **custom_rods}
 
 ponds: Dict[int, pond] = {
-    1: pond("Пресный водоём", 1000, "Единственный пресный водоём в округе", {'x': 1.0, "chances": [fish_chance(2, 0.5), fish_chance(8, 0.3), fish_chance(7, 0.1), fish_chance(5, 0.08), fish_chance(1, 2.02)]}, "https://i.ibb.co/KNky44x/image.png", 1),
-    2: pond("Море", 30000, "либо поймаешь ты, либо поймают тебя", {'x': 1.0, "chances": [fish_chance(3, 0.4), fish_chance(9, 0.36), fish_chance(10, 0.2), fish_chance(6, 0.03), fish_chance(4, 2.01)]}, "https://i.ibb.co/njdKhpf/image.png", 2),
-    3: pond("Болото", 300000, "отличное место для рыбалки", {'x': 1.0, "chances": [fish_chance(11, 0.36), fish_chance(12, 0.36), fish_chance(13, 0.2), fish_chance(14, 0.07), fish_chance(15, 2.01)]}, "https://i.ibb.co/m9tL5pZ/image.png", 3)
+    1: pond("Пресный водоём", 1000, "Единственный пресный водоём в округе", {'x': 1.0, "chances": [fish_chance(2, 0.5), fish_chance(8, 0.3), fish_chance(7, 0.1), fish_chance(5, 0.08), fish_chance(1, 0.02)]}, "https://i.ibb.co/KNky44x/image.png", 1),
+    2: pond("Море", 30000, "либо поймаешь ты, либо поймают тебя", {'x': 1.0, "chances": [fish_chance(3, 0.4), fish_chance(9, 0.36), fish_chance(10, 0.2), fish_chance(6, 0.03), fish_chance(4, 0.01)]}, "https://i.ibb.co/njdKhpf/image.png", 2),
+    3: pond("Болото", 300000, "отличное место для рыбалки", {'x': 1.0, "chances": [fish_chance(11, 0.36), fish_chance(12, 0.36), fish_chance(13, 0.2), fish_chance(14, 0.07), fish_chance(15, 0.01)]}, "https://i.ibb.co/m9tL5pZ/image.png", 3)
 }
 
 fishs: Dict[int, fish] = {

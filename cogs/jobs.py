@@ -190,7 +190,7 @@ class Jobs(Cog):
                     embed.add_field(name="Стоимость", value=fish.cost)
                     embed.description = fish.description
                     embed.description += f"\nВес: {fish.weight} кг\n"
-                    embed.description += f"\Можно разобрать: {', '.join([f'{fish_components[i].name} - {fish.components[i]}' for i in fish.components])}\n"
+                    embed.description += f"\Компоненты: {', '.join([f'{fish_components[i].name} - {fish.components[i]}' for i in fish.components])}\n"
                     components = [
                         [Button(label="Продать", style=ButtonStyle.green, custom_id=c_id + "sell"),
                          Button(label="В садок", style=ButtonStyle.green, custom_id=c_id + "cage"),

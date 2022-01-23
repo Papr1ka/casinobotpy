@@ -35,7 +35,6 @@ async def logic(business: BUSINESS, fish: fish, guild_id, user_id):
     
 class Business():
     async def conserve(self, fish_cost, fish_components, user_components):
-        print(user_components)
         can_pay = True
         
         for comp, col in fish_components.items():
@@ -48,9 +47,8 @@ class Business():
                 break
         if can_pay:
             comps = {f'finventory.components.{comp}': -col for comp, col in fish_components.items()}
-            print(comps)
             inc = int(fish_cost * 2.5)
-            return {'$inc': {'money': inc, **comps}}, f"`{fish_cost} + {int(fish_cost * 1.5)}`"
+            return {'$inc': {'money': inc, **comps}}, f"`{fish_cost} + {int(fish_cost * 1.5)}$`"
         else:
             return None, None
     
@@ -71,7 +69,6 @@ class Business():
     async def logic(self, b: BUSINESS, guild_id: int, user_id: int, fish_components, fish_cost, user_components: dict) -> Embed:
         if b is FISH_PRESERVES_FACTORY:
             r, income = await self.conserve(fish_cost, fish_components, user_components)
-            print(r)
             if not r is None:
                 await db.update_user(guild_id, user_id, r)
                 return await self.genEmbed(FISH_PRESERVES_FACTORY, True, income=income), SUCCESS
@@ -94,7 +91,6 @@ class Business():
                     inc = fish_cost
                     cost += inc
                     pretty += " + " + str(inc)
-        print(pretty, cost)
         return cost, pretty
             
 

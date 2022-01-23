@@ -242,6 +242,32 @@ class UserStats(Cog):
         s = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild)
         await s.start()
 
+    
+    @command(
+        usage="`=godboard`",
+        help="Топ участников сервера по состоятельности"
+    )
+    @max_concurrency(1, BucketType.member, wait=False)
+    @cooldown(1, 60, BucketType.member)
+    @guild_only()
+    async def godboard(self, ctx):
+        await on_command(self.Bot.get_command('godboard'))
+        guild_id = str(ctx.guild.id)
+        q = db.db[guild_id].aggregate([
+            {'$match': {'_id': {'$ne': shop_id}}},
+            {'$project': {'_id': 1, 'custom': 1, 'money': 1}},
+        ])
+      
+        q = await q.to_list(length=None)
+        
+        l = len(q)
+        users = sorted(q, key=lambda item: item['money'])[::-1]
+        
+        embeds = [Embed(title=f'Самые богатые участники {ctx.guild.name}', color=Colour.dark_theme()) for i in range(ceil(l / 10))]
+        
+        s = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild, t=2)
+        await s.start()
+    
 
 def setup(Bot):
     Bot.add_cog(UserStats(Bot))

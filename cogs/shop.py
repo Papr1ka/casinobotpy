@@ -234,7 +234,7 @@ class Shop(Cog):
         embed.set_image(url=item['url'])
         embed.description = f"\nВес: {item['weight']} кг\n"
         cp = "components"
-        embed.description += f"\Можно разобрать: {', '.join([f'{fish_components[i].name} - {item[cp][i]}' for i in item[cp]])}\n"
+        embed.description += f"\Компоненты: {', '.join([f'{fish_components[i].name} - {item[cp][i]}' for i in item[cp]])}\n"
         components=[[
             component.Button(style=component.ButtonStyle.green, label="Продать", custom_id=c_id + "sell"),
             component.Button(label="Разобрать", style=component.ButtonStyle.green, custom_id=c_id + "disa"),
@@ -295,6 +295,8 @@ class Shop(Cog):
         elif interaction.custom_id == c_id + "r":
             pass
         elif interaction.custom_id[:-1] == c_id + "business":
+            await db.update_user(ctx.guild.id, ctx.author.id, {'$unset': {f'finventory.cage.{response}': 1}})
+            await db.update_user(ctx.guild.id, ctx.author.id, {'$pull': {f'finventory.cage': None}})
             b = BUSINESSES[int(interaction.custom_id[-1])]
             e, state = await B.logic(b, ctx.guild.id, ctx.author.id, item['components'], item['cost'], user_components)
             embed=e
