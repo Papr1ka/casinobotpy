@@ -87,6 +87,7 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Сменить тему карточки пользователя', value='`=theme`', inline=False)
                 embed.add_field(name='Сменить описание карточки пользователя', value='`=custom [описание]`', inline=False)
                 embed.add_field(name='Топ участников по опыту', value='`=scoreboard`', inline=False)
+                embed.add_field(name='Топ участников по зажиточности', value='`=godboard`', inline=False)
                 embed.add_field(name='Перевести деньги', value='`=pay @[пользователь] [сумма]`', inline=False)
                 embed.add_field(name='Предложить идею', value='`=offer [идея]`', inline=False)
                 embed.add_field(name='Инвентарь', value='`=inventory`', inline=False)
@@ -95,6 +96,10 @@ async def help(ctx, module_command=None):
                 embed.title=f"{Bot.user.name} shop команды"
                 embed.add_field(name='Магазин', value='`=shop`', inline=False)
                 embed.add_field(name='Рынок', value='`=market`', inline=False)
+                embed.add_field(name='Рыболовный магазин', value='`=fshop`', inline=False)
+                embed.add_field(name='Рынок', value='`=market`', inline=False)
+                embed.add_field(name='Мастерская', value='`=workshop`', inline=False)
+                embed.add_field(name='Бизнесы', value='`=business`', inline=False)
             elif module_command == 'fishing':
                 embed.title=f"{Bot.user.name} fishing команды"
                 embed.add_field(name='Рыбачить', value='`=fish`', inline=False)
@@ -104,6 +109,7 @@ async def help(ctx, module_command=None):
                 embed.add_field(name='Мастерская', value='`=workshop`', inline=False)
                 embed.add_field(name='Рынок', value='`=market`', inline=False)
                 embed.add_field(name='Гайд по рыбалке', value='`=guide`', inline=False)
+                embed.add_field(name='Бизнесы', value='`=business`', inline=False)
             elif module_command == 'admin':
                 embed.title=f"{Bot.user.name} admin команды"
                 embed.add_field(name='Сбросить данные пользователей', value='`=reset [exp | money | messages | games | user | shop]`', inline=False)
