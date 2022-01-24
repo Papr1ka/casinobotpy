@@ -49,22 +49,23 @@ ponds: Dict[int, pond] = {
 }
 
 fishs: Dict[int, fish] = {
-    1: fish("Лосось", 800, "Каждый рыбак мечтает поймать эту рыбу: её средний вес 11 килограмм!", "https://i.ibb.co/71sSjPT/image.png", (1.1, 21.1, 11.1), (components["3"], )), #weight: (min, max, avg)
+    1: fish("Лосось", 800, "Каждый рыбак мечтает поймать эту рыбу: её средний вес 11 килограмм!", "https://i.ibb.co/71sSjPT/image.png", (1.1, 21.1, 11.1), (components["3"], components["4"])), #weight: (min, max, avg)
     2: fish("Ставрида", 100, "Имеет веретенообразное удлинённое тело, покрытое мелкой чешуёй, оканчивающееся тонким хвостовым стеблем.", "https://i.ibb.co/bdZNF0t/image.png", (1, 2, 1.5), (components["1"], )),
     3: fish("Рыба-самолёт", 150, "Это птица? это самолёт? нет! это рыба-самолёт", "https://i.ibb.co/wSkRhbV/image.png", (1, 3, 2), (components["5"], )),
     4: fish("Золотая", 2000, "В другой игре слова 'отпусти меня, старче' имели бы смысл'", "https://i.ibb.co/Tbm84zD/image.png", (1, 1.5, 1.25), (components["7"], components["4"], )),
     5: fish("Сом", 300, "Один из ценнейших трофеев рыбака", "https://i.ibb.co/7gDdtpC/image.png", (0.1, 20, 10.05), (components["6"], )),
-    6: fish("Акула", 1250, "Как она вообще клюнула?!", "https://i.ibb.co/vPwRhWf/image.png", (0.2, 20000, 10000.1), (components["8"], components["3"], components["6"])),
+    6: fish("Акула", 1250, "Как она вообще клюнула?!", "https://i.ibb.co/vPwRhWf/image.png", (0.2, 20000, 10000.1), (components["8"], components["3"], components["6"], components["4"])),
     7: fish("Щука", 200, "Не говорящая, но и мы не в сказке", "https://i.ibb.co/kGRKPg4/image.png", (0.1, 8, 4.05), (components["2"], )),
     8: fish("Линь", 60, "Уникальный вид, отличный вкус и стоит дёшево!", "https://i.ibb.co/bKkYvDX/image.png", (0.1, 4, 2.05), (components["7"], )),
     9: fish("Треска", 200, "Популярный трофей северных морей", "https://i.ibb.co/gSQvXgk/image.png", (0.1, 10, 5.05), (components["6"], )),
-    10: fish("Палтус", 100, "В этом море они долго не живут", "https://i.ibb.co/k6yh87t/image.png", (7, 100, 53.5), (components["1"], )),
+    10: fish("Палтус", 100, "В этом море они долго не живут", "https://i.ibb.co/k6yh87t/image.png", (7, 100, 53.5), (components["1"], components["4"])),
     11: fish("Карп", 200, "Ловлю карпа бывалые рыболовы сравнивают с партизанской войной, побеждает в которой тот, кто умеет думать, проявляет выдержку и изобретательность", "https://i.ibb.co/F7K2mmQ/image.png", (0.5, 4, 2.25), (components["8"], components["3"], components["6"])),
     12: fish("Карась", 300, "Является геральдическим символом богатства, справедливости, великодушия", "https://i.ibb.co/TP3JRhc/image.png", (0.1, 4.5, 2.3), (components["2"], )),
     13: fish("Окунь", 150, "В кулинарии рыба ценится за вкусное мясо и небольшое количество костей", "https://i.ibb.co/hctY1Bz/image.png", (0.1, 2.2, 1.15), (components["7"], )),
-    14: fish("Ротан", 500, "Регулирует численность карася", "https://i.ibb.co/xswchBz/image.png", (0.1, 0.8, 0.45), (components["6"], )),
-    15: fish("Язь", 2500, "Ценится за красоту", "https://i.ibb.co/wrpzhcr/image.png", (2, 8, 5), (components["1"], )),
+    14: fish("Ротан", 500, "Регулирует численность карася", "https://i.ibb.co/xswchBz/image.png", (0.1, 0.8, 0.45), (components["6"], components["4"])),
+    15: fish("Язь", 2500, "Ценится за красоту", "https://i.ibb.co/wrpzhcr/image.png", (2, 8, 5), (components["1"], components["4"], components["8"])),
 }
+
 
 prise = Union[int, fish, component]
 
