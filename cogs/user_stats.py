@@ -239,8 +239,8 @@ class UserStats(Cog):
         
         embeds = [Embed(title=f'Рейтинг участников {ctx.guild.name}', color=Colour.dark_theme()) for i in range(ceil(l / 10))]
         
-        s = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild)
-        await s.start()
+        s = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild, forse=10, timeout=300)
+        await s.send()
 
     
     @command(
@@ -265,8 +265,8 @@ class UserStats(Cog):
         
         embeds = [Embed(title=f'Самые богатые участники {ctx.guild.name}', color=Colour.dark_theme()) for i in range(ceil(l / 10))]
         
-        s = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild, t=2)
-        await s.start()
+        s = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=str(ctx.message.id) + "pagi1100022", values=users, guild=ctx.guild, t=2, timeout=300, forse=10)
+        r = await s.send()
     
 
 def setup(Bot):

@@ -1,5 +1,6 @@
 from hashlib import new
 from random import choices, randint
+from socket import timeout
 from discord.ext.commands import Cog, command, has_permissions, guild_only
 from discord import Embed
 from discord.colour import Colour
@@ -52,17 +53,17 @@ class Shop(Cog):
             l = len(shop)
             
             embeds = [Embed(title='Магазин', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-            values = [[] for i in range(ceil(l / 5))]
+            values = []
             
             for i in range(l):
                 embeds[i // 5].add_field(name = "💸 " + str(shop[i]['cost']) + '$   |  ' + shop[i]['name'], value=shop[i]['description'], inline=False)
-                values[i // 5].append(shop[i]['name'])
+                values.append(shop[i]['name'])
 
             c_id = str(ctx.message.id)
             
-            p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi96796", values=values)
-            response, inter, msg = await p.start()
-            if response == "Отменить":
+            p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi96796", values=values, forse=5, timeout=300)
+            response, inter, msg = await p.send()
+            if response == "Отменить" or response is None:
                 await msg.delete()
                 return
             
@@ -136,14 +137,14 @@ class Shop(Cog):
         l = len(shop)
         
         embeds = [Embed(title='Магазин', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-        values = [[] for i in range(ceil(l / 5))]
+        values = []
         for i in range(l):
             embeds[i // 5].add_field(name = "💸 " + str(shop[i].cost) + '$   |  ' + shop[i].name, value=shop[i].description, inline=False)
-            values[i // 5].append(fishing_shop[chose][i + 1])
+            values.append(fishing_shop[chose][i + 1])
 
-        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi151623423", values=values)
-        response, inter, msg = await p.start()
-        if response == "Отменить":
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi151623423", values=values, forse=5, timeout=300)
+        response, inter, msg = await p.send()
+        if response == "Отменить" or response is None:
             await msg.delete()
             return
         response = int(response)
@@ -213,15 +214,15 @@ class Shop(Cog):
             return
         
         embeds = [Embed(title='Магазин', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-        values = [[] for i in range(ceil(l / 5))]
+        values = []
         
         for i in range(l):
             embeds[i // 5].add_field(name = "💸 " + str(cage[i]['cost']) + '$   |  ' + cage[i]['name'], value=cage[i]['description'], inline=False)
-            values[i // 5].append(i)
+            values.append(i)
             
-        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi3", values=values)
-        response, inter, msg = await p.start()
-        if response == "Отменить":
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi3", values=values, forse=5, timeout=300)
+        response, inter, msg = await p.send()
+        if response == "Отменить" or response is None:
             await msg.delete()
             return
         response = int(response)
@@ -331,20 +332,20 @@ class Shop(Cog):
         pr = ", ".join([f'{fish_components[i].re} - {fcomponents[i]}' for i in fcomponents])
         materials += pr if pr != "" else "Пусто"
         embeds = [Embed(title='Мастерская', color=Colour.dark_theme()) for i in range(ceil((l + le) / 5))]
-        values = [[] for i in range(ceil((l + le) / 5))]
+        values = []
         for i in range(l):
             embeds[i // 5].add_field(name=custom_shop[i].name + '  |  ' + ", ".join([f'{i[0].re} - {i[1]}' for i in custom_shop[i].cost]), value=custom_shop[i].description, inline=False)
             embeds[i // 5].description = materials
-            values[i // 5].append(i + 1000)
+            values.append(i + 1000)
 
         for i in range(l, l + le):
             embeds[i // 5].add_field(name=custom_shop[i].name + '  |  ' + ", ".join([f'{i[0].re} - {i[1]}' for i in custom_shop[i].cost]), value=custom_shop[i].description, inline=False)
             embeds[i // 5].description = materials
-            values[i // 5].append(10000 + i - l)
+            values.append(10000 + i - l)
         
-        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi67", values=values)
-        response, inter, msg = await p.start()
-        if response == "Отменить":
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi67", values=values, forse=5, timeout=300)
+        response, inter, msg = await p.send()
+        if response == "Отменить" or response is None:
             await msg.delete()
             return
         response = int(response)
@@ -577,16 +578,16 @@ class Shop(Cog):
             l = len(items)
             
             embeds = [Embed(title='Инвентарь', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-            values = [[] for i in range(ceil(l / 5))]
+            values = []
 
             for i in range(l):
                 embeds[i // 5].add_field(name=items[i]['name'], value=items[i]['description'], inline=False)
-                values[i // 5].append(i)
+                values.append(i)
             c_id = str(ctx.message.id)
 
-            p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi908", values=values)
-            response, inter, msg = await p.start()
-            if response == "Отменить":
+            p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi908", values=values, forse=5, timeout=300)
+            response, inter, msg = await p.send()
+            if response == "Отменить" or response is None:
                 await msg.delete()
                 return
 
@@ -700,22 +701,22 @@ class Shop(Cog):
             return
         
         embeds = [Embed(title='Рынок', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-        values = [[] for i in range(ceil(l / 5))]
+        values = []
         
         if chose == "ah":
             for i in range(l):
                 embeds[i // 5].add_field(name=shop[i]['sellername'] + '  |  ' + shop[i]['name'] + ' | ' + str(shop[i]['sellcost']) + " 💸", value="`" + str(shop[i]['cost']) + '$`  |  ' + ', '.join([f"{fish_components[comp].re} : `{shop[i]['components'][comp]}`" for comp in shop[i]['components']]), inline=False)
-                values[i // 5].append(shop[i]['id'])
+                values.append(shop[i]['id'])
         else:
             for i in range(l):
                 embeds[i // 5].add_field(name=shop[i]['sellername'] + '  |  ' + shop[i]['name'], value=str(shop[i]['sellcost']) + " 💸", inline=False)
-                values[i // 5].append(shop[i]['id'])
+                values.append(shop[i]['id'])
 
         c_id = str(ctx.message.id)
         
-        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi110", values=values)
-        response, inter, msg = await p.start()
-        if response == "Отменить":
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi110", values=values, forse=5, timeout=300)
+        response, inter, msg = await p.send()
+        if response == "Отменить" or response is None:
             await msg.delete()
             return
 
@@ -821,16 +822,16 @@ class Shop(Cog):
         l = len(rods)
         
         embeds = [Embed(title='Ваша коллекция удочек', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-        values = [[] for i in range(ceil(l / 5))]
+        values = []
         
         for i in range(l):
             rod = all_rods[rods[i]]
             embeds[i // 5].add_field(name = rod.name, value=rod.description, inline=False)
-            values[i // 5].append(i)
+            values.append(i)
             
-        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi68", values=values)
-        response, inter, msg = await p.start()
-        if response == "Отменить":
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi68", values=values, forse=5, timeout=300)
+        response, inter, msg = await p.send()
+        if response == "Отменить" or response is None:
             await msg.delete()
             return
         response = int(response)
@@ -904,15 +905,15 @@ class Shop(Cog):
         pr = ", ".join([f'{fish_components[i].re} - {fcomponents[i]}' for i in fcomponents])
         materials += pr if pr != "" else "Пусто"
         embeds = [Embed(title='Бизнесы', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
-        values = [[] for i in range(ceil(l / 5))]
+        values = []
         for i in range(l):
             embeds[i // 5].add_field(name=buss[i].name + '  |  ' + ", ".join([f'{i[0].re}-{i[1]}' for i in buss[i].cost]), value=buss[i].description, inline=False)
             embeds[i // 5].description = materials
-            values[i // 5].append(i)
+            values.append(i)
         
-        p = Paginator(DiscordComponents(self.Bot), ctx.channel, embeds, author=ctx.author, id=c_id + "pagi148856", values=values)
-        response, inter, msg = await p.start()
-        if response == "Отменить":
+        p = Paginator(DiscordComponents(self.Bot), ctx.channel.send, embeds, author_id=ctx.author.id, id=c_id + "pagi148856", values=values, forse=5, timeout=300)
+        response, inter, msg = await p.send()
+        if response == "Отменить" or response is None:
             await msg.delete()
             return
         response = int(response)

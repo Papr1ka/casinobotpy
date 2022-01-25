@@ -185,7 +185,7 @@ async def vote(ctx):
                         'tier': rod.tier
                         } for i in range(3)]}}})
         else:
-            embed.title = "**Чтобы получить награду, проголосуйте на сайте и обратитесь снова**"
+            embed.title = "**Чтобы получить награду, проголосуйте на сайте и напишите `=vote`**"
             embed.url = 'https://top.gg/bot/883201346759704606/vote'
     elif status == 401:
         logger.error(f"Topgg auth if failed; {r}")

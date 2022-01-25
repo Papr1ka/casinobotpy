@@ -1,17 +1,15 @@
-from random import randint
-from typing import Any, Coroutine, Dict, Union
+from typing import Any, Coroutine, Union
 from discord_components import (
     DiscordComponents,
     Button,
     ButtonStyle,
     Interaction,
-    ActionRow,
     Select,
     SelectOption,
 )
 from discord_components.dpy_overrides import ComponentMessage
 from typing import List
-from discord import Embed, Message, Guild
+from discord import Embed
 from asyncio import as_completed
 from asyncio import TimeoutError as AsyncioTimeoutError
 from discord.errors import NotFound
@@ -27,8 +25,6 @@ class Paginator():
         values: List,
         id: int,
         forse: int,
-        guild: Guild,
-        t=1,
         timeout: Union[int, None]=None,
             ) -> None:
         """Пагинатор Эмбедов на кнопках
@@ -53,31 +49,15 @@ class Paginator():
         self.__author_id = author_id
         self.__values = values
         self.__id = str(id)
-        self.__prosessed = []
-        self.guild = guild
         self.forse = forse
-        self.type = t
         self.check = lambda i: i.user.id == self.__author_id and i.custom_id.startswith(self.__id)
-        self.__l = len(values)
+        print(self.__values)
+    
 
     async def get_current(self):
-        if len(self.__prosessed) - 1 >= self.__index:
-            return self.__prosessed[self.__index]
-        else:
-            embed = self.__contents[self.__index]
-            embed.set_thumbnail(url=self.guild.icon_url)
-            for i in range(self.__index * self.forse, min(self.__l, self.__index * self.forse + self.forse)):
-                try:
-                    m = await self.guild.fetch_member(int(self.__values[i]['_id']))
-                    m = m.display_name
-                except NotFound:
-                    m = 'неизвестный'
-                if self.type == 1:
-                    embed.add_field(name=f"`{i + 1}` | {m} | {self.__values[i]['custom']}", value=f"Уровень: `{self.__values[i]['level']}`, опыта `{self.__values[i]['exp']}`", inline=False)
-                else:
-                    embed.add_field(name=f"`{i + 1}` | {m} | {self.__values[i]['custom']}", value=f"Счёт: `{self.__values[i]['money']}$`", inline=False)
-            self.__prosessed.append(embed)
-            return embed
+        e = self.__contents[self.__index]
+        v = self.__values[self.__index * self.forse: min(self.__index * self.forse + self.forse, len(self.__values))]
+        return [{'label': e.fields[i].name, 'value': v[i]} for i in range(len(e.fields))]
 
     async def get_components(self):
         current = await self.get_current()
@@ -88,15 +68,21 @@ class Paginator():
                 disabled=True,
                 custom_id=self.__id + "c"),
             Button(style=ButtonStyle.blue, emoji="▶️", custom_id=self.__id + "r")
+        ], [
+            Select(
+            placeholder='Выберите товар',
+            options=[*[SelectOption(label=i['label'], value=i['value']) for i in current], SelectOption(label="Отменить", value='Отменить')]
+            ,custom_id=self.__id + "s")
         ]]
 
     async def send(self):
         aws = [
             self.__send(
-                embed=await self.get_current(),
+                embed=self.__contents[self.__index],
                 components=await self.get_components()
             ),
-            self.__pagi_loop()
+            self.__pagi_loop(),
+            self.__select_loop()
         ]
         
         res = {}
@@ -104,7 +90,14 @@ class Paginator():
         for coro in as_completed(aws):
             r = await coro
             if r is not None:
-                return r
+                if isinstance(r, ComponentMessage):
+                    res['message'] = r
+                elif r == 0:
+                    res['interaction'] = r
+                else:
+                    res['interaction'] = r
+                if len(res) >= 2:
+                    return res["interaction"].values[0] if res["interaction"] != 0 else None, res["interaction"], res["message"]
 
     async def __pagi_loop(self) -> None:
         while True:
@@ -122,12 +115,25 @@ class Paginator():
                     elif interaction.custom_id == self.__id + "r":
                         self.__index = (self.__index + 1) % self.__length
                     await self.__button_callback(interaction)
+    
+    async def __select_loop(self) -> None:
+        while True:
+            try:
+                interaction = await self.__client.wait_for(
+                    "select_option",
+                    timeout=self.__timeout
+                )
+            except AsyncioTimeoutError:
+                return 0
+            else:
+                if self.check(interaction):
+                    return interaction
 
     async def __button_callback(self, inter: Interaction, retr=1):
         try:
             await inter.respond(
                 type=7,
-                embed=await self.get_current(),
+                embed=self.__contents[self.__index],
                 components=await self.get_components()
             )
         except NotFound:
