@@ -196,7 +196,6 @@ class Jobs(Cog):
                          Button(label="В садок", style=ButtonStyle.green, custom_id=c_id + "cage"),
                          Button(label="Разобрать", style=ButtonStyle.green, custom_id=c_id + "disa")]
                         ]
-                    print(business)
                     for i in business:
                         b = BUSINESSES[i]
                         if not b.stock:

@@ -67,7 +67,7 @@ class ErrorHandler(commands.Cog):
             logger.warning('errors.NotFound')
             embed.title = ""
         elif isinstance(error, CommandInvokeError):
-            logger.warning('errors.CommandInvokeError')
+            logger.warning('errors.CommandInvokeError' + "\n" + error)
             embed.title = ""
         elif isinstance(error, TError):
             embed.title = ""
