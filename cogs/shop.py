@@ -208,12 +208,12 @@ class Shop(Cog):
 
         l = len(cage)
         if l == 0:
-            embed = Embed(title='Магазин', color=Colour.dark_theme())
+            embed = Embed(title='Садок', color=Colour.dark_theme())
             embed.description = "Вы ещё не отложили не одной рыбы в садок"
             await ctx.send(embed=embed)
             return
         
-        embeds = [Embed(title='Магазин', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
+        embeds = [Embed(title='Садок', color=Colour.dark_theme()) for i in range(ceil(l / 5))]
         values = []
         
         for i in range(l):
