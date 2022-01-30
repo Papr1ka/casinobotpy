@@ -798,7 +798,10 @@ class Shop(Cog):
                     embed = Embed(title=f"Поздравляю с покупкой, {item['name']}!", color=Colour.dark_theme())
                     seller = ctx.guild.get_member(item['seller'])
                     e = Embed(title="Ваш товар был продан", color=Colour.dark_theme())
-                    e.add_field(name=item['sellername'] + '  |  ' + item['name'] + ' | ' + str(item['sellcost']) + " 💸", value="`" + str(item['cost']) + '$`  |  ' + ', '.join([f"{fish_components[comp].re} : `{item['components'][comp]}`" for comp in item['components']]), inline=False)
+                    if chose == 'ah':
+                        e.add_field(name=item['sellername'] + '  |  ' + item['name'] + ' | ' + str(item['sellcost']) + " 💸", value="`" + str(item['cost']) + '$`  |  ' + ', '.join([f"{fish_components[comp].re} : `{item['components'][comp]}`" for comp in item['components']]), inline=False)
+                    else:
+                        e.add_field(name=item['sellername'] + '  |  ' + item['name'], value=f"`{item['sellcost']}$`", inline=False)
                     await seller.send(embed=e)
                 else:
                     embed = Embed(title=f"Кто-то оказался быстрее", color=Colour.dark_theme())
